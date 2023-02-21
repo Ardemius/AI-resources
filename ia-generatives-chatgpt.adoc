@@ -1,0 +1,355 @@
+= Ressources sur les IA génératives, et tout particulièrement ChatGPT
+
+Thomas SCHWENDER <icon:github[] https://github.com/Ardemius/[GitHub] / icon:twitter[role="aqua"] https://twitter.com/thomasschwender[@thomasschwender]>
+// Handling GitHub admonition blocks icons
+ifndef::env-github[:icons: font]
+ifdef::env-github[]
+:status:
+:outfilesuffix: .adoc
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+:imagesdir: ./images
+:resourcesdir: ./resources
+:source-highlighter: highlightjs
+:highlightjs-languages: asciidoc
+// We must enable experimental attribute to display Keyboard, button, and menu macros
+:experimental:
+// Next 2 ones are to handle line breaks in some particular elements (list, footnotes, etc.)
+:lb: pass:[<br> +]
+:sb: pass:[<br>]
+// check https://github.com/Ardemius/personal-wiki/wiki/AsciiDoctor-tips for tips on table of content in GitHub
+:toc: macro
+:toclevels: 4
+// To number the sections of the table of contents
+//:sectnums:
+// Add an anchor with hyperlink before the section title
+:sectanchors:
+// To turn off figure caption labels and numbers
+:figure-caption!:
+// Same for examples
+//:example-caption!:
+// To turn off ALL captions
+// :caption:
+
+toc::[]
+
+Notes au sujet des IA génératives, ChatGPT, Dall-E et leurs concurrents et alternatives.
+
+== Veille et ressources avant catégorisation
+
+2023/02/10 : Point cellule de veille Data Docaposte, il devrait être question de ChatGPT
+
+== Que sont les IA génératives ? 
+
+* DONE - 2022/12/15 : chatGPT la révolution : AI générative, vous pouvez réellement converser avec elle, elle passe le test de Turing 
+
+* DONE - https://www.commentcoder.com/chatgpt/#comment-commencer-%C3%A0-utiliser-chatgpt- +
+OpenAI est une entreprise américaine créée par Elon Musk et Sam Altman en 2015 à San Francisco en Californie. Son but est de créer des avancées dans l’intelligence artificielle. Ses services les plus connus sont DALL-E 2, GPT-3 et ChatGPT.
+
+* DONE - ChatGPT est un agent conversationnel qui s'appuie sur le modèle de langage GPT-3 pour interpréter le texte d'un humain et générer des réponses précises et intelligibles, en français comme en anglais. Toutefois, ses connaissances se limitent à tous les événements précédant l'année 2021.
+
+* DONE - AI générative, vous pouvez réellement converser avec elle, elle passe le test de Turing 
+
+* DONE - 2023/01/23 : Article sur l'usage de ChatGPT : https://www.blogdumoderateur.com/tout-savoir-sur-chatgpt/
+
+* DONE - Malgré tout ce que peuvent en dire les médias, il n'est pas correct de qualifier de ChatGPT (et de ses consorts) "d'IA générationnelle" étant donné que ce terme n'existe pas réellement dans le domaine de l'IA, et aurait plutôt tendance à se référer à des algorithmes génétiques. +
+	** Il faut à la place parler d'IA conversationnelles ou d'IA "génératives" (mais PAS "générationnelles")
+
+	** Définition des *algorithmes génétiques* : +
+	Les algorithmes génétiques sont une méthode d'optimisation qui utilise des techniques d'évolution biologique pour résoudre des problèmes complexes. +
+	L'algorithme commence par créer une population initiale de solutions possibles. Ensuite, des opérations de sélection, de croisement et de mutation sont appliquées sur la population pour produire de nouvelles solutions. +
+	Les solutions sont évaluées pour leur "fitness" et les plus performantes sont sélectionnées pour créer une nouvelle population. Ce processus est répété jusqu'à ce qu'une solution satisfaisante soit trouvée ou que le nombre d'itérations prédéfini soit atteint. +
+	Les algorithmes génétiques sont utilisés dans de nombreuses applications d'optimisation, notamment en ingénierie, en économie et en informatique.
+
+* DONE - 2023/01 : https://www.commentcoder.com/chatgpt/
+	** Très bon article présentant ChatGPT dans sa globalité
+
+	** Quel modèle d’apprentissage utilise Chat-GPT ?
+		*** ChatGPT utilise une série de modèles et est connue sous le nom de “GPT 3.5”, elle est composée des modèles d’apprentissage text-davinci-003 pour le texte et code-davinci-002 pour le code. +
+		On a donc des IA différentes pour le code et pour le texte. C’est peut-être ce qui explique pourquoi ChatGPT est si puissant pour nous aider avec le code mais laisse parfois à désirer dans ses réponses textuelles 🤷.
+
+	** Quelle version de GPT utilise ChatGPT ?
+		*** La version de *GPT* (*Generative Pretrained Transformer-3*) utilisée par ChatGPT est GPT-3.5 qui a terminé de s’entraîner au début de l’année 2022.
+		*** 💡 C’est d’ailleurs parce que ChatGPT a fini de parcourir les sources textuelles et de code début 2022 qu’on dit que ChatGPT donne des résultats valides que jusqu’en 2021 (inclus).
+		*** Le prédécesseur de ChatGPT s’appelle InstructGPT qui utilise le modèle d’apprentissage GPT-3. La différence entre Instruct GPT et Chat GPT est impressionnante, vivement une la prochaine version d’IA conversationnelle d’OpenAI qui utilisera GPT-4 !
+
+* DONE - ChatGPT a été codé en Python.
+* DONE - https://openai.com/blog/chatgpt/ : ChatGPT and GPT 3.5 were trained on an Azure AI supercomputing infrastructure.
+
+** DONE - Quelle version de GPT utilise ChatGPT ?
+		*** La version de *GPT* (*Generative Pretrained Transformer-3*) utilisée par ChatGPT est GPT-3.5 qui a terminé de s’entraîner au début de l’année 2022.
+		*** 💡 C’est d’ailleurs parce que ChatGPT a fini de parcourir les sources textuelles et de code début 2022 qu’on dit que ChatGPT donne des résultats valides que jusqu’en 2021 (inclus).
+		*** Le prédécesseur de ChatGPT s’appelle InstructGPT qui utilise le modèle d’apprentissage GPT-3. La différence entre Instruct GPT et Chat GPT est impressionnante, vivement une la prochaine version d’IA conversationnelle d’OpenAI qui utilisera GPT-4 !
+
+	** Qu’est-ce que GPT-4 ?
+		*** GPT-4 est la prochaine version de GPT. L’IA aura été entraînée sur plus de 100 000 milliards de paramètres (contre 175 milliards pour GPT-3). Generative Pre-trained Transformer-4 devrait arriver en cette première moitié d’année 2023.
+
+prompt : la question que vous souhaitez poser à ChatGPT ; pensez à intégrer du contexte pour obtenir des réponses pertinentes.
+
+* Très bonne définition de wikipedia : https://fr.wikipedia.org/wiki/ChatGPT : 
+	** "ChatGPT est un prototype d'agent conversationnel utilisant l'intelligence artificielle, développé par OpenAI et spécialisé dans le dialogue."
+
+DONE - L'agent conversationnel de ChatGPT est basé sur le modèle de langage GPT-3 d'OpenAI, et est affiné en continu grâce à l'utilisation de techniques d'apprentissage supervisé et d'apprentissage par renforcement, afin d'améliorer les performances du logiciel.
+
+DONE - 2023/02/09 - BFM Tech & Co : ChatGPT moteur de réponse là où Google est un moteur de recherche
+
+=== SLIDES
+
+* *Définitions* : 
+
+	** IA générative : Une IA générative a pour but de générer de nouvelles données, telles que du texte (agents conversationnels comme ChatGPT), des images (Dall-E) ou de la musique, à partir d'un ensemble de données d'entraînement.
+
+	** ChatGPT : ChatGPT appartient à cette catégorie des IA générative. +
+	Il s'agit d'un agent conversationnel (un "chatbot"), basé sur le modèle de langage GPT 3.5, utilisant un mix d'apprentissage supervisé et d'apprentissage par renforcement pour affiner en continu son modèle afin d'améliorer ses performances.
+
+	** *Modèle de langage* : il s'agit d'un type de modèle d'apprentissage automatique conçu pour comprendre et générer du langage humain. Il est entraîné sur de grandes quantités de données textuelles pour apprendre la structure, la grammaire et le sens du langage naturel. 
+
+	** *Apprentissage supervisé* : il s'agit d'une méthode d'apprentissage automatique où il est question d'apprendre à classer les données au sein de catégories (classes / étiquettes) prédéfinies : on connaît ces dernières à priori. +
+	On le distingue de l'apprentissage NON supervisé où au contraire il est question de trouver des catégories dans lesquelles les données pourraient être regroupées sur la base de caractéristiques communes. On ne connaît PAS ces catégories à priori.
+
+		*** voir https://fr.wikipedia.org/wiki/Apprentissage_supervis%C3%A9
+		*** et la très bonne explication de Wikipedia dans l'article sur l'apprentissage non supervisé : https://fr.wikipedia.org/wiki/Apprentissage_non_supervis%C3%A9
+
+	** *Apprentissage par renforcement* : il s'agit d'une méthode d'apprentissage automatique consistant, pour un agent autonome (comme un chatbot), à apprendre les actions à entreprendre, dans environnement donné, à partir d'essais et d'erreurs, de façon à maximiser une récompense quantitative donnée par l'environnement au cours du temps.
+
+		*** comme précédemment, voir les très bonnes informations de l'article Wikipedia sur l'apprentissage non supervisé : https://fr.wikipedia.org/wiki/Apprentissage_non_supervis%C3%A9
+
+	** Concernant plus spécifiquement ChatGPT, son *modèle de langage* est actuellement *GPT 3.5* (Generative Pretrained Transformer), qui est composé de plusieurs modèles d'apprentissage, certains dédiés au texte (text-davinci-003) et d'autres au code (code-davinci-002).
+		*** Le modèle d'apprentissage du code est jugé comme étant particulièrement performant (plus encore que son homologue dédié au texte)
+		*** GPT s'appuie le modèle d'apprentissage profond Transformer, à savoir un type de réseau de neurones, entraîné sur de grandes quantités de données textuelles pour apprendre les relations entre les différents éléments du texte, comme les mots et les phrases.
+		*** Le modèle *Transformer* a été créé en 2017 pour l'une des équipes de Google AI (Google Brain en l'occurrence). +
+		-> Cela fait des années que ce modèle est utilisé "un peu partout" par Google, mais aussi par Meta : modération de contenu, recommendation de contenu / ranking, traduction, etc.
+			**** Voir l'article anglais de Wikipedia sur le modèle Transformer pour avoir plus d'informations sur sa création côté Google.
+
+* *Quelques informations complémentaires sur OpenAI et ChatGPT lui-même* : 
+
+	** OpenAI est une entreprise américaine *créée par Elon Musk et Sam Altman en 2015* à San Francisco. +
+	Elon Musk en a quitté le conseil d'administration en 2018 en raison de conflits d'intérêts potentiels avec son rôle de CEO de Tesla du fait du développement de l'IA de ses voitures autonomes.
+		*** Voir https://en.wikipedia.org/wiki/OpenAI pour plus de détails sur le départ du board d'OpenAI d'Elon Musk
+	
+	** ChatGPT, tout comme le modèle Google LaMDA, aurait *déjà réussi le test de Turing*.
+		*** Test de Turing : Un test célèbre basé sur la question : « Les machines peuvent-elles penser ? » Le test de Turing part d'un principe simple : si un humain peut avoir une conversation de cinq minutes avec une machine sans s'en rendre compte, alors l'ordinateur a réussi le test.
+		*** https://www.pcguide.com/apps/chat-gpt-pass-turing-test/
+
+	** ChatGPT utilise actuellement (2023/02) le modèle de langage GPT-3.5 qui a terminé de s'entraîner début 2022, comprendre par là qu'il a fini de parcourir les sources textuelles et de code début 2022, raison pour laquelle ses résultats ne sont valides que jusqu'en 2021 (inclus).
+	** 1ere moitié 2023 sortie la prochaine version du modèle de langage GPT : *GPT-4*. +
+	Cette version aura été entraînée sur des données plus nombreuses 
+	Celui-ci aura été entraînée sur plus de 100 000 milliards de paramètres, contre "seulement" 175 milliards pour GPT-3. +
+	Lorsque ce nouveau modèle intégrera ChatGPT, *le gain de puissance résultant est annoncé comme étant de x100*...
+
+	** ChatGPT a été codé en Python
+	** ChatGPT et GPT 3.5 ont été entraînés sur l'infrastructure supercomputer d'Azure AI. +
+	Microsoft et OpenAI se sont entendus sur un partenariat technologique et commercial touchant les technologies de l'IA dès 2019/07
+		*** https://news.microsoft.com/2019/07/22/openai-forms-exclusive-computing-partnership-with-microsoft-to-build-new-azure-ai-supercomputing-technologies/
+
+* *Uses Cases* : 
+
+	** les possibilités de génération de contenu textuel sont extrêmement vastes. +
+	ChatGPT a une valeur ajoutée d'autant plus forte que la culture générale et les connaissances académiques sont importantes, l'outil ayant été entraîné sur un ensemble de données impossible à assimiler pour un être humain (sources Web, Wikipedia, livres, articles de presse, documents professionnels, dialogues, etc.)  +
+	Comme principaux cas d'usage on peut citer : 
+
+	** *moteur de "réponse"* pour accéder à de l'information générale ou un savoir académique : ChatGPT est davantage un moteur de "réponse" là où Google est un moteur de "recherche"
+	** *Assistance à la rédaction de tout contenu* : lettres, mails, rapports, dissertation. Il est possible de préciser le ton, la structure ou la présentation souhaités.
+	** *Correction de la langue* : ChatGPT peut aider à corriger la grammaire, l'orthographe, la ponctuation ou encore le style d'écriture.
+	** *Aide à la programmation* : ChatGPT pour créer du code répondant à des besoins algorithmiques ou d'intégration dans le langage demandé. +
+	Exemple : "Ecris un code permettant d'initier une connexion à une base de données PostgreSQL appelée "toto" en utilisant le langage Java"
+
+== La compétition est lancée entre les acteurs du secteur
+
+* DONE - Le 30 novembre 2022 ChatGPT est arrivé sur internet et a tout bouleversé en gagnant 1 million d’utilisateurs en seulement 5 jours !
+* DONE - A la fin du mois 2023/01, donc 2 mois après sa mise à disposition du public, ChatGPT comptait près de 100 millions d'utilisateurs actifs. +
+Chaque jour en janvier, le chatbot pouvait en moyenne enregistrer environ 13 millions de visites uniques, soit plus du double des visites comptabilisées en décembre.
+	** https://www.clubic.com/technologies-d-avenir/intelligence-artificielle/actualite-456000-chatgpt-le-nombre-d-utilisateurs-du-chatbot-atteint-des-sommets.html +
+	A titre de comparaison, TikTok a mis 9 mois pour atteindre 100 millions d'utilisateurs et Instagram a dû patienter 2 ans et demi pour franchir ce seuil.
+
+* DONE - coût de l'infra au quotidien et augmentation (explosion) du nombre d'utilisateurs : voir si une modification de l'usage du service (usage gratuit devenant trop cher) n'est pas à envisager / craindre
+
+* Quelles sont les alternatives à ChatGPT ?
+	** WriteSonic
+	** JasperAI
+	** Content at Scale
+	** Google Bard : https://www.commentcoder.com/bard/
+
+	** Regarder aussi, pour l'aide au développement (code) : 
+		*** GitHub Copilot, Captain Stack, IntelliCode et Code Whisperer sont quelques-uns d'entre eux qui proposent une expérience de développement améliorée. +
+		https://cfp.devoxx.fr/2023/speaker/41ddfc94fae25d02caeb89b094e14e056fb6e5d3/louis-guillaume_morand
+
+* 2023/01/19 - BFM Tech et Co : OpenAI a servi de cheval de Troie pour permettre à Google et Microsoft de se lancer "publiquement" dans l'IA façon ChatGPT 
+	** MidJourney concurrent de Dall.E
+
+2023/02/08 : IA : Microsoft vs Google (ChatGPT vs Bard)
+https://www.courrierinternational.com/article/competition-entre-google-et-microsoft-la-guerre-de-l-ia-est-lancee 
+
+* Microsoft ajoute ChatGPT à la suite Office
+	** Google est l'écrasant n°1 des moteurs de recherche, Bing est très loin derrière
+		*** https://www.webrankinfo.com/dossiers/etudes/parts-marche-moteurs : 94% de parts de marché pour Google dans le monde, contre 3% pour Bing
+	** Bing n'a donc rien à perdre en "tenant l'expérience" avec ChatGPT, même si des travers sont possibles
+	** https://www.zdnet.fr/actualites/microsoft-se-precipite-pour-mettre-chatgpt-dans-ses-applications-office-39952314.htm#xtor=RSS-1
+	** Nom de l'intégration de ChatGPT à Bing : Prometheus
+
+* 2023/01 : Microsoft met le paquet sur OpenAI et va investir 10 milliards dedans (l'éditeur de ChatGPT)
+	** https://www.clubic.com/pro/entreprises/microsoft/actualite-452997-chatgpt-microsoft-va-investir-10-milliards-de-dollars-dans-openai.html 
+
+* 2022/01/26 - BFM Tech & Co : ChatGPT réussit à faire trembler Google sur son coeur de métier, ce à quoi on ne croyait plus (10 personnes au début pour OpenAI arrivent à faire trembler un GAFA)
+	** ce "faire trembler" est discutable, Google ne pouvait pas révéler lui-même ce type de techno au public et devait savoir (espérer ?) que d'autres le fassent pour ouvrir la porte. +
+	Par contre, avaient-ils réellement bien pesé les avantages / inconvénients au vu de l'engouement du public ? Difficile à dire... 
+
+* 2023/10/12 - BFM Tech et Co : LLM (Large Langage Model) et Transformer dans le cadre de ChatGPT
+	** Et le modèle (?) Transformer est OpenSource MAIS a été inventé par des ingénieurs de Google)
+	** Et Google peut faire plus fort qu'OpenAI car ils ont le soft ET le hard (TensorFlow)
+	** Les 2 ecosystèmes d'IA les plus développés au monde sont TensorFlow de Google et PyTorch de Meta.
+
+* 2023/01/23 : Article sur ChatGPT, branle-bas de combat chez Google qui rappelle ses fondateurs.
+	** https://www.01net.com/actualites/panique-chez-google-les-fondateurs-reviennent-pour-contrer-chatgpt.html
+	** L’ancien directeur de la recherche chez Google, D. Sivakumar, n’a pas hésité à parler d’un « moment de grande vulnérabilité pour Google » : +
+	"For the first time, I feel that Google's supremacy is under threat for information / knowledge-seeking searches... +
+	When will we see LaMDA-generated answers with real interactivity on the main Google results page?" +
+	-> Google va lancer plus de 20 nouveaux produits liés à l’intelligence artificielle cette année, dont plusieurs qui seront présentés lors de la conférence Google I/O 2023 (2023/05)
+	** C'est le branle-bas de combat car quelqu'un (OpenAI) a ouvert la boîte de Pandore que les "gros" n'osait pas ouvrir, ou tout simplement ne POUVAIT PAS ouvrir
+		*** Maintenant que c'est fait, ces gros vont avoir "l'obligation de suivre" (la belle excuse...), et vont s'en donner à coeur joie, et cela va être la guerre
+
+* 2023/02/06 : Google et LaMDA pour contrer ChatGPT
+	** https://intelligence-artificielle.developpez.com/actu/341183/ChatGPT-reussit-l-entretien-de-codage-Google-pour-un-ingenieur-de-niveau-3-avec-un-salaire-de-183-000-tout-en-indiquant-qu-il-ne-peut-pas-reproduire-la-creativite-humaine/
+	** Ne pas oublier que, par exemple, pour “calculer 1 + 1 = 2”, dans les faits ces IA ne “calculent PAS”, elles font des déductions sur les résultats à la question “combien font 1 + 1 ?” qu’elles ont pu trouver dans leur base de connaissances. +
+	Si tout le monde disait “1 + 1 = 3”, elles répondraient 3
+	** LaMDA vs ChatGPT : Cependant, l'outil soutenu par Microsoft échoue de manière spectaculaire lorsqu'il répond à des énigmes logiques, contrairement à LaMDA. 
+	** “Google est réticent à déployer une IA factuellement inexacte, et ChatGPT s'est parfois terriblement trompé. Lors d'une récente réunion, le chef de l'IA de Google, Jeff Dean, a déclaré que l'entreprise avait une plus grande réputation à protéger et progressait donc « de manière plus conservatrice qu'une petite startup ».”
+	** “Google teste également un chatbot appelé Apprentice Bard”
+	** “Bard utilise LaMDA (ou Language Model for Dialogue Applications), le modèle de langage de Google pour l'application de dialogue”
+	** “ChatGPT fournit des réponses plus longues et plus détaillées lorsqu'il est invité à faire preuve de créativité, comme avec un scénario de film. Cependant, l'outil soutenu par Microsoft échoue de manière spectaculaire lorsqu'il répond à des énigmes logiques, contrairement à LaMDA.”
+
+2023/02/15 : Opera va intégrer ChatGPT
+https://www.clubic.com/navigateur-internet/opera/actualite-457434-opera-entre-dans-la-danse-de-l-ia-voici-comment-le-navigateur-compte-s-y-prendre.html 
+Pour proposer via un nouveau bouton des résumés d'articles.
+
+MAIS TOUT CECI N'EST FINALEMENT PAS NOUVEAU : 
+
+* Tout ceci n'est pas nouveau, écouter Yann Lecunn ne parler, mais OpenAI l'a révélé au grand jour, ce que les gros acteurs de la tech ne pouvaient pas faire : on ne leur aurait rien "passé" côté comportement de l'IA, abus de position dominante, cela aurait été trop risqué en termes d'images.
+	** Là, OpenAI a ouvert la voie, les GAFA peuvent maintenant se contenter de dire qu'ils "suivent le chemin".
+
+* Twitter de Yann LeCun : Ce que fait OpenAI n'est PAS nouveau.
+
+	** Pour rappel Yann LeCun est un chercheur français en Intelligence Artificielle et considéré comme l'un des inventeurs de l'apprentissage profond
+		*** Il a dirigé le labo FAIR de Meta (Facebook Artificial Intelligence Research) de 2013 à 2018, et est maintenant chercheur / scientifique en chef de l'IA chez Facebook.
+		*** en 2021, il est élu à l'Académie nationale des sciences des Etats-Unis
+
+	** voir le fil de Twit : https://twitter.com/ylecun/status/1617951238108385284?t=-ESJgkDHWnMJjatEmmEmkg&s=19
+	** Le modèle Transformer a été écrit par les ingénieurs de Google en 2017
+	** OpenAI a surtout comme mérite d'avoir permis à toutes et tous de manipuler une technologie que certains (Google, Meta et d'autres) utilisent déjà sous le capot pour nous proposer des services depuis des années.
+		*** Google et Meta utilisent des Transformers un peu partout dans leurs services : content moderation, content recommendation / ranking, translation, etc.
+
+* 2022/01/28 : Yann LeCun sur ChatGPT et une critique rationnelle de la techno qui est bien ficelée mais n'a rien de révolutionnaire (Google en a été à la base en 2017, mais c'était dangereux pour eux, comme pour Méta, de communiquer publiquement dessus, à cause de l'image du "grand méchant hégémonique")
+	** https://www.01net.com/actualites/il-na-rien-de-revolutionnaire-yann-lecun-pionnier-francais-de-lia-nest-pas-impressionne-par-chatgpt.html
+
+=== SLIDES
+
+* ChatGPT a été ouvert au public le 30 novembre 2022, et a gagné 1 million d'utilisateurs en 5 jours seulement.
+* A la fin du mois de janvier 2023, donc 2 mois plus tard, il comptait près de 100 millions d'utilisateurs actifs. +
+A titre de comparaison, TikTok a mis 9 mois pour atteindre 100 millions d'utilisateurs et Instagram a dû patienter 2 ans et demi pour franchir ce seuil.
+
+* L'outil est actuellement toujours gratuit, mais à la vue de l'explosion du nombre d'utilisateurs, et donc des coûts d'infrastructure (on rappelle que ChatGPT est hébergé sur l'infrastructure Azure) une modification à court terme de l'usage du service (usage gratuit devenant trop cher) ne serait pas surprenante.
+
+== Demo
+
+* Les "ratés" de ChatGPT : l'histoire de Softeam
+	** Même en donnant des précisions, ChatGPT n'arrive pas à recouper correctement les informations pour retrouver l'histoire de Softeam. +
+	A la place, il mélange les histoires de plusieurs sociétés partageant le nom "Softeam"
+
+* Exemples de code créé par ChatGPT
+
+== Vérifier la provenance de l'information
+
+Cela a toujours été vrai, mais cela va l'être encore plus à partir de maintenant.
+
+Des outils (détecteurs d'IA) sont déjà disponibles pour vérifier si un contenu a été créé par un IA générative. +
+Parmi eux on peut citer (cf https://www.commentcoder.com/detecteur-ia/)
+
+	* Originality.ai : https://originality.ai/
+	* Content at Scale : https://contentatscale.ai/ai-content-detector/
+	* Copyleaks : https://copyleaks.com/features/ai-content-detector
+	* CrossPlag : https://crossplag.com/ai-content-detector/
+
+Le problème est que malgré leurs annonces, ces sites se font encore facilement "piégés" par ChatGPT, d'autant plus pour des textes en français. +
+Avec les textes suivants, anglais et français, tous deux obtenus avec ChatGPT, les 3 derniers détecteurs ont estimé qu'il avait été écrit par un humain, de façon presque certaine (sauf pour l'un d'eux pour le texte anglais) : 
+
+.ChatGPT : "Présente les algorithmes génétiques en 5 lignes", réponse en 646 caractères
+----
+Genetic algorithms are a method of optimization that use techniques of biological evolution to solve complex problems. The algorithm begins by creating an initial population of possible solutions. Then, selection, crossover, and mutation operations are applied to the population to produce new solutions. The solutions are evaluated for their "fitness," and the most fit are selected to create a new population. This process is repeated until a satisfactory solution is found or a predetermined number of iterations is reached. Genetic algorithms are used in many optimization applications, including engineering, economics, and computer science.
+----
+
+.Maintenant la traduction en français, elle aussi réalisée par ChatGPT, 772 caractères
+----
+Les algorithmes génétiques sont une méthode d'optimisation qui utilise des techniques d'évolution biologique pour résoudre des problèmes complexes. L'algorithme commence par créer une population initiale de solutions possibles. Ensuite, des opérations de sélection, de croisement et de mutation sont appliquées sur la population pour produire de nouvelles solutions. Les solutions sont évaluées pour leur "fitness" et les plus performantes sont sélectionnées pour créer une nouvelle population. Ce processus est répété jusqu'à ce qu'une solution satisfaisante soit trouvée ou que le nombre d'itérations prédéfini soit atteint. Les algorithmes génétiques sont utilisés dans de nombreuses applications d'optimisation, notamment en ingénierie, en économie et en informatique.
+----
+
+Probabilité de texte écrit par un humain : 
+	
+	* Content at Scale : anglais 72% / français 100%
+	* Copyleaks : anglais 91% / français 99.9%
+	* CrossPlag : anglais 100% / français 100%
+
+== Les limites de ces IA, les risques et les craintes associées
+
+* 1er "pétage de plomb" de ChatGPT, qui "remet en place" un utilisateur : https://www.tomsguide.fr/bing-chatgpt-microsoft-limite-le-nombre-de-questions-pour-eviter-les-insultes-et-les-menaces/
+	** Raison pour laquelle plusieurs voix s'élèvent pour rappeler qu'elles "avaient déjà dit" qu'il était trop tôt pour mettre en les mains du public ce type de technologies
+		*** ce qui aurait tendance à donner raison à Google, Facebook et autres qui disposent déjà de ce type de technologie depuis des années MAIS qui les ont "gardées pour eux"
+* les multiples personnalités développées par ChatGPT : l'originale "Sydney", la "maléfique" "Venom", la porno "Fury", etc.
+
+* Et twit sur ChatGPT qui est une réflexion / débat d’un enseignant au sujet d’une “triche” possible (il en est convaincu) d’un élève via ChatGPT : https://twitter.com/MedericGC/status/1618185537655046144?s=20 
+
+* 2023/02/10 : Stackoverflow bannit le code généré par ChatGPT de sa plateforme
+	** Se renseigner sur les raisons de ce ban
+
+* De plus en plus de voix s'élèvent pour dire qu'OpenAI a sorti ChatGPT trop tôt
+
+== Les conséquences pour nos métiers
+
+* DONE - 2022/12/22 - BFM TECH & co : de nouveau révolution apportée par ChatGPT et DALLe (IA générative)
+	** Va à terme impacter notre métier qui penche de plus en plus vers l'intégration : la majorité du code que nos ITs génèrent est simple, et pourra donc l'être par une IA.
+
+* Marketplace de prompt comme PromptBase : https://promptbase.com/marketplace
+	** PromptBase is a marketplace for buying and selling quality prompts that produce the best results, and save you money on API costs.
+	** -> On commence à parler de "Prompt engineer", c'est une tendance à suivre
+
+* ChatGPT pour aider les développeurs (ou faire le travail à leur place ?)
+	** GPT3 est disponible depuis des mois, et GitHub Copilot depuis des années maintenant
+
+=== SLIDES
+
+Actuellement, du fait principalement de la multiplication des technologies disponibles pour répondre à un même besoin, et d'un marché tendu où les ressources et les compétences manquent, la demande en matière de prestation s'est déplacée du développement logiciel vers l'intégration logicielle. +
+Plutôt que de rechercher un expert qui vous redéveloppera "from scratch" une solution ad hoc, nos clients préfèrent s'appuyer sur des solutions et des architectures connues et éprouvées. Aussi, dans la plupart des cas, le constat est que l'on préfèrera un bon "intégrateur", avec une bonne culture générale des technologies du marché, à un expert pointu dans l'une d'elle et qui saura la modéler pour la faire répondre aux différents besoins. +
+Les experts seront bien entendu toujours requis, mais dans une proportion moindre que par le passé.
+
+Ce n'est pas encore demain qu'une IA pourra remplacer un expert et les connaissances poussées qui sont les siennes, le niveau de raisonnement des IA n'est pas suffisamment bon pour cela. +
+Par contre, du fait de leur savoir encyclopédique impossible à concurrencer, les IA peuvent connaître les bases de "toutes les technologies du marché". +
+Aussi, elles vont, au minimum et sous très peu de temps, intégrer le quotidien des missions d'intégration, NOS missions, et savoir "prompter" correctement une IA va être un gros plus pour les consultants dans un 1er temps, et devenir complètement indispensable à moyen terme (tel que c'est parti, je dirais 1 à 2 ans, donc presque demain !). +
+Certaines ressources parlent déjà de "prompt engineer" pour les IT maîtrisant le prompt des IA pour leur 
+
+Comme expliqué lors du précédent état des lieux technologique, Softeam a évolué d'une société d'experts dans la modélisation logicielle vers une ESN généraliste. +
+La plupart des missions 
+
+== Du côté des IA génératrices d'images
+
+* https://www.commentcoder.com/generateurs-images-ia/ : les meilleurs générateurs d'images par IA +
+Les 5 meilleurs : 
+
+	1. Jasper Art : spécialisé dans l’IA
+	2. Nightcafe : Essai gratuit et moins cher
+	3. MidJourney : Le plus facile (Discord)
+	4. DALL-E 2 : Création d’images réalistes
+	5. Stable Diffusion : Transformation d’images
+
+
+* Les générateurs d'images : DALL·E, MidJourney ou encore Stable Diffusion.
+
+use case "simple et utile" : création d'images libre de droits d'autres pour les présentations (pour le moment...)
+
+
+
+
+
+
