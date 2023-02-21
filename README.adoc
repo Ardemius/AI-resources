@@ -1,0 +1,8 @@
+= Ressources sur l'IA
+
+Un repo pour stocker toutes mes ressources et notes sur l'IA : 
+
+	* veille sur les IA génératives, ChatGPT, Dall-E et autres
+
+
+
