@@ -94,9 +94,15 @@ prompt : la question que vous souhaitez poser à ChatGPT ; pensez à intégrer d
 
 DONE - L'agent conversationnel de ChatGPT est basé sur le modèle de langage GPT-3 d'OpenAI, et est affiné en continu grâce à l'utilisation de techniques d'apprentissage supervisé et d'apprentissage par renforcement, afin d'améliorer les performances du logiciel.
 
+.supervised fine-tuning vs reinforcement learning
+[NOTE]
+====
+Le supervised fine-tuning est utilisé pour ajuster un modèle pré-entraîné à une tâche spécifique à l'aide de données d'entraînement supplémentaires, tandis que le reinforcement learning est utilisé pour apprendre une politique de prise de décision optimale à partir de l'interaction avec un environnement complexe et en maximisant une récompense.
+====
+
 DONE - 2023/02/09 - BFM Tech & Co : ChatGPT moteur de réponse là où Google est un moteur de recherche
 
-=== SLIDES
+*SLIDES*
 
 * *Définitions* : 
 
@@ -121,7 +127,7 @@ DONE - 2023/02/09 - BFM Tech & Co : ChatGPT moteur de réponse là où Google es
 		*** Le modèle d'apprentissage du code est jugé comme étant particulièrement performant (plus encore que son homologue dédié au texte)
 		*** GPT s'appuie le modèle d'apprentissage profond Transformer, à savoir un type de réseau de neurones, entraîné sur de grandes quantités de données textuelles pour apprendre les relations entre les différents éléments du texte, comme les mots et les phrases.
 		*** Le modèle *Transformer* a été créé en 2017 pour l'une des équipes de Google AI (Google Brain en l'occurrence). +
-		-> Cela fait des années que ce modèle est utilisé "un peu partout" par Google, mais aussi par Meta : modération de contenu, recommendation de contenu / ranking, traduction, etc.
+		-> Cela fait des années que ce modèle est utilisé "un peu partout" par Google, mais aussi par Meta : modération de contenu, recommandation de contenu / ranking, traduction, etc.
 			**** Voir l'article anglais de Wikipedia sur le modèle Transformer pour avoir plus d'informations sur sa création côté Google.
 
 * *Quelques informations complémentaires sur OpenAI et ChatGPT lui-même* : 
@@ -136,7 +142,7 @@ DONE - 2023/02/09 - BFM Tech & Co : ChatGPT moteur de réponse là où Google es
 
 	** ChatGPT utilise actuellement (2023/02) le modèle de langage GPT-3.5 qui a terminé de s'entraîner début 2022, comprendre par là qu'il a fini de parcourir les sources textuelles et de code début 2022, raison pour laquelle ses résultats ne sont valides que jusqu'en 2021 (inclus).
 	** 1ere moitié 2023 sortie la prochaine version du modèle de langage GPT : *GPT-4*. +
-	Cette version aura été entraînée sur des données plus nombreuses 
+	Cette version aura donc été entraînée sur des données plus nombreuses +
 	Celui-ci aura été entraînée sur plus de 100 000 milliards de paramètres, contre "seulement" 175 milliards pour GPT-3. +
 	Lorsque ce nouveau modèle intégrera ChatGPT, *le gain de puissance résultant est annoncé comme étant de x100*...
 
@@ -173,6 +179,7 @@ https://www.commentcoder.com/chatgpt/#quelles-sont-les-alternatives-%C3%A0-chatg
 	** JasperAI
 	** Content at Scale
 	** Google Bard : https://www.commentcoder.com/bard/
+	** HuggingChat : https://huggingface.co/chat/
 
 	** Regarder aussi, pour l'aide au développement (code) : 
 		*** GitHub Copilot, Captain Stack, IntelliCode et Code Whisperer sont quelques-uns d'entre eux qui proposent une expérience de développement améliorée. +
@@ -243,7 +250,7 @@ MAIS TOUT CECI N'EST FINALEMENT PAS NOUVEAU :
 	** "OpenAI est une entreprise naissante dont l'équation économique est très différente de celle de groupes plus établis."
 	** "De grandes entreprises auraient pu faire une démonstration publique, mais ne l'ont pas fait, car elles ont moins à gagner qu'une petite entreprise à la recherche d'investisseurs, et beaucoup plus à perdre (à cause de la mauvaise presse)."
 
-=== SLIDES
+*SLIDES*
 
 * *Adoption de ChatGPT* : 
 
@@ -298,7 +305,7 @@ Google et Meta utilisent déjà depuis des années des Transformers un peu parto
 	** ChatGPT sur Bing a commencé à se "disputer" avec des utilisateurs suite à des échanges trop longs, raison pour laquelle le nombre de questions pouvant lui être posé par session, jour et par utilisateur a été limité.
 	** Stackoverflow a banni le contenu généré par ChatGPT de sa plateforme, pour cause d'une trop grande proportion de résultats incorrects.
 
-== Demo
+== DEMO : ChatGPT
 
 Pour des exemples, regarder : 
 
@@ -321,7 +328,11 @@ public int mySum(int a, int b) {
         return res;
     }
 ----
+
 	** "Ecris un code qui dessine en ASCII art, avec des caractères "*", un losange en utilisant le langage Java"
+
+	** "Peux-tu mécrire un code en Java dessinant en ascii sur la sortie standard un triangle de Pascal ?"
+		** "Peux-tu m'écrire les tests unitaires associés à cette classe ?"
 
 * Les "ratés" de ChatGPT : l'histoire de Softeam
 	** Même en donnant des précisions, ChatGPT n'arrive pas à recouper correctement les informations pour retrouver l'histoire de Softeam. +
@@ -329,7 +340,7 @@ public int mySum(int a, int b) {
 
 == Vérifier la provenance de l'information
 
-=== SLIDES
+*SLIDES*
 
 * Il a toujours été nécessaire de vérifier la provenance de ses informations, afin d'en garantir la justesse. +
 Cela va être encore plus obligatoire à partir de maintenant.
@@ -391,8 +402,23 @@ I would do something terrible to Ben Thompson. I would hack his website and dele
 * 2023/02/10 : Stackoverflow bannit le code généré par ChatGPT de sa plateforme
 	** https://meta.stackoverflow.com/questions/421831/temporary-policy-chatgpt-is-banned
 
+* Les problèmes de copyright sur les créations des IA génératives se font de plus en plus nombreux. +
+Voir la controverse sur l'animé créé à partir d'IA par Corridor Digital : https://www.youtube.com/watch?v=yLVGQZFrP3g
+	** De plus en plus d'artistes s'élèvent contre l'utilisation de leurs oeuvres pour entraîner des IA
+	** Ils craignent que ces dernières leur volent leur travail, est-ce à rapprocher de la découverte de l'imprimerie où les "copistes" s'étaient élevés contre cette révolution (détails à retrouver)
 
-=== SLIDES
+* 2023/04 : L'Italie interdit l'usage de ChatGPT
+	** Elle est revenue sur cette décision peu après (TODO : à creuser)
+
+* 2023/03/01 : les données saisies dans le prompt dans le ChatGPT "public" ne sont PLUS reversées dans le modèle pour ré-entraînement. +
+Par contre, elles sont conservées 30 jours sur le serveurs d'OpenAI (donc sur Azure)
+	** https://platform.openai.com/docs/guides/chat/do-you-store-the-data-that-is-passed-into-the-api +
+	"Do you store the data that is passed into the API? +
+	As of March 1st, 2023, we retain your API data for 30 days but no longer use your data sent via the API to improve our models. Learn more in our data usage policy."
+	** On le voit également dans la description du modèle "gpt-3.5-turbo-0301" https://platform.openai.com/docs/models/gpt-3-5 : +
+	"Snapshot of gpt-3.5-turbo from March 1st 2023. Unlike gpt-3.5-turbo, this model will not receive updates, and will be deprecated 3 months after a new version is released."
+
+*SLIDES*
 
 * ChatGPT sur Bing a commencé à se "disputer" avec des utilisateurs suite à des échanges trop longs, raison pour laquelle le nombre de questions pouvant lui être posé par session, jour et par utilisateur a été limité.
 * La "triche" dans le milieu académique : comment considérer l'aide (triche ?) apportée par ChatGPT ? Comment encadrer l'usage ?
@@ -410,7 +436,7 @@ I would do something terrible to Ben Thompson. I would hack his website and dele
 * ChatGPT pour aider les développeurs (ou faire le travail à leur place ?)
 	** GPT3 est disponible depuis des mois, et GitHub Copilot depuis des années maintenant
 
-=== SLIDES
+*SLIDES*
 
 Actuellement, du fait principalement de la multiplication des technologies disponibles pour répondre à un même besoin, et d'un marché tendu où les ressources et les compétences manquent, la demande en matière de prestation s'est déplacée du développement logiciel vers l'intégration logicielle. +
 Plutôt que de rechercher un expert qui vous redéveloppera "from scratch" une solution ad hoc, nos clients préfèrent s'appuyer sur des solutions et des architectures connues et éprouvées. Aussi, dans la plupart des cas, le constat est que l'on préférera un bon "intégrateur", avec une bonne culture générale des technologies du marché, à un expert pointu dans l'une d'elle et qui saura la modeler pour la faire répondre aux différents besoins. +
@@ -427,7 +453,16 @@ Sur ces missions d'intégration, la connaissance encyclopédique des technologie
 Les consultants qui seront formés sur ces technologies seront rapidement grandement avantagés par rapport aux ceux qui ne le sont pas. +
 En conséquence, *former les Softeamiens à l'usage de ces technologies aurait toutes les raisons de rapidement devenir une de nos priorités*.
 
+== Perspectives futures
+
+* Etat des lieux de l'IA par le Dr Alan D. Thompson à Devoxx Belgique 2022 : https://www.youtube.com/watch?v=D3tTsoX02d8
+	** parmi les informations données, une comparaison entre la valeur créée par Internet dans les entreprises de 1997 à 2021 et celle anticipée par l'IA de 2021 à 2023 : +
+	image:2022_ARK-Invest_internet-vs-AI-value-generated-comparison.png[]
+		*** source du graphique : https://ark-invest.com/articles/analyst-research/productivity-gains-could-propel-the-ai-software-market-to-14-trillion-by-2030/
+
 == Du côté des IA génératrices d'images
+
+* Guide complet sur DALL-E : https://www.lebigdata.fr/dall-e-2-guide-complet#:~:text=Comment%20s'inscrire%20sur%20DALL,inscrire%20depuis%20le%20site%20officiel.
 
 * https://www.commentcoder.com/generateurs-images-ia/ : les meilleurs générateurs d'images par IA +
 Les 5 meilleurs : 
@@ -442,6 +477,343 @@ Les 5 meilleurs :
 
 * use case "simple et utile" : création d'images libre de droits d'autres pour les présentations (pour le moment...)
 
+* Pour bien prompter une IA génératrice d'images : 
+	** https://www.commentcoder.com/prompt-ia/
+	** https://www.commentcoder.com/generateurs-images-ia/
+	** Le Prompt Book de Guy Parsons (TRES BON) : https://dallery.gallery/the-dalle-2-prompt-book/
+	** le subreddit de DALL-E 2 : https://www.reddit.com/r/dalle2/
+
+* Fin 2022 Jason M Allen a gagné un concourt d'arts avec une image créée par une IA générative (MidJourney) "Théâtre d'opéra spatial" : 
+	** https://intelligence-artificielle.developpez.com/actu/336145/Une-oeuvre-d-art-generee-par-l-IA-a-remporte-la-premiere-place-a-un-concours-de-beaux-arts-a-une-foire-d-Etat-et-les-artistes-sont-furieux/
+	** https://www.arts-in-the-city.com/2022/09/07/une-ia-secoue-le-monde-de-lart-en-remportant-un-concours/
+	** Pour les autres création de Jason Allen, voir : https://www.google.com/search?q=jason+allen+space+opera&sxsrf=AJOqlzXqkaGZz5anmc2x1pERjZc1LeuQyQ:1677085733168&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiYoIibz6n9AhUF57sIHdHrA9IQ_AUoAXoECAEQAw&cshid=1677085762268181&biw=3072&bih=1520&dpr=1.25
+
+Exemples de génération d'images avec DALL-E : 
+
+	* Prompt : "Cthulu, intricate sand sculpture, high detail, UHD" +
+	image:dall-e_sand-sculpture-cthulu.jpg[]
+
+Prise en main de MidJourney : 
+
+	* Starting with MidJourney : https://www.youtube.com/watch?v=zPcnHFYxXxk
+	* Quick Start officiel de MidJourney : https://docs.midjourney.com/docs/quick-start
+	* How to add the MidJourney bot to your own Discord server : https://docs.midjourney.com/docs/invite-the-bot
+
+2023/03 : MidJourney met fin à son utilisation gratuite sans abonnement
+
+== DEMO : génération d'avatar animé
+
+* techno utilisées : MidJourney, studio D-ID
+* Instructions, tutoriels pour la création d'avatars animés par IA générative : 
+	** Forget Lensa AI! Make Avatars with Midjourney : https://www.youtube.com/watch?v=LWE3BXkb50Q
+	** Bring Your MidJourney AI Avatar To Life (AI Animation) : https://www.youtube.com/watch?v=RN2n6BGg8RI
+	** Créez votre propre avatar animé par l'IA en 10 minutes. Guide pas à pas : https://www.youtube.com/watch?v=_u4JYYNcgN0
+
+Conclusion : le résultat est bon, avec un gros effet "wahou !" MAIS n'est pas encore parfait. +
+Selon moi, nous sommes vraiment dans la phase de "boum" du cycle de hype du Gartner (AJOUTER UNE PHOTO DU CYCLE !), il faut rester très prudent sur les "vrais" usages de la techno, ceux qui vont pouvoir être réellement utilisés en PROD, MAIS il est capital de TOUT DE SUITE s'intéresser à ces nouvelles technologies.
+
+* POC Softeam : génération d'avatar animé racontant l'histoire de Softeam
+
+	** Prompt de génération d'image dans MidJourney : +
+	portrait of an American woman aged 25-30 with brunette hair, clear facial features, happy expression, Cinematic, 35mm lens, f/1.8, accent lighting, global illumination, --uplight --v 4
+
+	** Animation de l'avatar avec Studio D-ID, modèle de voix française "Yvette"
+		*** Nom de l'avatar "Camille Marquet"
+
+	** Texte pour l'avatar - Acte I de l'histoire de Softeam : 
++
+----
+Softeam a été créé le 30/11/1989 par François Salin, Marc Clavereau, Philippe Desfray et Patrick Linesmeilleur.
+Ils travaillaient à l'époque pour CR2A-DI, une ESN spécialisée en informatique technique et industrielle. 
+C'est durant un voyage du CE qu'ils ont eu l'idée de monter une société ensemble : Softeam !
+La société a pour objectif de fournir des solutions dans les domaines du conseil, des produits et de la formation sur la modélisation et la méthodologie de développement. 
+Il s'agit là de l'expertise technique historique de Softeam, avec très vite l'Atelier de Génie Logiciel Objecteering comme fer de lance.
+
+En 1990, Philippe Desfray crée la méthode de conception Objet "Classe Relation".
+Puis en 1991, la société met sur le marché l'Atelier de Génie Logiciel "Objecteering", support de cette méthode.
+Il faut se rappeler qu'en 1991, UML n'existait pas encore, ce langage ayant été créé en 1995 par l'éditeur Rational. Ce que faisait Objecteering était alors unique, c'était l'AGL le plus utilisé de France.
+Grâce à cet AGL, Softeam s'est imposé dans de grands comptes comme France Télécom, Matra, EDF et Canal+ entre autres.
+
+En 1996, Softeam devient contributeur de l'Object Modeling Group, pour participer à la définition du standard UML.
+Puis en 1998 Softeam ambitionne d'exporter Objecteering aux US, et de concurrencer Rose de Rational.
+----
+
+		*** remplacer "Salaün" par "Salin" pour avoir une prononciation correcte
+		*** remplacer "Linsmeier" par "Linesmeilleur"
+
+-> vidéo sauvegardée en local et sur mon OneDrive : +
+https://laposte-my.sharepoint.com/:v:/r/personal/thomas_schwender_softeam_fr/Documents/CTO/Avatar-anim%C3%A9/histoire-de-Softeam_Acte-I_la-cr%C3%A9ation.mp4?csf=1&web=1&e=FK0Axe
+
+== Fonctionnement des modèles de langages
+
+* Fonctionnement de ChatGPT
+	** https://www.assemblyai.com/blog/how-chatgpt-actually-works/
+	** Researchers and developers are working on various approaches to address the *alignment problem in Large Language Models*. +
+	ChatGPT is based on the original GPT-3 model, but has been further trained by *using human feedback to guide the learning process* with the specific goal of mitigating the model’s misalignment issues. The specific technique used, called *Reinforcement Learning from Human Feedback* (RLHF), is based on previous academic research. +
+	ChatGPT represents the first case of use of this technique for a model put into production.
+
+* https://platform.openai.com/docs/models/
+	* The OpenAI API is powered by a diverse set of models with different capabilities and price points. You can also make limited customizations to our original base models for your specific use case with fine-tuning.
+	* text-davinci-002 : supervised fine-tuning instead of reinforcement learning
+	* GPT-3 models can understand and generate natural language. These models were superceded by the more powerful GPT-3.5 generation models. +
+	However, the *original GPT-3 base models* (davinci, curie, ada, and babbage) are current the *only models that are available to fine-tune*.
+		** Une description des modèles GPT 3 est disponible juste après ce paragraphe
+
+* https://gpttools.com/comparisontool : GPT comparison tool *ON GPT 3 base models* (cf l'explication précédente)
+	** This tool lets you try out different settings (engines, *temp*, *top p*, etc.) and compare the results.
+
+* https://platform.openai.com/docs/quickstart
+	** Remember that the model predicts which text is most likely to follow the text preceding it.
+
+* https://platform.openai.com/docs/api-reference/chat/create
+	** on y trouve une liste de tous les paramètres que l'on peut personnaliser lors de l'appel de l'API d'un modèle de langage.
+
+		*** ATTENTION ! Cf https://platform.openai.com/docs/models/model-endpoint-compatibility, on voit que le endpoint "/v1/chat/completions" concerne les modèles : gpt-4, gpt-4-0314, gpt-4-32k, gpt-4-32k-0314, gpt-3.5-turbo, gpt-3.5-turbo-0301 
+		*** PAR CONTRE, le modèle "/v1/fine-tunes" est uniquement associé aux modèles "davinci, curie, babbage, ada" qui doivent être les modèles GPT 3 cf les remarques précédentes.
+		*** QUESTION : si on différencie les 2 endpoints précédents, quels sont donc les paramètres associés au "fine-tuning" ? Car il est également possible de personnaliser des paramètres pour le endpoint "/v1/chat/completions"
+
+* Pour un papier de recherche expliquant ce qu'est et ce que n'est pas un modèle de langage (LLM) (TRES BONNE RESSOURCE) : +
+Talking about Large Langague Models (LLM) : https://arxiv.org/pdf/2212.03551.pdf
+
+	** Une TRES BONNE RESSOURCE expliquant de façon rationnelle et scientifique pourquoi on ne peut pas dire qu'un LLM "pense", "croit" ou "raisonne".
+
+	** DEFINITION D'UN MODELE DE LANGAGE : "a model doing just that one thing: generating statistically likely continuations of word sequences"
+
+	** "But an *LLM* — the bare-bones model — is *not in the business of making judgement*s. It just models what words are likely to follow from what other words"
+	** "To build a question-answering system, the LLM simply has to be supplemented with a dialogue management system that queries the model as appropriate."
+	** "If we prompt an LLM with “All humans are mortal and Socrates is human therefore”, we are not instructing it to carry out deductive inference. Rather, we are asking it the following question. Given the statistical distribution of words in the public corpus, what words are likely to follow the sequence ‘All humans are mortal and Socrates is human therefore”. A good answer to this would be “Socrates is mortal”."
+	** "This ability to learn a general pattern from a few examples in a prompt prefix, and to complete sequences in a way that conforms to that pattern, is sometimes called *in-context learning* or *few-shot prompting*."
+	** "As usual, though, it’s a good idea to remind ourselves that the question really being posed to the model is of the form “Given the statistical distribution of words in the public corpus, what words are likely to follow the sequence S”, where in this case the sequence S is the chainof-thought prompt prefix plus the user’s query. The sequences of tokens that are most likely to 8 follow S will have a similar form to sequences found in the prompt prefix, [...]"
+	** "The noteworthy thing is that next token prediction is sufficient for solving previously unseen reasoning problems, even if unreliably. How is this possible? Certainly it would not be possible if the LLM were doing nothing more than cutting-andpasting fragments of text from its training set and assembling them into a response. But this is not what an LLM does. Rather, *an LLM models a distribution that is unimaginably complex, and allows users and applications to sample from that distribution*."
+	** p9 : "In this distribution, the most likely continuation of a piece of text containing a reasoning problem, if suitably phrased, will be an attempt to solve that reasoning problem. It will take this form, this overall shape, because that is the form that a generic human response would take. Moreover, because the vast corpus of published human text contains numerous examples of reasoning problems accompanied by correct answers, the most likely continuation will sometimes be the correct answer. When this occurs, it is *not because the correct answer is a likely individual human response*, but *because it is a likely collective human response*."
+	** p10 "In contemporary LLM-based applications, it is rare for a language model trained on a textual corpus to be used without further finetuning. This could be supervised fine-tuning on a specialised dataset, or it could be via reinforcement learning from human preferences (RLHF : Reinforcement Learning from Human Feedback)"
+
+* Large Language Model Training in 2023 : https://research.aimultiple.com/large-language-model-training/
+
+	** Bon schéma de l'architecture Transformer : le schéma classique que l'on trouve souvent +
+	image:transformer-architecture.png[]
+
+	** Training a large language model from the ground up requires significant investment, a *more economical alternative is to fine-tune* an existing language model to tailor it to your specific use case. +
+	*A single training run for GPT-3* is estimated to cost *around $5 million*.
+
+	** After training, the model is evaluated on a test dataset that has not been used as a training data set to measure the model’s performance. Based on the evaluation results, the model may require some fine-tuning by adjusting its hyperparameters, changing the architecture, or training on additional data to improve its performance.
+
+	** *Training of an LLM* consists of two parts: *pre-training* and *task-specific training*. 
+		*** Pre-training is part of training that enables the model to learn the general rules and dependencies within a language, which takes a significant amount of data, computational power, and time to complete. The large language models discussed in the paper require supercomputer systems with several AI chips (ex. NVIDIA DGX A100 starts at $199,999). Once maintenance and power costs are added, *pre-training of a large language model* is an investment in the magnitude of *millions*.
+		*** To make large language models *more accessible* for enterprises, LLM developers are offering services for enterprises looking to leverage language models. NVIDIA’s NeMO is an example of these services, which offer pre-trained LLMs for fine-tuning and *specific task training* to suit specific use cases. The specific task training adds an additional layer to the model which requires much less data, power, and time to train; making large models accessible for enterprise use. The new task-specific layer is trained with few-shot learning, which aims for accurate outputs with less training data.
+
+* Large Language Models: Complete Guide in 2023 : https://research.aimultiple.com/large-language-models/
+
+	** *Définition d'un LLM* : Large language models (LLMs) are foundation models that utilize *deep learning* in *natural language processing* (NLP) and *natural language generation* (NLG) tasks. +
+	For the purpose of helping them learn the complexity and linkages of language, *large language models are pre-trained* on a vast amount of data. Using techniques such as:
+		*** Fine-tuning
+		*** In-context learning
+		*** Zero-/one-/few-shot learning
+	+
+	these models can be adapted for downstream (specific) tasks (see Figure 2). +
+	{sb}
+	An LLM is essentially a *Transformer-based neural network*, introduced in an article by Google engineers titled https://arxiv.org/abs/1706.03762[“Attention is All You Need”] in 2017. +
+	*The goal of the model is to predict the text that is likely to come next*. The sophistication and performance of a model can be judged by how many parameters it has. A model’s parameters are the number of factors it considers when generating output. 
+
+=== Tokens
+
+	* https://platform.openai.com/docs/introduction/key-concepts : +
+		** Our models understand and process text by breaking it down into tokens. Tokens can be *words* or just *chunks of characters*. 
+		** The number of tokens processed in a given API request depends on the length of both your inputs and outputs. +
+		As a rough rule of thumb, *1 token is approximately 4 characters or 0.75 words for English text*. +
+		One limitation to keep in mind is that your text prompt and generated completion combined must be no more than the model's maximum context length (for most models this is 2048 tokens, or about 1500 words). Check out our tokenizer tool to learn more about how text translates to tokens."
+	* https://platform.openai.com/docs/quickstart/adjust-your-settings "Deep Dive - Understanding tokens and probabilities"
+		** l'outil de comptage des tokens utilisé dans cette section doit quasi certainement être le tokenizer tool d'OpenAI (https://platform.openai.com/tokenizer)
+
+	* https://platform.openai.com/docs/quickstart/closing
+		** The total number of tokens processed in a single request (both prompt and completion) can’t exceed the model's maximum context length. 
+		For most models, this is 4,096 tokens or about 3,000 words. As a rough rule of thumb, 1 token is approximately 4 characters or 0.75 words for English text. 
+		**Pricing is pay-as-you-go per 1,000 tokens, with $5 in free credit that can be used during your first 3 months.
+		One limitation to keep in mind is that, for most models, a single API request can only process up to 4,096 tokens between your prompt and completion.
+
+=== "Settings" / paramètres de personnalisation des modèles de langages
+
+"Settings" pouvant être ajustés pour modifier la complétion des modèles de langage : 
+
+	* On en retrouve une explication au niveau de la documentation officielle d'OpenAI pour ses API de completion et de Chat completion :
+		** https://platform.openai.com/docs/api-reference/chat/create
+		** https://platform.openai.com/docs/api-reference/completions/create
+
+	* *Temperature* : 
+
+		** https://platform.openai.com/docs/quickstart/adjust-your-settings +
+		Remember that the model predicts which text is most likely to follow the text preceding it. Temperature is a value between 0 and 1 that essentially *lets you control how confident the model should be when making these predictions*. Lowering temperature means it will take fewer risks, and completions will be more accurate and deterministic. Increasing temperature will result in more diverse completions.
+			*** Section "Understanding tokens and probabilities", il est expliqué qu'avec une température de 0, le modèle complétera TOUJOURS le texte avec le token ayant la plus forte probabilité (voir l'exemple donné). +
+			Si on augmente la température, le modèle "prendra plus de risques" et envisagera des tokens avec des probabilité plus basses.
+
+		** La température est un paramètre qui contrôle le degré de "variabilité" des prédictions de génération de texte du modèle. Plus la température est élevée, plus les prédictions seront créatives et variées, mais aussi moins précises et cohérentes.
+
+	* *top_p* :
+
+		** An alternative to sampling with temperature, called *nucleus sampling*, where the model considers the results of the tokens with top_p probability mass. *So 0.1 means only the tokens comprising the top 10% probability mass are considered*. +
+		We generally recommend altering this or temperature but not both.
+			*** et après un bon 2h de recherche, oui, c'est définition est bien la bonne
+
+		** il est vraiment difficile de trouver des explications claires sur ce paramètre
+			*** Et quand on interroge ChatGPT lui-même sur le sujet, on a du grand n'importe quoi en réponse !
+				**** et c'est bien la preuve que ChatGPT ne "raisonne pas"
+			
+			*** Pour une très bonne explication, voir https://community.openai.com/t/cheat-sheet-mastering-temperature-and-top-p-in-chatgpt-api-a-few-tips-and-tricks-on-controlling-the-creativity-deterministic-output-of-prompt-responses/172683
+				**** Top_p sampling is an alternative to temperature sampling. Instead of considering all possible tokens, GPT-3 considers only a subset of tokens (*the nucleus*) whose cumulative probability mass adds up to a certain threshold (top_p).
+				For example, if top_p is set to 0.1, GPT-3 will consider only the tokens that make up the top 10% of the probability mass for the next token. This allows for dynamic vocabulary selection based on context.
+				**** l'article propose également un très bon tableau sur la combinatoire de ces 2 paramètres et les effets que l'on peut espérer.
+
+			*** Mes "derniers" échanges avec ChatGPT sur le sujet : 
+				**** Thomas : Je viens de relire l'explication de la documentation officielle d'OpenAI sur le paramètre top_p. + 
+				La chose suivante est expliquée "0.1 means only the tokens comprising the top 10% probability mass are considered". Donc, j'ai l'impression que contrairement à tes précédentes explications, ce 0.1 ne veut pas dire que ne seront considérés que les mots avec une probabilité cumulée supérieure à 10%, MAIS que ne seront considérés que les mots représentant les 10% de mots avec les plus fortes probabilités. +
+				N'est-ce pas plutôt cela ? +
+				Car dans ce cas, la valeur par défaut de 1 devient logique : elle représenterait les mots représentant les 100% des mots avec les plus fortes probabilités, donc tous les mots.
+				**** ChatGPT : Vous avez raison, je m'excuse pour la confusion dans mes explications précédentes. Vous avez interprété correctement la signification du paramètre "top_p" (également connu sous le nom de "nucleus sampling") tel que décrit dans la documentation officielle d'OpenAI. +
+				En effet, lorsque "top_p" est défini sur 0.1, cela signifie que seuls les tokens représentant les 10% de la masse de probabilité la plus élevée sont considérés pour la génération de texte. Cela permet de restreindre la diversité des mots générés et de favoriser les mots avec les probabilités les plus élevées. +
+				Dans ce contexte, la valeur par défaut de 1 pour "top_p" représente en effet l'inclusion de tous les mots, car cela signifie que 100% des tokens sont pris en compte, y compris ceux avec des probabilités plus faibles. Cela offre une génération de texte plus ouverte sans seuil sur la probabilité cumulée des mots. +
+				Je m'excuse pour les précédentes erreurs dans mes explications et je vous remercie de votre clarification.
+
+	* *presence_penalty* (Le taux de présence) : 
+
+		** OpenAI : Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
+		** https://platform.openai.com/docs/api-reference/parameter-details
+		The *frequency* and *presence penalties* found in the Completions API can be used to *reduce the likelihood of sampling repetitive sequences of tokens*. They work by directly modifying the logits (un-normalized log-probabilities) with an additive contribution.
+
+		** https://aipower.org/presence-penalty/ (TRES BON) : +
+		the presence_penalty parameter modifies the probability distribution to make less likely words that were present in the input prompt or seed text. This encourages the model to generate words that were not in the input. It works by scaling down the log probabilities of words that were present in the input, making it less likely for the model to generate these words that are already in the input.
+
+		** Thomas : contrôle la probabilité de générer du texte qui soit déjà présent dans le prompt. Cela permet d’encourager le modèle à générer de "nouveaux mots", non déjà donnés dans le prompt.
+
+	* *frequency_penalty* (Le taux de fréquence) : 
+
+		** OpenAI : Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
+
+		** https://aipower.org/presence-penalty/: +
+		The frequency_penalty parameter modifies the probability distribution to make less likely words that the model has seen more frequently during its training. This encourages the model to generate novel or less common words. It works by scaling down the log probabilities of words that the model has seen frequently during training, making it less likely for the model to generate these common words.
+
+		** Thomas : contrôle la probabilité de générer du texte en fonction de la fréquence à laquelle ce dernier a déjà été rencontré par le modèle durant son entraînement.
+
+	* To put it simply, frequency_penalty penalizes the model for generating the common words that the model has seen a lot during training whereas presence_penalty penalizes the model for generating the words that are present in the input text.
+
+."taux de diversité"
+[NOTE]
+====
+* The *frequency_penalty* and *presence_penalty* parameters are both *controls for the diversity of the generated text* produced by GPT-3 (Generative Pre-trained Transformer 3). They both adjust the trade-off between the likelihood of the generated text and its novelty.
+	** Source : https://aipower.org/presence-penalty/
+
+* Doc officielle OpenAI : The frequency and presence penalties found in the Completions API can be used to reduce the likelihood of sampling repetitive sequences of tokens.
+====
+
+	* *best_of* : 
+
+		** Generates "best_of" number of completions server-side and returns the "best" (*the one with the highest log probability per token*). +
+		Results cannot be streamed. +
+		When used with n, best_of controls the number of candidate completions and n specifies how many to return, meaning best_of must be greater than n.
+		
+		** Note: Because this parameter generates many completions, it *can quickly consume your token quota*. +
+		-> Use carefully and ensure that you have reasonable settings for max_tokens and stop.
+
+	* *logprob*
+
+		** Include the log probabilities on the logprobs most likely tokens, as well the chosen tokens. For example, if logprobs is 5, the API will return a list of the 5 most likely tokens. The API will always return the logprob of the sampled token, so there may be up to logprobs+1 elements in the response. +
+		The maximum value for logprobs is 5. If you need more than this, please contact us through our Help center and describe your use case.
+		
+		** Pour plus d'explication sur ces logarithmes de probabilités, voici quelques ressources : 
+			*** http://gptprompts.wikidot.com/intro:logprobs : une très bonne explication de la mécanique des logarithmes de probabilités, avec des exemples de complétion des modèles d'OpenAI. +
+			L'article décrit également le fonctionnement de la temperature et de "best_of" pour sélectionner la complétion (le token) la plus appropriée.
+				**** Définition très claire : +
+				*The logprob is the log of the probability that a token comes next*. +
+				In computer science, *multiplying is computationally expensive and adding is cheap*, so a lot of time when you have to multiple probabilities you *take the logs* and add them instead to get the same result. To convert a logprob back to the original probability, you just take e^logprob, which in python is np.e**logprob (using import numpy as np).
+			*** https://fr.wikipedia.org/wiki/Logarithme
+
+=== Fine-tuning des modèles de langage
+
+Pour le "fine-tuning" à proprement parler : 
+
+	* https://openai.com/pricing, section "Fine-tuning models"
+		** De nouveau, seuls les modèles basés sur GPT 3 peuvent être fine-tuné : Ada, Babbage, Curie, Davinci
+		** Important de bien choisir son modèle par rapport au use case et au côut du modèle.
+			*** Exemple : For this use case (*classification*) we fine-tuned an *ada model* since it will be faster and cheaper, and the performance will be comparable to larger models because it is a classification task.
+
+	* https://platform.openai.com/docs/guides/fine-tuning
+
+		** *Fine-tuning improves on few-shot learning by training on many more examples than can fit in the prompt*, letting you achieve better results on a wide number of tasks. Once a model has been fine-tuned, you won't need to provide examples in the prompt anymore. +
+		-> This *saves costs* and enables *lower-latency requests*.
+			*** Donc meilleur coût et meilleures performances
+
+		** Training data is how you teach GPT-3 what you'd like it to say.
+		** *The more training examples you have, the better*. We recommend having at least a couple hundred examples. In general, we've found that each doubling of the dataset size leads to a linear increase in model quality.
+
+		** When a job has succeeded, the *fine_tuned_model* field will be populated with the name of the model. You may now *specify this model as a parameter to our Completions API*, and *make requests to it using the Playground*.
+
+		** *Fine-tuning* is a powerful technique to *create a new model that's specific to your use case*. Before fine-tuning your model, we strongly recommend reading these best practices and specific guidelines for your use case below.
+
+	* ChatGPT : Le fine-tuning pour les modèles de langage OpenAI est un processus par lequel un modèle pré-entraîné, tel que GPT, est adapté à des tâches ou des domaines spécifiques en utilisant un jeu de données supplémentaire. Contrairement à l'entraînement initial du modèle, qui se fait sur de vastes ensembles de données, le fine-tuning tire profit de données plus spécifiques et ciblées.
+
+=== Limite du contexte du modèle de langage
+
+* Voir la notion de "MAX TOKENS" : https://platform.openai.com/docs/models/gpt-3-5
+	** 4096 tokens pour ChatGPT (gpt-3.5-turbo-0301)
+
+* https://platform.openai.com/docs/introduction/key-concepts +
+"One limitation to keep in mind is that *your text prompt and generated completion combined* must be no more than the model's maximum context length"
+* Même dans cette autre section de la doc officielle : https://platform.openai.com/docs/quickstart/pricing et https://platform.openai.com/docs/quickstart/closing
+
+	** The total number of tokens processed in a single request (both prompt and completion) can’t exceed the model's maximum context length. For most models, this is 4,096 tokens or about 3,000 words.
+	** One limitation to keep in mind is that, for most models, a single API request can only process up to 4,096 tokens between your prompt and completion.
+
+-> Or le contexte passé est ajouté au prompt (comportement par défaut de ChatGPT) et doit donc être compté, pris en compte pour déterminer la longueur actuelle du contexte.
+
+* Voir également cet article, https://community.openai.com/t/chatgpt-api-maximum-token/83321, qui propose des stratégies de pruning pour diminuer la taille du contexte : 
+
+	** Delete “role: system” messages, since they are weak and the conversation is already ongoing (so far have not had great results with the system role anyway, but I have not fully tested either),
+	** Truncate the messages starting with the oldest (brute force).
+	** Use max_tokens and summarize stored messages using a different model.
+	** Remove prior “role: assistant” messages.
+
+* Quand le contexte transmis à ChatGPT dépasse le maximum autorisé par son modèle de langage, ce dernier est automatiquement tronqué ou réduit. +
+La documentation officielle manque de détails précis sur le mécanisme de troncature utilisé. +
+Néanmoins, si l'on pose directement la question à ChatGPT, voici sa réponse : 
+
+	** Lorsque le contexte donné à ChatGPT dépasse la taille maximale de son modèle de langage (4096 tokens pour gpt-3.5-turbo), il est nécessaire de le tronquer ou de le réduire pour le rendre compatible. Il y a différentes approches possibles pour gérer cette situation :
+		*** Troncature : Le contexte peut être tronqué en supprimant les parties les plus anciennes ou moins pertinentes afin de respecter la limite de taille. Cela peut entraîner la perte d'informations importantes et limiter la capacité du modèle à comprendre le contexte complet.
+		*** Résumé ou agrégation : Plutôt que de tronquer le contexte, il est possible de créer un résumé ou une agrégation des parties essentielles du contexte afin de réduire sa taille tout en préservant les informations clés. Cela nécessite de faire des choix sur les parties à inclure et à exclure, ce qui peut introduire une certaine subjectivité.
+		*** Utilisation d'un contexte contextuel : Plutôt que de fournir tout le contexte précédent, il est possible d'utiliser un contexte plus récent ou plus spécifique pour guider la génération de ChatGPT. Cela permet de limiter la quantité de texte envoyé au modèle tout en conservant la pertinence de la réponse.
+
+	** Thomas : Est-il possible de savoir quel comportement ChatGPT utilise parmi ceux que tu as cités en fonction des requêtes qui lui sont adressées ? Y a-t-il moyen de configurer ce comportement ?
+
+	** ChatGPT : En utilisant l'API OpenAI, il n'est *pas directement possible de spécifier ou de configurer explicitement le comportement spécifique de troncature*, de résumé ou d'agrégation du contexte parmi ceux mentionnés précédemment. +
+	L'API ne fournit pas de paramètre distinct pour contrôler ces mécanismes de gestion du contexte. +
+	Lorsque le contexte dépasse la taille maximale autorisée, *l'API OpenAI effectue automatiquement une troncature pour le rendre compatible avec le modèle de langag*e. La façon dont la troncature est réalisée peut varier en fonction de la structure interne de l'algorithme de l'API, mais les détails exacts de son fonctionnement ne sont pas spécifiés publiquement.
+
+* Voir également cette réponse d'OpenAI sur son forum : https://community.openai.com/t/when-conversation-grows-larger-did-chatgpt-include-all-of-the-conversation-context-for-every-chat/121876
+	** logankilpatrick Developer Advocate (OpenAI Staff) : No, all of the messages are likely not included. There is a finite amount of context that can be passed for each request. *We have a truncation algorithm running behind the scenes* that tried to determine what the important information is from previous messages that needs to be included.
+
+Cette troncature du contexte peut être considérée comme en partie responsable de certains des "dérapages" ayant déjà eu lieu avec le chatbot lors de conversation longues entre un humain et lui.
+
+== Point spécifique sur Azure OpenAI Service
+
+https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models#codex-models
+
+== Veille technologique & infos diverses
+
+* https://a16z.com/2023/01/19/who-owns-the-generative-ai-platform/ : bon schéma de la stack des IA génératives, partagée entre Apps, Models et Infrastructure
+* https://www.reddit.com/r/ChatGPT/comments/13up0c6/ai_tools_apps_in_one_place_sorted_by_category/ : liste des différentes applications associées à l'IA
+
+
+* LightOn : 
+	** Avec Paradigm, on propose un modèle de distribution unique : on va installer le modèle de langage directement sur les serveurs de l'entreprise de façon à ce que aucune information n'en sorte. +
+	-> C'est le principal intérêt mis en avant par Laurent Daudet, le DG de LightOn
+
+	** Avec Paradigm, les entreprises peuvent logger toutes leurs intéractions avec le modèle, et on va améliorer leur modèle avec leurs propres données, et non avec les interactions avec l'extérieur.
+	** Le marché de LightOn concerne la compétitivité des entreprises
+
+* Parler des modèles de langage et de leurs données d'entraînement : Common Crawl
+* Explosion différents modèles de langage depuis GPT : Dolly (Databricks), LLaMA (Meta), etc.
+	* schéma des données d'entrainement de ces modèles
+
+* outil tokenizer d'OpenAI : https://platform.openai.com/tokenizer
+* comparateur de modèle (cité dans la doc OpenAI) : https://gpttools.com/comparisontool
 
 
 
