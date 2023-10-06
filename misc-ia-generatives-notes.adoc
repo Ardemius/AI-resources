@@ -1,4 +1,4 @@
-= Ressources sur les IA génératives, et tout particulièrement ChatGPT
+= Ressources sur les IA génératives et les LLMs (OpenAI ChatGPT et autres)
 Thomas SCHWENDER <icon:github[] https://github.com/Ardemius/[GitHub] / icon:twitter[role="aqua"] https://twitter.com/thomasschwender[@thomasschwender]>
 // Handling GitHub admonition blocks icons
 ifndef::env-github[:icons: font]
@@ -305,12 +305,33 @@ Google et Meta utilisent déjà depuis des années des Transformers un peu parto
 	** ChatGPT sur Bing a commencé à se "disputer" avec des utilisateurs suite à des échanges trop longs, raison pour laquelle le nombre de questions pouvant lui être posé par session, jour et par utilisateur a été limité.
 	** Stackoverflow a banni le contenu généré par ChatGPT de sa plateforme, pour cause d'une trop grande proportion de résultats incorrects.
 
+== Use Cases pour LLMs : 
+
+* https://research.aimultiple.com/large-language-models/
+
+	* Text summarization
+	* Text generation
+	* Sentiment analysis
+	* Content creation
+	* Chatbots, virtual assistants, and conversational AI
+	* Named entity recognition
+	* Speech recognition and synthesis
+	* Image annotation
+	* Text-to-speech synthesis
+	* Spell correction
+	* Machine translation
+	* Recommendation systems
+	* Fraud detection
+	* Code generation
+
+	* Enhance availability, personalization, and customer satisfaction
+		** Many customers expect businesses to be available 24/7, which is achievable through chatbots and virtual assistants that utilize language models.
+
 == DEMO : ChatGPT
 
 Pour des exemples, regarder : 
 
 	* https://www.commentcoder.com/chatgpt/#comment-chat-gpt-aide-les-d%C3%A9veloppeurs-
-	* 
 
 * Exemples de code créé par ChatGPT : 
 
@@ -418,6 +439,51 @@ Par contre, elles sont conservées 30 jours sur le serveurs d'OpenAI (donc sur A
 	** On le voit également dans la description du modèle "gpt-3.5-turbo-0301" https://platform.openai.com/docs/models/gpt-3-5 : +
 	"Snapshot of gpt-3.5-turbo from March 1st 2023. Unlike gpt-3.5-turbo, this model will not receive updates, and will be deprecated 3 months after a new version is released."
 
+	** Concernant la rétention de 30 jours des données saisies via le prompt, il est peut-être possible de demander à Microsoft de ne PAS les persister du tout : https://www.ml6.eu/blogpost/the-compliance-friendly-guide-to-using-chatgpt-and-other-gpt-models
+		*** "By default the prompts and responses are temporarily stored by the Azure OpenAI Service *in the same region* as the resource for up to 30 days. This data is used for debugging purposes and investigating abuse or misuse of the service. +
+		*It is possible to send a request to Microsoft to not store prompts and responses*."
+
+	** https://learn.microsoft.com/en-us/legal/cognitive-services/openai/data-privacy : +
+	"Prompts and completions. The prompts and completions data may be temporarily stored by the Azure OpenAI Service in the same region as the resource for *up to 30 days*. This data is *encrypted* and is *only accessible to authorized Microsoft employees* for (1) debugging purposes in the event of a failure, and (2) investigating patterns of abuse and misuse to determine if the service is being used in a manner that violates the applicable product terms. Note: When a customer is approved for modified abuse monitoring, prompts and completions data are not stored, and thus Microsoft employees have no access to the data."
+
+	** Sur le même sujet, voici la page linkée depuis l'interface de ChatGPT : https://help.openai.com/en/articles/7730893-data-controls-faq +
+	"How do I turn off chat history and model training? +
+	Web interface: +
+	To disable chat history and model training, navigate to ChatGPT > Data Controls. While history is disabled, new conversations won’t be used to train and improve our models, and won’t appear in the history sidebar. To monitor for abuse, we will retain all conversations for 30 days before permanently deleting."
+
+	** Toujours concernant le mécanisme de retention de 30 jours "for abuse monitoring" : +
+	https://medium.com/version-1/chatgpt-and-open-ai-security-protecting-your-privacy-in-the-world-of-advanced-language-models-621dae57c22d
+
+		*** Do OpenAI GPT-3/4 APIs use your data for model improvement?
+		No. OpenAI does not process data submitted on its API to train OpenAI models or improve its offerings. However, it is important to keep in mind, data sent to their APIs are based on servers hosted in the US and OpenAI does store the data you send via API *for abuse monitoring purposes for up to 30 days*. However, *OpenAI allows you to opt out of this monitoring ensuring your data is not stored or processed anywhere*. You can opt-out using this form. This means your data lifecycle starts and ends with each API call. Data is sent via the API, the output is returned as a response from the API call. It does not remember or store any data sent in between each API request.
+			**** Le formulaire dont il est question : https://docs.google.com/forms/d/e/1FAIpQLScrnC-_A7JFs4LbIuzevQ_78hVERlNqqCPCt3d8XqnKOfdRdQ/viewform?pli=1&fbzx=-8542825855662744033
+		
+		*** Does Azure OpenAI have the same policy?
+		Yes. Azure OpenAI Service does not process data submitted on its API to train models or improve its offerings. Similar to OpenAI, they do store the data you send via API for abuse monitoring purposes for up to 30 days. Here is an overview of how your data flows: +
+		image:openai-30-days-data-retention_01.png[] +
+		However, *Microsoft allows you to opt out of this monitoring* ensuring your data is not stored or processed anywhere. You can opt-out using this form. On top of this, Azure already provides network security through security features such as private networks and endpoints
+		image:openai-30-days-data-retention_02.png[]
+			**** Les schémas viennent de cet article de Microsoft : https://learn.microsoft.com/en-us/legal/cognitive-services/openai/data-privacy#how-does-the-azure-openai-service-process-data
+			**** le formulaire dont il est question : https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xURE01NDY1OUhBRzQ3MkQxMUhZSE1ZUlJKTiQlQCN0PWcu
+
+* https://research.aimultiple.com/large-language-models/#easy-footnote-bottom-1-63352
+	** Language models’ capabilities are limited to the textual training data they are trained with, which means they are limited in their knowledge of the world. The models learn the relationships within the training data, and these may include:
+		*** False information
+		*** Race, gender, and sex bias
+		*** Toxic language
+
+* https://pandia.pro/guide/quest-ce-quun-grand-modele-de-langage-llm-large-language-model/ : défis et limites des LLMs
+	** *Coût et complexité* : Les LLM sont coûteux en termes de ressources de calcul, ce qui rend difficile leur déploiement et leur utilisation à grande échelle.
+	** *Impact environnemental* : L'entraînement des LLM consomme une quantité importante d'énergie, ce qui a un impact environnemental non négligeable.
+	** *Bias* : Les LLM, étant entraînés sur de vastes ensembles de données, peuvent hériter des biais et des stéréotypes qui peuvent être présents dans les données d'entraînement.
+	** *Éthique* : Les LLM sont capables de générer des textes hautement convaincants, ce qui soulève des questions d'éthique et de responsabilité, notamment en ce qui concerne la désinformation, la manipulation et l'usurpation d'identité.
+
+* https://datascientest.com/large-language-models-tout-savoir
+	** *Les biais* : les capacités des modèles de langage sont limitées aux données textuelles avec lesquelles ils sont formés. Ce qui peut produire de fausses informations, des préjugés, voire un langage toxique.
+	** *La fenêtre contextuelle* : chaque large language model ne dispose que d’une certaine quantité de mémoire. Au-delà d’un certain nombre de tokens en entrée, ils ne pourront plus réaliser les tâches demandées. 
+	** *Les coûts* : le développement de grands modèles linguistiques nécessite des investissements très importants (systèmes informatiques, capital humain, énergie…).
+	** *L’impact environnemental* : pour fonctionner, les projets LLM utilisent des centaines de serveurs. Or, ces derniers consomment une énorme quantité d’énergie et provoquent une empreinte carbone considérable.
+
 *SLIDES*
 
 * ChatGPT sur Bing a commencé à se "disputer" avec des utilisateurs suite à des échanges trop longs, raison pour laquelle le nombre de questions pouvant lui être posé par session, jour et par utilisateur a été limité.
@@ -459,6 +525,12 @@ En conséquence, *former les Softeamiens à l'usage de ces technologies aurait t
 	** parmi les informations données, une comparaison entre la valeur créée par Internet dans les entreprises de 1997 à 2021 et celle anticipée par l'IA de 2021 à 2023 : +
 	image:2022_ARK-Invest_internet-vs-AI-value-generated-comparison.png[]
 		*** source du graphique : https://ark-invest.com/articles/analyst-research/productivity-gains-could-propel-the-ai-software-market-to-14-trillion-by-2030/
+
+* 2023/04/23 : https://pandia.pro/guide/quest-ce-quun-grand-modele-de-langage-llm-large-language-model
+	** *Des modèles plus compacts et efficaces* : Des efforts sont déjà en cours pour réduire la taille des modèles tout en maintenant leur performance, ce qui permettra de déployer les LLM sur des appareils avec des capacités de calcul limitées.
+	** *Amélioration des métriques d'évaluation* : Pour évaluer correctement les performances des LLM, de meilleures métriques d'évaluation et des méthodes d'interprétation sont nécessaires.
+	** *Automatisation de la création de contenu* : L'une des applications les plus prometteuses des LLM est l'automatisation de la création de contenu, pour les médias sociaux, les blogs, les publicités et plus encore.
+	** *Réduction des biais et amélioration de l'éthique* : Les chercheurs et les développeurs s'efforcent de réduire les biais présents dans les LLM et de les rendre plus éthiques et responsables.
 
 == Du côté des IA génératrices d'images
 
@@ -591,6 +663,7 @@ Talking about Large Langague Models (LLM) : https://arxiv.org/pdf/2212.03551.pdf
 * Large Language Model Training in 2023 : https://research.aimultiple.com/large-language-model-training/
 
 	** Bon schéma de l'architecture Transformer : le schéma classique que l'on trouve souvent +
+	-> En fait, préférer celui de ce site, le même mais commenté : https://pandia.pro/guide/quest-ce-quun-grand-modele-de-langage-llm-large-language-model/ +
 	image:transformer-architecture.png[]
 
 	** Training a large language model from the ground up requires significant investment, a *more economical alternative is to fine-tune* an existing language model to tailor it to your specific use case. +
@@ -604,7 +677,7 @@ Talking about Large Langague Models (LLM) : https://arxiv.org/pdf/2212.03551.pdf
 
 * Large Language Models: Complete Guide in 2023 : https://research.aimultiple.com/large-language-models/
 
-	** *Définition d'un LLM* : Large language models (LLMs) are foundation models that utilize *deep learning* in *natural language processing* (NLP) and *natural language generation* (NLG) tasks. +
+	** *Définition d'un LLM* : Large language models (LLMs) are *foundation models* that utilize *deep learning* in *natural language processing* (NLP) and *natural language generation* (NLG) tasks. +
 	For the purpose of helping them learn the complexity and linkages of language, *large language models are pre-trained* on a vast amount of data. Using techniques such as:
 		*** Fine-tuning
 		*** In-context learning
@@ -613,7 +686,36 @@ Talking about Large Langague Models (LLM) : https://arxiv.org/pdf/2212.03551.pdf
 	these models can be adapted for downstream (specific) tasks (see Figure 2). +
 	{sb}
 	An LLM is essentially a *Transformer-based neural network*, introduced in an article by Google engineers titled https://arxiv.org/abs/1706.03762[“Attention is All You Need”] in 2017. +
-	*The goal of the model is to predict the text that is likely to come next*. The sophistication and performance of a model can be judged by how many parameters it has. A model’s parameters are the number of factors it considers when generating output. 
+	*The goal of the model is to predict the text that is likely to come next*. The sophistication and performance of a model can be judged by how many parameters it has. A model’s parameters are the number of factors it considers when generating output.
+
+	** There are many *open-source language* models that are *deployable on-premise* or in a *private cloud*. +
+	Example : 
+		*** BLOOM
+		*** NeMO LLM
+		*** XLM-RoBERTa
+		*** XLNet
+		*** Cohere
+		*** GLM-130B
+
+* Explications sur les *Foundation models* : https://research.aimultiple.com/foundation-models/
+
+	** A foundation model is a kind of model that has been trained in such a manner that it can be used for downstream tasks. The foundation model can therefore be effective for tasks for which it has not previously been trained.
+	** Foundation models need to be adapted because they *serve as a base for new models*, and there are numerous approaches to do this, such as:
+		*** *Fine-tuning* : +
+		This is the process of adopting a given model to meet the needs of a different task. Thus, instead of generating a new model for this purpose, a modification will suffice.
+		*** *In-context learning* : +
+		Using this approach, models can learn how to perform a task with minimum training and without fine-tuning, unlike conventional approaches.
++
+image:foundation-models-working.png[]
+image:foundation-models-tooling.png[]
+
+* https://pandia.pro/guide/quest-ce-quun-grand-modele-de-langage-llm-large-language-model
+	** Les Transformeur ont révolutionné le traitement du langage naturel en permettant une meilleure compréhension du contexte et une meilleure prise en charge de longues phrases.
+	** bon schéma sur l'architecture des transformers
+
+=== LLM Multimodal
+
+TO BE COMPLETED
 
 === Tokens
 
@@ -750,6 +852,9 @@ Pour le "fine-tuning" à proprement parler :
 
 	* ChatGPT : Le fine-tuning pour les modèles de langage OpenAI est un processus par lequel un modèle pré-entraîné, tel que GPT, est adapté à des tâches ou des domaines spécifiques en utilisant un jeu de données supplémentaire. Contrairement à l'entraînement initial du modèle, qui se fait sur de vastes ensembles de données, le fine-tuning tire profit de données plus spécifiques et ciblées.
 
+.https://research.aimultiple.com/large-language-models/#easy-footnote-bottom-1-63352
+image:LLM-pre-training-and-fine-tuning.jpg[]
+
 === Limite du contexte du modèle de langage
 
 * Voir la notion de "MAX TOKENS" : https://platform.openai.com/docs/models/gpt-3-5
@@ -797,11 +902,10 @@ https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/model
 
 == Veille technologique & infos diverses
 
-* https://a16z.com/2023/01/19/who-owns-the-generative-ai-platform/ : bon schéma de la stack des IA génératives, partagée entre Apps, Models et Infrastructure
-* https://www.reddit.com/r/ChatGPT/comments/13up0c6/ai_tools_apps_in_one_place_sorted_by_category/ : liste des différentes applications associées à l'IA
+* https://a16z.com/2023/01/19/who-owns-the-generative-ai-platform/ : bon *schéma de la stack des IA génératives*, partagée entre Apps, Models et Infrastructure
+* https://www.reddit.com/r/ChatGPT/comments/13up0c6/ai_tools_apps_in_one_place_sorted_by_category/ : *liste des différentes applications associées à l'IA*
 
-
-* LightOn : 
+* *LightOn* : 
 	** Avec Paradigm, on propose un modèle de distribution unique : on va installer le modèle de langage directement sur les serveurs de l'entreprise de façon à ce que aucune information n'en sorte. +
 	-> C'est le principal intérêt mis en avant par Laurent Daudet, le DG de LightOn
 
@@ -812,10 +916,45 @@ https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/model
 * Explosion différents modèles de langage depuis GPT : Dolly (Databricks), LLaMA (Meta), etc.
 	* schéma des données d'entrainement de ces modèles
 
-* outil tokenizer d'OpenAI : https://platform.openai.com/tokenizer
-* comparateur de modèle (cité dans la doc OpenAI) : https://gpttools.com/comparisontool
+* Se renseigner sur Illuin : https://www.illuin.tech/
 
+* *outil tokenizer d'OpenAI* : https://platform.openai.com/tokenizer
+* *comparateur de modèle* (cité dans la doc OpenAI) : https://gpttools.com/comparisontool
 
+=== 2023/07/04 - La stratégie de Saint-Gobain pour le passage à l'échelle des applications d'IA
 
+Vidéo accessible via le Club Azure Insiders : https://info.microsoft.com/FR-AzureAI-VDEO-FY23-04Apr-11-Replay-Saint-Gobain-s-strategy-for-scaling-AI-applications-SRGCM9881_LP02-Thank-You---Standard-Hero.html
 
+.Organisation de l'IT chez Saint-Gobain
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_01.jpg[]
 
+* 4 accélérateurs techniques : 
+
+    ** *AI Portal* : leverage knowledge in Artificial Intelligence and connects data scientists with each other
+	** *AI Lab* & *AI Indus* : 2 platforms that standardize our algorithms to develop and deploy them ever faster in the Cloud.
+	** *AI Store* : a "ready-to-use" applications library. Elementary building blocks that enable a new team to create an algorithm, not in 6 months, but in just a few weeks !
+
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_02.jpg[]
+
+.AI Indus : to deliver prototypes into Integration / Prod
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_03.jpg[]
+
+.AI Store : to deploy AI applications at scale
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_04.jpg[]
+
+.Next main challenges
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_05.jpg[]
+
+	* AI 4.0
+	* *Data sharing* & reuse
+	* *AI Citizen*
+
+.AI Lab : services
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_06.jpg[]
+
+	* Le principal service de ce PaaS est Azure Machine Learning
+
+* *StreamLit* pour le Front : Stream a définitivement le vent en poupe pour la création du Front de projets / produits associés à l'IA
+	** StreamLit est très simple à maîtriser pour monter des fronts simples
+	** StreamLit également préconisé car *front en Python* (et Python fait définitivement l'unanimité grâce à sa forte communauté et l'immensité des ressources, docs disponibles)
+	** StreamLit par contre ne semble pas être la solution retenue par Saint-Gobain pour les applications internes, apparemment pour raison de sécurité.
