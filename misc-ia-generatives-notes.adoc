@@ -958,3 +958,73 @@ image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-
 	** StreamLit est très simple à maîtriser pour monter des fronts simples
 	** StreamLit également préconisé car *front en Python* (et Python fait définitivement l'unanimité grâce à sa forte communauté et l'immensité des ressources, docs disponibles)
 	** StreamLit par contre ne semble pas être la solution retenue par Saint-Gobain pour les applications internes, apparemment pour raison de sécurité.
+
+== 2023/10/13 - 12@13 Softeam - Acculturation IA générative
+
+* FANTASTIQUE site sur les modèles de langages / LLM, avec les tailles de modèles, et régulièrement mis à jour : +
+https://lifearchitect.ai/models/
+
+	** il est bien expliqué ici que l'on peut parler de la taille du modèle en tokens ou en To (TB en anglais) : +
+	https://lifearchitect.ai/gpt-4/#dataset
+
+		*** Rappel : 1 token ~ 0.75 mot ~ 4 octets
+			**** la taille des tokens est généralement spécifiée par le modèle de langage utilisé.
+			**** La taille en octets communément admise pour 1 token est de 4 octets. Cela s'explique par le fait que les tokens sont généralement représentés par des entiers, qui occupent 4 octets en mémoire.
+			**** Par exemple, le modèle de langage *GPT-3 utilise des tokens de 4 octets*. Cela signifie que la taille des données d'entraînement du modèle est de 4 fois supérieure à la taille en mots des données d'entraînement.
+
+		*** Avec pour exemple GPT-4, cela donne :
+
+			**** *Parameter count* : 1.76T (1,760B). Sparse mixture of experts (MoE).3
+			**** ≈ 5.7x bigger than GPT-3 175B (175 milliards de paramètres)
+			**** ≈ 14.3x bigger than Chinchilla 70B
+			**** ≈ 0.8% the size of the human brain by count of synapses (125T synapses)
+
+			**** *Dataset size (tokens)* : 16T (16,000B) estimated in 40TB. Maybe repeated tokens.
+			**** ≈ 32x bigger than the GPT-3 dataset (499B tokens)
+			**** ≈ 6.8x bigger than DeepMind MassiveText English (2.35T tokens)
+			**** ≈ 3.2x bigger than DeepMind MassiveText Multilingual (5T tokens)
+			**** ≈ 5.7x bigger than Google Infiniset (2.81T tokens)
+
+		*** Cette page redonne toutes les caractéristiques de l'entraînement de GPT-4 👍
+
+* https://transmitter.ieee.org/how-big-will-ai-models-get/[]
+
+	** When experts talk about the advancement in AI, they usually focus on two aspects of the model’s size: the *amount of data used to train the model*, and the *number of parameters that the model contains*.
+
+	** "*GPT-3*, the predecessor to the much discussed ChatGPT, was trained on nearly *45 terabytes of text data*, and has more than *175 billion parameters*. Other AI models are getting even larger, with large companies working on models said to exceed 1.6 trillion parameters."
+		*** donc GPT-3 : size 45 TB  parameters 175 B (billion)
+		*** Attention ! "Billion" en anglais veut dire "milliard" en français...
+
+	** Which brings up a second question. Just how much information is 45 TB of text? Quite a lot. One TB equals approximately 6.5 million pages of documents stored in common formats like word processing documents or .pdfs.
+
+* Expliquer le RLHF : Reinforcement Learning from Human Feedback
+
+Architecture Transformer : 
+
+* L'*encodage* est effectué par une série de *couches d'attention multi-tête*. Chaque couche d'attention multi-tête consiste en une attention clé-valeur-rapport.
+* *L'attention clé-valeur* est une fonction qui calcule la *similarité entre un token et les autres tokens de l'entrée*. La similarité est calculée en fonction des représentations vectorielles des tokens.
+
+*Analogie pour expliquer l'attention multi-tête :*
+
+	* Imaginez que vous essayez de comprendre une phrase. Vous pouvez le faire en lisant chaque mot de la phrase individuellement. Cependant, vous pouvez également le faire en vous concentrant sur les relations entre les mots.
+	* Par exemple, vous pouvez vous concentrer sur la relation entre le sujet et le verbe de la phrase. Vous pouvez également vous concentrer sur la relation entre le verbe et l'objet de la phrase.
+	* L'attention multi-tête est similaire à cette analogie. Elle permet au transformer de se concentrer sur plusieurs relations différentes entre les tokens dans une phrase.
+	* -> En se concentrant sur plusieurs relations différentes, le transformer peut capturer un sens plus profond du texte.
+
+*Autre explication*
+
+* Soit la phrase suivante : "Le chat est sur la table."
+
+* Le transformer va d'abord *tokeniser* la phrase en tokens individuels. Les tokens sont ensuite *transformés en représentations vectorielles*.
+
+* L'attention est ensuite utilisée pour *calculer les relations entre les tokens*. La fonction d'attention calcule un *score d'attention pour chaque token*.
+
+* Par exemple, le score d'attention entre le token "Le" et le token "chat" est élevé. Cela signifie que le transformer pense que les deux tokens sont liés.
+
+* Les scores d'attention sont ensuite utilisés pour *calculer les représentations vectorielles des tokens*. Les représentations vectorielles sont calculées en pondérant les représentations vectorielles des tokens par les scores d'attention.
+
+* Dans cet exemple, la représentation vectorielle du token "Le" sera pondérée par le score d'attention entre le token "Le" et le token "chat".
+
+* Les représentations vectorielles des tokens sont ensuite utilisées pour générer une représentation vectorielle de la phrase. Cette représentation vectorielle est utilisée pour capturer les relations entre les tokens dans la phrase.
+
+* L'attention multi-tête permet au transformer de se concentrer sur plusieurs relations différentes entre les tokens. Cela permet au transformer de capturer un sens plus profond du texte.
