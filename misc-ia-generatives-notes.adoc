@@ -305,7 +305,7 @@ Google et Meta utilisent déjà depuis des années des Transformers un peu parto
 	** ChatGPT sur Bing a commencé à se "disputer" avec des utilisateurs suite à des échanges trop longs, raison pour laquelle le nombre de questions pouvant lui être posé par session, jour et par utilisateur a été limité.
 	** Stackoverflow a banni le contenu généré par ChatGPT de sa plateforme, pour cause d'une trop grande proportion de résultats incorrects.
 
-== Use Cases pour LLMs : 
+== Use Cases pour LLMs
 
 * https://research.aimultiple.com/large-language-models/
 
@@ -899,6 +899,12 @@ Cette troncature du contexte peut être considérée comme en partie responsable
 == Point spécifique sur Azure OpenAI Service
 
 https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models#codex-models
+
+== Développement assisté par l'IA
+
+=== GitHub Copilot
+
+* Documentation officielle de GitHub Copilot : https://docs.github.com/en/copilot
 
 == Veille technologique & infos diverses
 
