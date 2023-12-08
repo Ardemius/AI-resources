@@ -916,7 +916,7 @@ https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/model
 * Explosion différents modèles de langage depuis GPT : Dolly (Databricks), LLaMA (Meta), etc.
 	* schéma des données d'entrainement de ces modèles
 
-* Se renseigner sur Illuin : https://www.illuin.tech/
+* Se renseigner sur *Illuin* : https://www.illuin.tech/
 
 * *outil tokenizer d'OpenAI* : https://platform.openai.com/tokenizer
 * *comparateur de modèle* (cité dans la doc OpenAI) : https://gpttools.com/comparisontool
@@ -954,17 +954,218 @@ image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-
 
 	* Le principal service de ce PaaS est Azure Machine Learning
 
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_07.jpg[]
+
 * *StreamLit* pour le Front : Stream a définitivement le vent en poupe pour la création du Front de projets / produits associés à l'IA
 	** StreamLit est très simple à maîtriser pour monter des fronts simples
 	** StreamLit également préconisé car *front en Python* (et Python fait définitivement l'unanimité grâce à sa forte communauté et l'immensité des ressources, docs disponibles)
 	** StreamLit par contre ne semble pas être la solution retenue par Saint-Gobain pour les applications internes, apparemment pour raison de sécurité.
 
+TO BE COMPLETED
+
+== 2023/09/29 - Préparation états des lieux technologiques Softeam
+
+Le domaine évolue de nouveau (oui, encore…), avec un changement de paradigme : + 
+-> Le *LLM* n'est plus une "solution en soi" mais devient *une brique dans un pipeline d'IA*
+
+Stack technologique "du moment" pour une application de recherche / search basée sur l’IA générative :
+
+	* un *LLM* : OpenAI, Hugging Face, Dolly, etc.
+	* *LangChain* : le framework de « glue » de la solution
+	* *Streamlit* : le front / la web app
+	* une *BDD vectorielle* : Pinecone, Chroma, Elastic search, Postgre, etc.
+		** Liste des vector databases : https://thedataquarry.com/posts/vector-db-1/[] +
+		image:20230929_etat-des-lieux-tech_vector-databases.jpg[]
+
+* l'IA évolue vers Langchain et les agents
+	** le LLM devient un outil au sein d'un "workflow IA"
+	** et base de données vectorielle pour Langchain
+	** et parler du move vers les embeddings
+
+=== Guerre de l'IA et concurrence
+
+* Dans la guerre des IA génératives, Google vient de demander à ses chercheurs de *ne PLUS publier leurs travaux*.
+	** OpenAI s'est effectivement servi d'eux (modèle Transformer de 2017) pour créer un produit plus vite que Google.
+	** De la même façon, OpenAI ne publie pas non plus ses travaux sur GPT 4, 
+	** et côté Méta, LLaMa est disponible du fait d'une "fuite", et ne correspond pas à une mise en open source "officielle".
+
+-> On voit donc bien la *culture du secret* s'installer pour essayer d'être le 1er sur le domaine.
+
+* Un des plus grands *cabinet d'avocats Allen & Overly* s'est associé avec OpenAI pour créer *leur propre chatbot ("Harvey")*, intégré depuis quelques semaines dans les 3000 ordinateurs du groupe.
+	** En par exemple *20 sec*, Harvey sors une cartographie des jurisprudences *là où cela aurait nécessité 5h du travail* d'un stagiaire auparavant. Suite à cela on a évidemment toujours besoin du stagiaire, qui peut dès lors s'appuyer sur le travail d'Harvey pour creuser un sujet particulier. +
+	D'ici peu tous les contrats du cabinet seront portés sur Harvey.
+
+-> Donc tous les sites de conseil juridique, tous les sites un petit peu pratico-pratiques pour eux, *c'est terminé*.
+
+=== Les sociétés que l'IA fait exploser
+
+*NVIDIA*
+
+* Le groupe américain spécialisé dans les puces graphiques a dévoilé hier ses résultats au titre du deuxième trimestre décalé 2023. Porté par l'IA ainsi que ses GPU, composants particulièrement adaptés pour faire tourner les IA génératives, le géant américain a doublé son chiffre d'affaires pour atteindre 13,5 Mds$. Le bénéfice net lui ressort à 6,2 milliards, *multiplié par plus de 8* par rapport à l'année précédente. 
+	** La capitalisation de Nvidia, qui plafonnait mercredi soir à hauteur de 1 160 Mds$, devrait connaître un nouveau boost aujourd'hui.
+	** Donc capitalisation juste derrière Amazon pour une boîte qui fait des processeurs, dont l'importance actuelle de l'IA
+
+* Pour des graphes de la capitalisation, voir : 
+	** https://www.netcials.com/financial-marketcap-history-usa/1045810-NVIDIA-CORP/
+	** https://www.reuters.com/technology/global-markets-marketcap-2023-08-01/
+
+image:20230929_etat-des-lieux-tech_nvidia-capitalisation_02.jpg[width=600]
+image:20230929_etat-des-lieux-tech_nvidia-capitalisation_01.jpg[width=600]
+
+* On voit bien le boum représenté par la crypto PUIS l'IA pour Nvidia
+	** Globalement, les analystes voient bien NVidia franchir rapidement (2024) la barre des 2 000 milliards de capitalisation boursière.
+
+	** DONC, on garde un oeil sur les technologies de Nvidia, tout particulièrement leurs solutions de développement comme *CUDA*, car il n'est pas impossible que nous ayons des demandes dessus un jour (même si pour le moment, ce n'est pas notre domaine métier ET ENCORE)
+
+		*** https://developer.nvidia.com/cuda-toolkit[] :
+			**** The NVIDIA® CUDA® Toolkit provides a *development environment* for creating high performance GPU-accelerated applications. With the CUDA Toolkit, you can develop, optimize, and deploy your applications on GPU-accelerated embedded systems, desktop workstations, enterprise data centers, cloud-based platforms and HPC supercomputers. 
+			**** The toolkit includes GPU-accelerated libraries, debugging and optimization tools, a C/C++ compiler, and a runtime library to deploy your application. +
+			Using built-in capabilities for distributing computations across multi-GPU configurations, scientists and researchers can *develop applications that scale from single GPU workstations to cloud installations with thousands of GPUs*.
+
+		*** https://en.wikipedia.org/wiki/CUDA[] : 
+			**** CUDA (or *Compute Unified Device Architecture*) is a *proprietary and closed source parallel computing platform* and *application programming interface (API)* that allows software to use certain types of graphics processing units (GPUs) for general purpose processing, an approach called general-purpose computing on GPUs (GPGPU). *CUDA is a software layer that gives direct access to the GPU's virtual instruction set and parallel computational elements*, for the execution of compute kernels.
+	
+		*** CUDA peut être utilisé avec un certain nombre de langages de programmation, notamment C, C++, *Python* et Fortran.
+			**** Le Python est complètement dans notre scope
+
+		*** Et, dans des cas spécifiques, comme l'IA, où les GPU seraient la plateforme d'exécution des applications, il n'est pas impossible du tout que *CUDA devienne un concurrent de Spark* pour l'exécution de traitements parallèles.
+			**** CUDA offre de meilleures performances que Spark car spécialement designé pour fonctionner avec des GPUs (ceux de Nvidia). +
+			Spark est certes plus polyvalent que CUDA, mais si on sait précisément que l'on veut de la perf sur GPU, pour de l'IA par exemple, CUDA apparaît comme un choix très adapté.
+
+	** Donc, OK pour garder un oeil sur Rust, mais dans ce cas il faut de la même façon garder un oeil attentif sur la plateforme CUDA, car sa cible est vaste avec une parfaite adéquation au développement actuel de l'IA.
+		
+* *Contexte géopolitique* à connaître : *guerre économique entre US et Chine*
+	** 2022/09/01 - BFM : Nvidia interdiction (par le commerce américain) exporter puce A100 et H100 (encore en développement) en Chine. Restrictions également pour AMD
+
+*Hugging Face*
+
+* Hugging Face lève auprès des plus grands et passe à une *valorisation de 4.5 Mds$*
+
+	** Le spécialiste de l'IA open source *lève 235 M$*. Sa valorisation est plus que doublée et passe à 4,5 Mds$. 
+	** Nvidia, Google, Amazon, Intel, AMD, IBM et Qualcomm ont participé à un tour de table, mené par Salesforce Ventures, de 235 M$. Cette opération fait plus que doubler la valorisation de cette entreprise, créée par des Français et opérant entre Paris et New York. Elle vaut désormais 4,5 Mds$. 
+		*** Et de nouveau, tout est lié, qui est présent à ce tour de table pour financer un spécialiste de l'IA ? Mais (entre autres) *Nvidia*
+
+	** Inconnu du grand public, Hugging Face est une *plateforme de partage spécialisée dans l'IA et le machine learning*. +
+	Des développeurs du monde entier peuvent y déposer des modèles pré-entraînés ou des jeux de donnés, qui seront réutilisés, adaptés et améliorés par d'autres. 
+	** Le laboratoire d'IA de Meta a par exemple choisi *Hugging Face pour héberger Llama 2*, son dernier modèle de langue. 
+	** Et des groupes comme Renault, Pzifer ou Roche piochent dans cette bibliothèque open source pour concevoir leurs services dopés à l'IA sans avoir à commencer de zéro.
+
+* Hugging Face est une plateforme open source qui fournit des outils et des ressources pour le développement d'applications basées sur l'IA générative. Elle est composée de deux principaux produits :
+
+	** *La bibliothèque Transformers* : une bibliothèque open source qui fournit des implémentations de modèles de langage basés sur l'architecture Transformer. +
+	Elle permet aux développeurs de : 
+		*** *Entraîner des modèles de langage* : la bibliothèque Transformers fournit des implémentations de modèles de langage basés sur l'architecture Transformer, qu'il est ensuite possible d'entraîner sur des ensembles de données textuelles.
+		*** *Déployer des modèles de langage* : la bibliothèque Transformers fournit des API simples pour déployer des modèles de langage. +
+		Ces derniers peuvent être déployés soit directement sur les serveurs de Hugging Face, soit sur serveurs privés (attention aux coûts d'infra dans ce dernier cas)
+		*** *Utiliser des modèles de langage pré-entrainés* : la biblithèque propose une grande variété de modèles de langage pré-entraînés pouvant être directement utilisés dans les applications.
+
+	** *Le Hub Hugging Face* : une plateforme de partage de modèles, d'ensembles de données et d'applications IAG.
+
+*OpenAI*
+
+* Pour *relancer l'engouement de ses débuts*, OpenAI mise sur une *version professionnelle de son chatbot (ChatGPT)*. L'entreprise veut retrouver la confiance des entreprises, qui ont parfois peur pour leurs données personnelles.
+	** Le lancement intervient alors que ChatGPT ne réussit pas à capitaliser sur l'emballement provoqué par son lancement, qui en avait fait alors l'application atteignant le plus rapidement les 100 millions d'utilisateurs, avant l'arrivée de Threads, le rival de X/Twitter par Meta, au début de l'été.
+
+* Voir l'article https://www.blogdumoderateur.com/openai-lance-version-chatgpt-entreprises/
+	** *ChatGPT Entreprise*, une *version sécurisée* et améliorée du chatbot
+	** OpenAI est clair : "Vous possédez et contrôlez vos données commerciales dans ChatGPT Entreprise." La firme affirme que vos conversations professionnelles avec le chatbot ne sortent pas de votre structure et ne sont pas utilisées pour entraîner les modèles de langage d'OpenAI. +
+	Toutes les données sont chiffrées « au repos comme en transit », avec les protocoles AES-256 et TLS 1.2+, et en conformité au regard de la norme SOC 2.
+		*** C'est complètement ce que fait déjà Microsoft avec Azure OpenAI...
+
+* ChatGPT Enterprise est un produit indépendant de Microsoft : la stratégie d'entreprise entre OpenAI et Microsoft est... surprenante. +
+-> A mon avis, cela ne pourra pas rester éternellement "2 boîtes aussi indépendantes" vu l'argent que MS a mis dedans
+	** Il y aura peut-être une *phase de migration / d'ajustement à prévoir* (entre produits MS et OpenAI)
+
+=== Changement de paradigme de l'IA : passage à des modèles de petites tailles 
+
+-> A mettre en parallèle de l'*embedding* et du *"Bring your own Data"*
+
+* GPT-4 : *Composition de plusieurs LLM spécialisés plutôt qu'un seul énorme* +
+-> C'est la tendance actuelle (modèles plus petits spécialisés), de même que les outils comme *LangChain*
+
+	** *LangChain* (https://en.wikipedia.org/wiki/LangChain[]) : 
+		*** LangChain is a framework designed to simplify the creation of applications using large language models.
+		*** A complete set of powerful building blocks. +
+		Get started fast with our comprehensive library of open-source components and pre-built chains for any use-case.
+			*** Bonne image à récuperer : image:https://framerusercontent.com/images/5d7KfRriC6zji11ZFnwLotdqcHQ.svg[]
+		
+image:20230929_etat-des-lieux-tech_azure-bring-your-own-data.jpg[]
+
+	* On retrouve un autre schéma du "Bring your own data" de MS ici : https://msandbu.org/how-to-setup-azure-openai-with-chatgpt-using-your-own-data/ +
+	image:20230929_etat-des-lieux-tech_azure-bring-your-own-data_02.jpg[]
+
+image:20230929_etat-des-lieux-tech_langchain-embeddings.jpg[]
+
+* Parler d'*embeddings* avec les schémas du "Bring Your Own Data" de Microsoft et celui de LangChain de la BGPN, ainsi que des *bases Vector* : 
+
+	** Pour la sauvegardes des embeddings en base vectorielle, le split de docs (les chunks) le plus courant semble être le 1000 tokens / characters.
+	** Trouver les vecteurs les plus proches : c'est LA où différents algos existent (produit scalaire, distance euclidienne, similarité cosinus)
+		*** Le principe : on trouve les vecteurs les plus proches de sa question, et ce sont ces derniers qu'on envoie dans sa requête au LLM (donc on envoie quelque chose de plus ciblé et plus petit dans le contexte du LLM)
+	** Dans l'idée, *on rajoute une mémoire externe au LLM* (par exemple ce que fait Langchain).
+	** PostgreSQL a PJVector qui rajoute le support vectoriel à PostgreSQL pour ces use cases.
+	** Quelques exemples de BDD vectorielles : Pinecone, Chroma, Elastic search, etc.
+
+* *fonctionnement d'une solution de recherche opérée par l'IA et utilisant l'embedding de document* : 
+
+	** Pour ce workflow, le *LLM* fait en fait office de *moteur de compréhension*
+		*** Si on prend le cas de ChapGPT, même en version 4 (à l'exception de son usage avec Bing OU de la dernière version Enterprise), ce dernier est limité à ses *données d'entraînement qui s'arrêtent à 2021/09*.
+		*** Nous sommes maintenant fin 2023, ces données commencent donc à être *obsolètes*, et OpenAI ne se presse "pas réellement" pour changer cela (toujours malgré la sortie de la dernière version Enterprise). +
+		-> On peut donc en conclure que OpenAI ne souhaite pas vraiment mettre à jour régulièrement les données d'entraînement de ChatGPT. +
+		Et ils devaient avoir prévu dès le début (réentraîner est très cher) que l'usage de leur LLM change, et que ce dernier finisse par être utilisé comme une brique d'un pipeline d'IA. +
+		C'est ce stade que nous avons atteint depuis
+
+	** Pour faire des recherches sur des corpus de docs que le LLM ne connaît pas via ses données d'entraînement : 
+		*** on commence par les transformer en vecteur (embeddings : séries de nombres, d'une taille à définir, ex : 128 valeurs) à l'aide du LLM
+		*** puis on les sauve dans une BDD vectorielle (Pinecone, Chroma, Elastic search, Postgre, etc.)
+		*** puis, lorsque l'utilisateur tape son prompt, on convertit également ce dernier en vecteur, et, par une méthode de similarité, on va trouver les vecteurs des corpus de documents qui ressemblent le plus au vecteur du prompt
+		*** et une fois qu'on a trouvé les corpus de docs les plus proches de notre vecteur de prompt, on peut tout envoyer au LLM, prompt et doc, et ce dernier pour alors chercher à répondre au prompt en se servant des documents sélectionnés
+
+	** Cf le speaker Databricks (2023/07/15 - BDH 166), on envoie son Doc au LLM et c'est ce dernier qui renvoie la représentation vecteur du doc qui est à stocker dans une base vecteur.
+	** Ensuite on peut commencer à faire des requêtes, le plus souvent de requêtes de similarités : "quel est le meilleur podcast ?" envoyé à un LLM, qui nous renvoie un embeddings représentant la question, puis on vient rechercher dans le corpus de docs qu'on a indexé les plus similaires à la question puis on vient interroger un LLM avec la question et les docs similaires remontés. +
+	Comme cela on peut spécialiser les réponses d'un LLM ou lui donner accès à des infos qu'il n'avait pas au moment de son entraînement.
+	C'est tout cela que sort *Databricks* (en s'appuyant sur leurs tables Delta) : des *embeddings* sont créés ainsi qu'une *API de search*
+
+	-> DONC DE PLUS EN PLUS *PONT ENTRE LA DATA ET L'IA*
+
+* *Stack technologique "du moment"* pour une application de recherche / search basée sur l'IA générative : +
+un *LLM* + *LangChain* (la glue) + *Streamlit* (le front / la web app) + une *BDD vectorielle* (Pinecone, Chroma, Elastic search, Postgre, etc.)
+
+*Passage à des modèles de plus petite taille*
+
+* Aux Etats-Unis, les plus grands laboratoires en IA s'activent pour mettre le doigt sur la découverte qui pourrait rendre l'assistant d'OpenAI et son modèle de langue (LLM) GPT-4 obsolète. Parmi les structures qui font la course en tête figurent le MIT, le groupe Meta ou encore le franco-américain Hugging Face. +
+Côté MIT, c'est le Computer Science and Artificial Intelligence Laboratory (CSAIL) qui est à la manœuvre. Mi-juin, le laboratoire levait le voile sur une IA baptisée SimPLE pour Simple Pseudo-Label Editing. L'enjeu ? *Démontrer que des modèles de petite taille peuvent largement dépasser les performances des grands modèles*. 
+
+* Meta, lui, mise sur l'open source. Avec la version 2.0 de son modèle de langue LLaMA, le groupe de Mark Zuckerberg a livré pour la première fois mi-juillet une solution sous licence libre (GNU GPL) utilisable au sein d'un produit commercial.
+
+* Mais l'initiative de Meta est loin d'être isolée. Déjà, mi-2022, *Hugging Face* publiait les sources de Bloom. De mai 2021 à mai 2022, sa conception a fédéré plus de 1 000 chercheurs issus de 60 pays.
+	** C'est là toute la force de l'open source que de pousser vers l'open innovation. Le logiciel libre distille la technologie jusque dans les moindres PME et start-up. Il permet de récupérer un modèle puis de l'entrainer sur un data set maison pour le tester voire le mettre en production sur un cas d'usage spécifique. Sur ce plan, l'open source a déjà permis de montrer qu'il était possible de personnaliser de petits LLM avec de petits data set et, partant de là, d'obtenir immédiatement des résultats opérationnels.
+
+* Et Yann LECUN chez Meta nous annonce pour dans bientôt un nouveau type d'IA basé sur une nouvelle technologie, différente des Transformers
+
+.Rappel
+[NOTE]
+====
+*Les plus grands experts de l'IA* sont majoritairement *chez Google* aujourd'hui, et il ne faut pas oublier que les Transformer ont été créés par leurs équipes. +
+====
+
+* Rappel : Google Bard is now powered by Google's very own and most advanced large language model (LLM) *PaLM 2*, which was unveiled at Google I/O 2023.
+
+Conclusion sur l'IA : 
+
+	* Il est urgent d'attendre ! Nos clients, qui ne sont pas des éditeurs tech faisant du "bleeding edge", ne peuvent pas s'appuyer des techno alpha / beta, pouvant disparaître ou être remplacées du jour au lendemain, ou demandant un effort de développement / maintenance trop conséquent. +
+	En conséquence, il est actuellement essentiel : 
+		** d'attendre que le milieu de l'IA se stabilise
+		** d'identifier précisément les besoins client pour vérifier si une solution à base d'IA gen est REELLEMENT utile pour eux. +
+		-> Actuellement, proposer un "simple rewrap de ChatGPT" avec ses données limitées à 2021/09 (donc obsolètes ou manquant de fraîcheur) doit avant tout tenir du gadget ou du buzz...
+		** RESISTER AU BUZZ ! Il faut que les directions fassent preuve de "courage politique" : ce n'est pas parce qu'on entend partout parler d'IA gen que l'on en a forcément besoin.
+		** Pour des ESN comme nous, *FORMER SES EFFECTIFS* sur les concepts de l'IA gen : le prompting et ses risques et optimisations connues, les stacks derrière les pipelines actuels d'IA gen, etc.
+
 == 2023/10/13 - 12@13 Softeam - Acculturation IA générative
 
-* FANTASTIQUE site sur les modèles de langages / LLM, avec les tailles de modèles, et régulièrement mis à jour : +
+* 🔥*FANTASTIQUE site*🔥 sur les modèles de langages / LLM, avec les tailles de modèles, et régulièrement mis à jour : +
 https://lifearchitect.ai/models/
 
-	** il est bien expliqué ici que l'on peut parler de la taille du modèle en tokens ou en To (TB en anglais) : +
+	** il est bien expliqué ici que l'on peut parler de la *taille du modèle* en *tokens* ou en *To* (TB en anglais) : +
 	https://lifearchitect.ai/gpt-4/#dataset
 
 		*** Rappel : 1 token ~ 0.75 mot ~ 4 octets
@@ -999,7 +1200,7 @@ https://lifearchitect.ai/models/
 
 * Expliquer le RLHF : Reinforcement Learning from Human Feedback
 
-Architecture Transformer : 
+*Architecture Transformer* : 
 
 * L'*encodage* est effectué par une série de *couches d'attention multi-tête*. Chaque couche d'attention multi-tête consiste en une attention clé-valeur-rapport.
 * *L'attention clé-valeur* est une fonction qui calcule la *similarité entre un token et les autres tokens de l'entrée*. La similarité est calculée en fonction des représentations vectorielles des tokens.
