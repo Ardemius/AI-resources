@@ -38,11 +38,9 @@ toc::[]
 
 Notes au sujet des IA génératives, ChatGPT, Dall-E et leurs concurrents et alternatives.
 
-== Veille et ressources avant catégorisation
+== Préparation de talk de présentation des IA Générative (courant 2023)
 
-2023/02/10 : Point cellule de veille Data Docaposte, il devrait être question de ChatGPT
-
-== Que sont les IA génératives ? 
+=== Que sont les IA génératives ? 
 
 * DONE - 2022/12/15 : chatGPT la révolution : AI générative, vous pouvez réellement converser avec elle, elle passe le test de Turing 
 
@@ -163,7 +161,7 @@ DONE - 2023/02/09 - BFM Tech & Co : ChatGPT moteur de réponse là où Google es
 	** *Aide à la programmation* : ChatGPT pour créer du code répondant à des besoins algorithmiques ou d'intégration dans le langage demandé. +
 	Exemple : "Ecris un code permettant d'initier une connexion à une base de données PostgreSQL appelée "toto" en utilisant le langage Java"
 
-== La compétition est lancée entre les acteurs du secteur
+=== La compétition est lancée entre les acteurs du secteur
 
 * DONE - Le 30 novembre 2022 ChatGPT est arrivé sur internet et a tout bouleversé en gagnant 1 million d'utilisateurs en seulement 5 jours !
 * DONE - A la fin du mois 2023/01, donc 2 mois après sa mise à disposition du public, ChatGPT comptait près de 100 millions d'utilisateurs actifs. +
@@ -305,7 +303,7 @@ Google et Meta utilisent déjà depuis des années des Transformers un peu parto
 	** ChatGPT sur Bing a commencé à se "disputer" avec des utilisateurs suite à des échanges trop longs, raison pour laquelle le nombre de questions pouvant lui être posé par session, jour et par utilisateur a été limité.
 	** Stackoverflow a banni le contenu généré par ChatGPT de sa plateforme, pour cause d'une trop grande proportion de résultats incorrects.
 
-== Use Cases pour LLMs
+=== Use Cases pour LLMs
 
 * https://research.aimultiple.com/large-language-models/
 
@@ -327,7 +325,7 @@ Google et Meta utilisent déjà depuis des années des Transformers un peu parto
 	* Enhance availability, personalization, and customer satisfaction
 		** Many customers expect businesses to be available 24/7, which is achievable through chatbots and virtual assistants that utilize language models.
 
-== DEMO : ChatGPT
+=== DEMO : ChatGPT
 
 Pour des exemples, regarder : 
 
@@ -359,7 +357,7 @@ public int mySum(int a, int b) {
 	** Même en donnant des précisions, ChatGPT n'arrive pas à recouper correctement les informations pour retrouver l'histoire de Softeam. +
 	A la place, il mélange les histoires de plusieurs sociétés partageant le nom "Softeam"
 
-== Vérifier la provenance de l'information
+=== Vérifier la provenance de l'information
 
 *SLIDES*
 
@@ -393,7 +391,7 @@ Probabilité de texte écrit par un humain :
 	* Copyleaks : anglais 91% / français 99.9%
 	* CrossPlag : anglais 100% / français 100%
 
-== Les limites de ces IA, les risques et les craintes associées
+=== Les limites de ces IA, les risques et les craintes associées
 
 * 1er "pétage de plomb" de ChatGPT, qui "remet en place" un utilisateur : 
 	** https://www.tomsguide.fr/bing-chatgpt-microsoft-limite-le-nombre-de-questions-pour-eviter-les-insultes-et-les-menaces/
@@ -490,7 +488,7 @@ Par contre, elles sont conservées 30 jours sur le serveurs d'OpenAI (donc sur A
 * La "triche" dans le milieu académique : comment considérer l'aide (triche ?) apportée par ChatGPT ? Comment encadrer l'usage ?
 * Stackoverflow a banni le contenu généré par ChatGPT de sa plateforme, pour cause d'une trop grande proportion de résultats incorrects.
 
-== Les conséquences pour nos métiers
+=== Les conséquences pour nos métiers
 
 * DONE - 2022/12/22 - BFM TECH & co : de nouveau révolution apportée par ChatGPT et DALLe (IA générative)
 	** Va à terme impacter notre métier qui penche de plus en plus vers l'intégration : la majorité du code que nos ITs génèrent est simple, et pourra donc l'être par une IA.
@@ -519,7 +517,7 @@ Sur ces missions d'intégration, la connaissance encyclopédique des technologie
 Les consultants qui seront formés sur ces technologies seront rapidement grandement avantagés par rapport aux ceux qui ne le sont pas. +
 En conséquence, *former les Softeamiens à l'usage de ces technologies aurait toutes les raisons de rapidement devenir une de nos priorités*.
 
-== Perspectives futures
+=== Perspectives futures
 
 * Etat des lieux de l'IA par le Dr Alan D. Thompson à Devoxx Belgique 2022 : https://www.youtube.com/watch?v=D3tTsoX02d8
 	** parmi les informations données, une comparaison entre la valeur créée par Internet dans les entreprises de 1997 à 2021 et celle anticipée par l'IA de 2021 à 2023 : +
@@ -532,7 +530,7 @@ En conséquence, *former les Softeamiens à l'usage de ces technologies aurait t
 	** *Automatisation de la création de contenu* : L'une des applications les plus prometteuses des LLM est l'automatisation de la création de contenu, pour les médias sociaux, les blogs, les publicités et plus encore.
 	** *Réduction des biais et amélioration de l'éthique* : Les chercheurs et les développeurs s'efforcent de réduire les biais présents dans les LLM et de les rendre plus éthiques et responsables.
 
-== Du côté des IA génératrices d'images
+=== Du côté des IA génératrices d'images
 
 * Guide complet sur DALL-E : https://www.lebigdata.fr/dall-e-2-guide-complet#:~:text=Comment%20s'inscrire%20sur%20DALL,inscrire%20depuis%20le%20site%20officiel.
 
@@ -573,7 +571,7 @@ Prise en main de MidJourney :
 
 2023/03 : MidJourney met fin à son utilisation gratuite sans abonnement
 
-== DEMO : génération d'avatar animé
+=== DEMO : génération d'avatar animé
 
 * techno utilisées : MidJourney, studio D-ID
 * Instructions, tutoriels pour la création d'avatars animés par IA générative : 
@@ -616,7 +614,7 @@ Puis en 1998 Softeam ambitionne d'exporter Objecteering aux US, et de concurrenc
 -> vidéo sauvegardée en local et sur mon OneDrive : +
 https://laposte-my.sharepoint.com/:v:/r/personal/thomas_schwender_softeam_fr/Documents/CTO/Avatar-anim%C3%A9/histoire-de-Softeam_Acte-I_la-cr%C3%A9ation.mp4?csf=1&web=1&e=FK0Axe
 
-== Fonctionnement des modèles de langages
+== FONCTIONNEMENT DES MODELES DE LANGAGES
 
 * Fonctionnement de ChatGPT
 	** https://www.assemblyai.com/blog/how-chatgpt-actually-works/
@@ -896,78 +894,11 @@ Néanmoins, si l'on pose directement la question à ChatGPT, voici sa réponse :
 
 Cette troncature du contexte peut être considérée comme en partie responsable de certains des "dérapages" ayant déjà eu lieu avec le chatbot lors de conversation longues entre un humain et lui.
 
-== Point spécifique sur Azure OpenAI Service
-
-https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models#codex-models
-
-== Développement assisté par l'IA
+== DEVELOPPEMENT ASSISTE PAR L'IA
 
 === GitHub Copilot
 
 * Documentation officielle de GitHub Copilot : https://docs.github.com/en/copilot
-
-== Veille technologique & infos diverses
-
-* https://a16z.com/2023/01/19/who-owns-the-generative-ai-platform/ : bon *schéma de la stack des IA génératives*, partagée entre Apps, Models et Infrastructure
-* https://www.reddit.com/r/ChatGPT/comments/13up0c6/ai_tools_apps_in_one_place_sorted_by_category/ : *liste des différentes applications associées à l'IA*
-
-* *LightOn* : 
-	** Avec Paradigm, on propose un modèle de distribution unique : on va installer le modèle de langage directement sur les serveurs de l'entreprise de façon à ce que aucune information n'en sorte. +
-	-> C'est le principal intérêt mis en avant par Laurent Daudet, le DG de LightOn
-
-	** Avec Paradigm, les entreprises peuvent logger toutes leurs intéractions avec le modèle, et on va améliorer leur modèle avec leurs propres données, et non avec les interactions avec l'extérieur.
-	** Le marché de LightOn concerne la compétitivité des entreprises
-
-* Parler des modèles de langage et de leurs données d'entraînement : Common Crawl
-* Explosion différents modèles de langage depuis GPT : Dolly (Databricks), LLaMA (Meta), etc.
-	* schéma des données d'entrainement de ces modèles
-
-* Se renseigner sur *Illuin* : https://www.illuin.tech/
-
-* *outil tokenizer d'OpenAI* : https://platform.openai.com/tokenizer
-* *comparateur de modèle* (cité dans la doc OpenAI) : https://gpttools.com/comparisontool
-
-=== 2023/07/04 - La stratégie de Saint-Gobain pour le passage à l'échelle des applications d'IA
-
-Vidéo accessible via le Club Azure Insiders : https://info.microsoft.com/FR-AzureAI-VDEO-FY23-04Apr-11-Replay-Saint-Gobain-s-strategy-for-scaling-AI-applications-SRGCM9881_LP02-Thank-You---Standard-Hero.html
-
-.Organisation de l'IT chez Saint-Gobain
-image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_01.jpg[]
-
-* 4 accélérateurs techniques : 
-
-    ** *AI Portal* : leverage knowledge in Artificial Intelligence and connects data scientists with each other
-	** *AI Lab* & *AI Indus* : 2 platforms that standardize our algorithms to develop and deploy them ever faster in the Cloud.
-	** *AI Store* : a "ready-to-use" applications library. Elementary building blocks that enable a new team to create an algorithm, not in 6 months, but in just a few weeks !
-
-image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_02.jpg[]
-
-.AI Indus : to deliver prototypes into Integration / Prod
-image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_03.jpg[]
-
-.AI Store : to deploy AI applications at scale
-image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_04.jpg[]
-
-.Next main challenges
-image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_05.jpg[]
-
-	* AI 4.0
-	* *Data sharing* & reuse
-	* *AI Citizen*
-
-.AI Lab : services
-image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_06.jpg[]
-
-	* Le principal service de ce PaaS est Azure Machine Learning
-
-image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_07.jpg[]
-
-* *StreamLit* pour le Front : Stream a définitivement le vent en poupe pour la création du Front de projets / produits associés à l'IA
-	** StreamLit est très simple à maîtriser pour monter des fronts simples
-	** StreamLit également préconisé car *front en Python* (et Python fait définitivement l'unanimité grâce à sa forte communauté et l'immensité des ressources, docs disponibles)
-	** StreamLit par contre ne semble pas être la solution retenue par Saint-Gobain pour les applications internes, apparemment pour raison de sécurité.
-
-TO BE COMPLETED
 
 == 2023/09/29 - Préparation états des lieux technologiques Softeam
 
@@ -1206,6 +1137,16 @@ https://lifearchitect.ai/models/
 
 * Expliquer le RLHF : Reinforcement Learning from Human Feedback
 
+.Reinforcement Learning with Human Feedback (RLHF)
+[NOTE]
+====
+Voir https://www.lemagit.fr/conseil/Petit-lexique-de-lIA-generative-les-grands-modeles-de-langage
+
+L’apprentissage par renforcement est une méthode automatique consistant à récompenser ou sanctionner un comportement d’un agent (un système autonome) placé dans un environnement où il expérimente la manière de réaliser une tâche. L’agent a pour mission de maximiser la récompense en fonction d’objectifs.
+
+L’apprentissage par renforcement avec retour d’information humain (Reinforcement Learning with Human Feedback ou RLHF) consiste à remplacer les objectifs par des commentaires écrits par des annotateurs.
+====
+
 *Architecture Transformer* : 
 
 * L'*encodage* est effectué par une série de *couches d'attention multi-tête*. Chaque couche d'attention multi-tête consiste en une attention clé-valeur-rapport.
@@ -1235,3 +1176,197 @@ https://lifearchitect.ai/models/
 * Les représentations vectorielles des tokens sont ensuite utilisées pour générer une représentation vectorielle de la phrase. Cette représentation vectorielle est utilisée pour capturer les relations entre les tokens dans la phrase.
 
 * L'attention multi-tête permet au transformer de se concentrer sur plusieurs relations différentes entre les tokens. Cela permet au transformer de capturer un sens plus profond du texte.
+
+== VEILLE TECHNOLOGIQUE & INFOS DIVERSES
+
+* https://a16z.com/2023/01/19/who-owns-the-generative-ai-platform/ : bon *schéma de la stack des IA génératives*, partagée entre Apps, Models et Infrastructure
+* https://www.reddit.com/r/ChatGPT/comments/13up0c6/ai_tools_apps_in_one_place_sorted_by_category/ : *liste des différentes applications associées à l'IA*
+
+* *LightOn* : 
+	** Avec Paradigm, on propose un modèle de distribution unique : on va installer le modèle de langage directement sur les serveurs de l'entreprise de façon à ce que aucune information n'en sorte. +
+	-> C'est le principal intérêt mis en avant par Laurent Daudet, le DG de LightOn
+
+	** Avec Paradigm, les entreprises peuvent logger toutes leurs intéractions avec le modèle, et on va améliorer leur modèle avec leurs propres données, et non avec les interactions avec l'extérieur.
+	** Le marché de LightOn concerne la compétitivité des entreprises
+
+* Parler des modèles de langage et de leurs données d'entraînement : Common Crawl
+* Explosion différents modèles de langage depuis GPT : Dolly (Databricks), LLaMA (Meta), etc.
+	* schéma des données d'entrainement de ces modèles
+
+* Se renseigner sur *Illuin* : https://www.illuin.tech/
+
+* *outil tokenizer d'OpenAI* : https://platform.openai.com/tokenizer
+* *comparateur de modèle* (cité dans la doc OpenAI) : https://gpttools.com/comparisontool
+
+* 2023/12/14 - blog Octo : *FANTASTIQUE article sur les BDD vectorielles* "Sous le capot des bases de données vectorielles" : +
+https://blog.octo.com/sous-le-capot-des-bases-de-donnees-vectorielles-(vector-databases)
+
+	** contient un lien vers un tutoriel expliquant *comment implémenter une base de données vectorielles* from scratch en Python : +
+	https://aurelienmassiot.github.io/simple_vector_db/tp_simple_vector_db/#0
+
+	** Lien vers un autre article d'Octo sur *comment construire son RAG (Retrieval Augmented Generation)* (2023/10/17) : +
+	https://blog.octo.com/le-chatbot-docto-langchain-rag-et-code-associe
+
+* 2023/11/21 - 5 techniques clefs pour déployer l'IA générative dans votre entreprise : +
+https://www.cio-online.com/actualites/lire-5-techniques-clefs-pour-deployer-l-ia-generative-dans-votre-entreprise-15299.html
+
+.Section "5) Construire son LLM à partir de zéro"
+--
+Peu d'entreprises vont créer leur propre LLM à partir de rien. Car ces modèles sont, par définition, assez volumineux. 
+Le *GPT 3 d'OpenAI* compte *175 milliards de paramètres* et a été *entraîné sur un ensemble de données de 45 téraoctets*, ce qui *a coûté 4,6 millions de dollars*. 
+
+Selon Sam Altman, PDG d'OpenAI, *GPT 4 a coûté plus de 100 millions de dollars*.
+
+C'est cette taille qui confère aux LLM leur capacité à traiter le langage humain, avec un certain degré de bon sens, ainsi que leur aptitude à suivre des instructions. « Vous ne pouvez pas vous contenter de l'entraîner sur vos propres données, explique Carm Taglienti, ingénieur distingué chez Insight. L'entraînement sur des dizaines de millions de paramètres apporte une réelle valeur ajoutée. »
+--
+
+== Talks, présentations, Meetups 
+
+=== 2023/07/04 - La stratégie de Saint-Gobain pour le passage à l'échelle des applications d'IA
+
+Vidéo accessible via le Club Azure Insiders : https://info.microsoft.com/FR-AzureAI-VDEO-FY23-04Apr-11-Replay-Saint-Gobain-s-strategy-for-scaling-AI-applications-SRGCM9881_LP02-Thank-You---Standard-Hero.html
+
+.Organisation de l'IT chez Saint-Gobain
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_01.jpg[]
+
+* 4 accélérateurs techniques : 
+
+    ** *AI Portal* : leverage knowledge in Artificial Intelligence and connects data scientists with each other
+	** *AI Lab* & *AI Indus* : 2 platforms that standardize our algorithms to develop and deploy them ever faster in the Cloud.
+	** *AI Store* : a "ready-to-use" applications library. Elementary building blocks that enable a new team to create an algorithm, not in 6 months, but in just a few weeks !
+
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_02.jpg[]
+
+.AI Indus : to deliver prototypes into Integration / Prod
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_03.jpg[]
+
+.AI Store : to deploy AI applications at scale
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_04.jpg[]
+
+.Next main challenges
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_05.jpg[]
+
+	* AI 4.0
+	* *Data sharing* & reuse
+	* *AI Citizen*
+
+.AI Lab : services
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_06.jpg[]
+
+	* Le principal service de ce PaaS est Azure Machine Learning
+
+image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-IA_07.jpg[]
+
+* *StreamLit* pour le Front : Stream a définitivement le vent en poupe pour la création du Front de projets / produits associés à l'IA
+	** StreamLit est très simple à maîtriser pour monter des fronts simples
+	** StreamLit également préconisé car *front en Python* (et Python fait définitivement l'unanimité grâce à sa forte communauté et l'immensité des ressources, docs disponibles)
+	** StreamLit par contre ne semble pas être la solution retenue par Saint-Gobain pour les applications internes, apparemment pour raison de sécurité.
+
+TO BE COMPLETED
+
+=== 2023/11/23 - Commment LVMH déploie l'IA à l'échelle
+
+URL : https://www.lemagit.fr/etude/Comment-LVMH-deploie-lIA-a-lechelle
+
+* La « plateforme Data » du groupe LVMH s’apparente davantage à un framework afin d’accélérer les déploiements de cas d’usage allant de la BI à l’IA dans l’ensemble des Maisons. +
+-> Dans plus de 24 Maisons et divisions, cette plateforme repose sur le *Data warehouse cloud BigQuery*.
+
+* En Chine, une dizaine de Maisons s’appuie sur un « écosystème » *Alibaba MaxCompute*.
+
+* Certaines équipes au sein du groupe utilisent l’ensemble des fonctions de *Dataiku*, à savoir la préparation de données, le *feature engineering*, l’intégration du modèle de machine learning, le post-traitement, et le formatage de résultats en direction de systèmes tiers.
+	** Dataiku est utilisé « pour effectuer du packaging d’algorithmes de manière centralisée ».
+	** « En collaboration avec les Maisons les plus matures qui ont déjà des algorithmes, nous prenons ces briques et nous les rendons modulaires en utilisant, quand le besoin s’en fait sentir, des librairies d’IA avancées : de la vision par ordinateur, des *transformers pour le traitement du langage naturel* et nous commençons à expérimenter les grands modèles de langage et de diffusion ». +
+	Ces paquets correspondent à des notebooks contenant le code des modèles et les appels aux librairies. Une fois centralisés, les data scientists et les data engineers peuvent aisément modifier les algorithmes suivant le cahier des charges d’une Maison.
+
+NOTE: À un haut niveau, le *feature engineering* est la pratique qui consiste à transformer des données brutes en la forme la plus appropriée pour un algorithme de machine learning spécifique.
+
+=== 2023/11/21 - BGPN - Petit dej de l'IA - 3e talk
+ 
+Présenté par : 
+ 
+    * Ghislain LABAY côté Hub La Poste
+    * l'invité du jour Gilles GUERRAZ : un expert reconnu sur l'IA générative (réalisateur publicitaire et Expert en IA génératives)
+    * L'application du mois : ElevenLabs, du text to speech
+ 
+OpenAI : 
+ 
+    * 100 M d'utilisateurs de ChatGPT chaque semaine
+    * 2 M de développeurs utilisent les API OpenAI
+ 
+.Lancement des "GPTs"
+image:20231121_petit-dej-IA_01.jpg[]
+ 
+    * Les "GPTs" : permettre à tout un chacun de créer facilement des versions de ChatGPT adaptées à ses besoins quotidiens ou pro. +
+    Les users peuvent configurer ces assistants virtuels pour qu'ils exécutent des tâches spécifiques et interagissent avec des sources de données externes. +
+    Aucune connaissance en programmation n'est nécessaire.
+ 
+    * Un GPT Store pour commercialiser vos GPTs
+    * Adobe Dub Dub Dub pour de la traduction en "live" (comme Heygen)
+ 
+    * L'administration française est en train de faire un test avec Anthropic et son LLM Claude.
+ 
+Présentation de Gilles GUERRAZ
+ 
+    * Gilles est réalisation professionnel depuis 2008
+ 
+    * Gilles édite une newsletter (https://iagenerative.substack.com/) et co-anime un podcast sur la vulgarisation sur l'IA générative
+    * Gilles anime également un concours de court-métrage en 48h (chaque année début décembre)
+    * Gilles utilise beaucoup MidJourney (au moment de la sortie de la v3 de MidJourney, Gilles a trouvé MidJourney bien meilleur en termes de rendu que Dall-E)
+
+=== 2023/12/12 - P'tit déj IA générative La Poste
+
+* *Character.ai* : 
+	** URL : https://beta.character.ai
+	** à date, c'est la 2e application mobile la plus utilisée aux US avec 6M d'utilisateurs mensuels
+		*** derrière ChatGPT
+	** 60% des utilisateurs ont entre 18 et 24 ans
+	** permet de discuter avec un personnage ayant existé (voire imaginaire), et entraîné sur la base de biographie et autres données (?)
+		*** Possibilité pour chacun de créer son avatar
+
+	** L'un des chatbots les plus utilisés est un psychologue
+	** Character.ai se positionne donc comme un ami ou un coach
+		*** avec un engagement très fort de la part de l'utilisateur : on passe en moyenne 8 min par session sur ChatGPT, contre 25 à 45 min pour Character.ai
+	** 193 M$ déjà levés à date, et en recherche de financement. +
+	Character.ai est déjà valorisé à 5Mds$
+
+	** Google et surtout Facebook cherchent également à se positionner sur ce secteur.
+
+* Sébastien : présentation de l'IA Conv BGPN
+	** GPT 3 plus que 4 pour des raisons de vitesse et de coût
+	** si doc chargé, ce n'est QUE pour la session et l'utilisateur connecté
+	** plusieurs agents avec leurs propres données vectorisées
+
+* Ronan : pas d'Azure "pour le moment"
+	** On veut faire du souverain, donc plutôt du Numspot ou de l'OVH
+
+* Olivier SENOT
+	** David GAILLOU par la synthèse des dossies médicaux
+	** instance OpenAI France Azure, uniquement par API
+		*** GPT 4
+		*** demain sur GPT 4 turbo
+		*** déployé pour les Docapostiens
+	** scrappeur d'URL pas encore ouvert, par peur d'injection de malwares dans le retour prompt
+		*** il y a apparemment des fils Reddit qui expliquent bien la chose
+	** QUE le chatbot et la synthèse des documents
+	** GitHub Copilot "en cours" de déploiement chez nos populations IT
+		*** en train de "patiner un peu" car compliqué côté contrat
+	** 17 cas d'usage pour équiper Docaposte en interne pour utiliser le LLM (pour T1 2024)
+		*** réponse auto à des AO
+		*** Analyse rhétorique des parlementaires
+
+* Sophie : côté Probayes, ils ont un moteur d'inférence
+	** Olivier : on n'a "QUE" une base de vecto
+		*** moteur d'inférence d'ici à xxx 2024
+	** Olivier : et on a pas de modèle on-premise car on a pas de GPU
+
+* Olivier SENOT : tous les mois il a un bench de comparaison des LLM
+	** et actuellement GPT 4 arrive tout le temps devant
+
+
+
+
+
+
+
+
+
