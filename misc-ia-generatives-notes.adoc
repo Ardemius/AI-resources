@@ -1220,6 +1220,10 @@ Selon Sam Altman, PDG d'OpenAI, *GPT 4 a coûté plus de 100 millions de dollars
 C'est cette taille qui confère aux LLM leur capacité à traiter le langage humain, avec un certain degré de bon sens, ainsi que leur aptitude à suivre des instructions. « Vous ne pouvez pas vous contenter de l'entraîner sur vos propres données, explique Carm Taglienti, ingénieur distingué chez Insight. L'entraînement sur des dizaines de millions de paramètres apporte une réelle valeur ajoutée. »
 --
 
+* LAKERA (la boîte derrière Gandalf : https://gandalf.lakera.ai/) : ressources sur la sécurité des LLM
+	** Lakera - LLM Security Playbook : link:{resourcesdir}/202311_Lakera_AI-LLM-Security-Playbook.pdf[]
+	** Lakera - Prompt Injection Attacks Handbook (overview, risk management, datasets) : link:{resourcesdir}/202311_Lakera_AI-Prompt-Injection-Attacks-Handbook.pdf[]
+
 == Talks, présentations, Meetups 
 
 === 2023/07/04 - La stratégie de Saint-Gobain pour le passage à l'échelle des applications d'IA
@@ -1362,9 +1366,68 @@ Présentation de Gilles GUERRAZ
 * Olivier SENOT : tous les mois il a un bench de comparaison des LLM
 	** et actuellement GPT 4 arrive tout le temps devant
 
+=== 2024/01/23 - BGPN - Petit dej de l'IA
 
+* Lancement du GPT Store côté OpenAI
+	** On peut maintenant créer son propre GPT et le lancer auprès du grand public et le monétiser
+	** on peut déjà depuis 2 ou 3 mois créer ses propres GPT MAIS on ne pouvait pas les diffuser auprès du public
 
+* Lancement de Copilot Pro
+* et d'ici peu on aura peut-être une nouvelle touche Copilot sur les claviers Windows
 
+* Nabla Copilot, startup française, lève 22 M€
+	** anciennement était spécialisé sur la santé des femmes, mais a réussi à étendre son scope grâce à l'IA Gen
+		*** compte-rendu médicaux et cryptage des données de santé : faire gagner du temps au médecin quant à ses tâches administratives en fin de journée
+	** Derrière Xavier Niel et plusieurs autres investisseurs habitués à investir dans l'IA
+
+* Perplexity vient de lever 70 millions de $ (A VERIFIER)
+
+* CES 2024 : 
+	** Swarovski Optics
+	** Wizards : partie gratuite puis 15€ / mois pour du prototypage d'applications via l'IA qui est capable d'analyse une image pour créer le visuel associé (A VERIFIER)
+
+* La Poste : test de Office Copilot en cours et quasi terminé, les retours sont à venir (voir Nathalie BROUSSET qui gère le projet côté .COM1)
+
+* Demo de solution basée sur l'IA permettant la création de visuels publicitaires : +
+	image:20240123_petit-dej-IA_01.jpg[width=600]
+	** Création de maquettes publicitaires
+	** Par Jean Marie ROBERT
+	** URL : https://ai-advertising.vercel.app/
+
+	** Front : React
+	** Back : Python / Mango
+	** LLM et text-to-image AI generator : GPT-4 et Dall E
+
+=== 2024/02/27 - BGPN - Petit dej de l'IA
+
+* Application du mois : AskMona, l'IA pour améliorer l'accès à la culture
+	** présenté par Marion Carré, cofondatrice de AskMona, auteure et enseignante
+
+* OpenAI annonce Sora en réponse à Google comme générateur de vidéo sur base d'IA gen
+	** génération de vidéo jusqu'à 1 min
+	** crainte de l'industrie du cinéma
+	** uniquement accessible à des beta testeurs aujourd'hui
+	** accessible au grand public probablement courant de l'année
+
+* Aujourd'hui Google Bard n'existe plus et a été renommé en Gemini +
+image:20240227_petit-dej-IA_01.jpg[]
+
+	** Gemini 1.5 Pro : 1 million de tokens. +
+	C'est : 
+		*** 1 heure de vidéo
+		*** 11 heurs d'audio
+		*** 30K lignes de code
+		*** 700K mots
+	** *Gemini 1.5 Pro* est *capable de chercher une scène dans un film via un prompt* : +
+	image:20240227_petit-dej-IA_02.jpg[]
+
+* Mistral accepte une participation minimale de Microsoft pour permettre de diffuser Mistral au sein de certains produits Microsoft
+
+* *Groq* veut faire de l'ombre à NVidia
+	** chipset qui se veut plus performant que les GPU de NVidia
+	** a levé 300 M$ tout dernièrement
+
+*AskMona*
 
 
 
