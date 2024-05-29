@@ -67,7 +67,7 @@ Notes au sujet des IA génératives, ChatGPT, Dall-E et leurs concurrents et alt
 		*** QUESTION : si on différencie les 2 endpoints précédents, quels sont donc les paramètres associés au "fine-tuning" ? Car il est également possible de personnaliser des paramètres pour le endpoint "/v1/chat/completions"
 
 * Pour un papier de recherche expliquant ce qu'est et ce que n'est pas un modèle de langage (LLM) (TRES BONNE RESSOURCE) : +
-Talking about Large Langague Models (LLM) : https://arxiv.org/pdf/2212.03551.pdf
+Talking about Large Language Models (LLM) : https://arxiv.org/pdf/2212.03551.pdf
 
 	** Une TRES BONNE RESSOURCE expliquant de façon rationnelle et scientifique pourquoi on ne peut pas dire qu'un LLM "pense", "croit" ou "raisonne".
 
@@ -1237,6 +1237,24 @@ L'apprentissage par renforcement avec retour d'information humain (Reinforcement
 	** Quelques informations sur les *performances* des LPU de Groq : +
 	https://blocksandfiles.com/2024/01/23/grokking-groqs-groqness/
 
+=== 2024/xx/yy : Paris JUG ?
+
+* LLM définitions
+* RAG : 
+	** pourquoi ? apporter les données personnelles
+	** tech et comment faire : langchain & Co
+	** RAG évolué : comme celui pour le SQL
+* RAG is already dead (ou en tout cas peut-être prochainement plus "main stream")
+	** context length
+* Soft : Transformers et Mamba
+* Hard : LPU et traitement séquentiel
+* toujours période de grands changements : 
+	** bébé -> adolescent
+	** sécurité et 1ere attaque visant les LLM et leur supply chain
+	** industrialisation : gestion des prompts et hallucinations
+
+* Parler du changement de paradigme ? Interface conversationnelle
+
 == VEILLE TECHNOLOGIQUE & INFOS DIVERSES
 
 * https://a16z.com/2023/01/19/who-owns-the-generative-ai-platform/ : bon *schéma de la stack des IA génératives*, partagée entre Apps, Models et Infrastructure
@@ -1289,6 +1307,19 @@ Wikipedia ne représente que 2% de la masse de données qui a servi à entraîne
 
 * Podcast Latent Space 2024/04/06 : avec Google qui travaille actuellement sur des contexte de 10 M de tokens pour ses modèles Gemini, nous assistons peut-être à la future mort du RAG, car avec de tels contextes, nous n'aurons plus besoin de "retriever" quoi que ce soit (tout pourra tenir dans le contexte)
 
+* 2024/04/10 : on commence à parler d'architecture hybride Mamba / Transformer avec Jamba
+	** Jamba: A Hybrid Transformer-Mamba Language Model : https://ajithp.com/2024/04/10/jamba-revolutionizing-language-modeling-with-a-hybrid-transformer-mamba-architecture/
+		*** Il s'agit d'un très bon article réexpliquant également les principaux concepts derrière : 
+			**** les *Transformers*
+			**** l'architecture *MoE* (*Mixture of Experts*)
+
+		*** Transformers : 
+			**** "Transformer layers are designed to *capture complex patterns* and *long-distance relationships* within input sequences."
+
+* 2024/05/22 - Viva Tech - interview de *Yann LECUN* : 
+	** *les LLM ne sont PAS le futur*, voir le talk de Yann LECUN à Viva Tech, d'ici 5 à 10 ans, il est probable que nous soyons passés à autre chose
+        *** Ici Yann pousse son *JEPA* (et sa compréhension du monde physique, voir mes notes de Viva Tech)
+
 === 2024/03 : On commence à entendre parler de la "mort prochaine" des RAG...
 
 * Les travaux de *Google* sur les contextes long et "*Infini-attention*" 
@@ -1323,11 +1354,56 @@ Wikipedia ne représente que 2% de la masse de données qui a servi à entraîne
 	** L'article cite également cet autre article intéressant : +
 	https://vectorize.io/rag-is-dead-long-live-rag/
 
+* Un autre très bon article, avec de très bons schémas, sur *l'évolution des architectures RAG* et leur *positionnement par rapport au fine-tuning* : +
+https://bootcamp.uxdesign.cc/retrieval-augmented-generation-rag-the-secret-sauce-to-supercharge-llms-dac3d0202f59
+
+	** Il est notamment question de l'évolution *Naive RAG* -> *Advanced RAG* -> *Modular RAG* +
+	image:20231224_naive-advanced-modular-RAG-and-fine-tuning_01.jpg[]
+	image:20231224_naive-advanced-modular-RAG-and-fine-tuning_02.jpg[]
+	image:20231224_naive-advanced-modular-RAG-and-fine-tuning_03.jpg[]
+
 === 2024/04/26 - YouTube : MAMBA and State Space Models explained
 
 * URL du talk YouTube : https://www.youtube.com/watch?v=vrF3MtGwD0Y
+	** Un talk très mathématique
 
+.State Space Models vs Transformers
+image:20240426_Mamba-SSM_01.jpg[width=600]
 
+.Mamba : a Selective SSM that makes them better
+image:20240426_Mamba-SSM_02.jpg[width=600]
+
+* On their own, SSM "are not much", so they must be part of larger architecture +
+image:20240426_Mamba-SSM_03.jpg[width=400]
+
+* On a higher perspective, they work as *linear RNNs* (Recurrent Neural Networks) +
+image:20240426_Mamba-SSM_04.jpg[width=600]
+
+.Les Transformers et la problématique de l'attention (et de la complexité quadratique qu'elle implique)
+image:20240426_Mamba-SSM_05.jpg[width=600]
+{lb}
+image:20240426_Mamba-SSM_06.jpg[width=600]
+
+.x2 en input -> x2² = x4 en mémoire et en temps de calcul
+image:20240426_Mamba-SSM_07.jpg[width=600]
+
+.Alors qu'avec les SSM, on le voit sur ce schéma, c'est linéaire
+image:20240426_Mamba-SSM_08.jpg[width=600]
+
+IMPORTANT: Mamba is a *Selective* SSM
+
+.Comparaison de performances entre Mamba et d'autres architectures (dont Transformers)
+image:20240426_Mamba-SSM_09.jpg[width=600]
+
+* Mamba peut atteindre pour une même taille de batch un débit x5 par rapport aux Transformers
+	** Et pour des tailles de batch élevées, les Transformers partent en oom
+
+== 2024/05 : Explosion de l'IA Gen et déploiement de la 5G
+
+* *Les usages de l'IA gen vont exploser* avec la baisse de latence des modèles associés (GPT-4o qui passe à 0.3 sec, donc sous la "barre de la douleur / gène" de ~1 sec des humains), qui vont marquer l'avènement de l'interface vocale avec nos nouveaux assistants personnalisés.
+* Va suivre une *explosion des besoins en bande passante*, avec l'envoi massif de données audio et vidéo : vous filmez "en live" un évènement et envoyez les données associées sur le réseau (internet depuis votre smartphone) afin d'obtenir une réponse du modèle. +
+La conséquence va être une *obligation d'évolution des infrastructures*, avec l'avènement et le passage "tant attendu par certains" de la 4G à la 5G. +
+-> C'est LE use case tant attendu pour le développement de la 5G : l'IA Gen, présente sur tous les smartphones via des assistants X, Y ou Z va imposer son déploiement et son adoption.
 
 == TALKS, PRÉSENTATIONS, MEETUPS 
 
@@ -1600,6 +1676,34 @@ Venez partager et interagir avec nos speakers. Vous aurez la possibilité de lev
 * Marek : on peut vérifier que GitHub Copilot est installé sur la machine ET vérifier sa configuration pour qu'il ne remonte PAS d'info
 * Marek : il y a des moyens de "jail breaker" un GPT custom, et de récupérer les données montées dedans
 * Sofia : très bon retour sur Llama3
+
+=== 2024/05/13 - OpenAI : Introducing GPT-4o
+
+* URL : https://www.youtube.com/watch?v=DQacCB9tDaw
+
+* Les grands axes : 
+	** *multimodal* : texte, images, vidéo et audio
+		*** "o" voulant dire "omnicanal"
+	** *GPT-4o* : 2x faster, 50% cheaper and 5x higher rate limits compared to GPT-4 Turbo
+
+	** Le *temps de réponse* de GPT-4o est de *0.3s*, contre plus de 3s pour le *mode voix* des précédents modèles.
+		*** Cf l'article https://medium.com/@Avis-AI-Essentials/le-nouveau-gpt-4o-dopenai-peut-chanter-et-r%C3%A9pondre-en-temps-r%C3%A9el-57128cb09a0a[] : +
+		"Avant GPT-4o, le mode voix de ChatGPT reposait sur un processus en trois étapes : l'audio était transcrit en texte, puis traité par GPT-3.5 ou GPT-4, et enfin converti en audio. Cela entraînait des temps de réponse plus lents (2,8 secondes pour GPT-3.5 et 5,4 secondes pour GPT-4) et une perte d'informations comme le ton et le bruit de fond. +
+		GPT-4o utilise un seul modèle d'IA formé pour gérer le texte, les images et l'audio en même temps. Ce traitement de bout en bout permet à GPT-4o de répondre beaucoup plus rapidement et de manière plus naturelle, en captant des nuances que les modèles précédents manqueraient."
+	** Cf https://community.openai.com/t/gpt-4o-tokens-per-second-comparable-to-gpt-3-5-turbo-data-and-analysis/768559[] : +
+	"The *gpt-35-turbo-0125 model* has the *highest mean tokens per second* (TPS) (67.83), indicating it is the fastest among the three models tested. This is followed by *gpt-4o-2024-05-13* with a *mean of 63.32 tokens per second*. The *gpt-4-turbo-2024-04-09* model lags behind with a *significantly lower mean of 35.68 tokens per second*."
+
+=== 2024/05/14 - Google I/O
+
+* La video de la Google I/O : https://www.youtube.com/watch?v=XEzRZ35urlk 
+	** Un rien longue, 2h de talk à partir de 1h d'enreg (je ne sais pas pourquoi ils ont gardé le début), mais voici un bon résumé : https://www.youtube.com/watch?v=1y8lcwLw3EQ
+
+* D'ici très peu de temps : Gemini Advanced -> passage à 2M de tokens... On peut lui donner sa thèse à analyser sans besoin de RAG +
+image:20240514_Google-IO_01.jpg[]
+image:20240514_Google-IO_02.jpg[]
+	** Et avec des coûts qui s'écroulent (à récupérer)
+
+* LearnLM : un LLM fine-tuned pour l'apprentissage
 
 == RESSOURCES SUR L'IA GENERATIVE
 
