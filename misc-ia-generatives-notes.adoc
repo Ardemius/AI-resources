@@ -170,9 +170,10 @@ TO BE COMPLETED
 			*** Section "Understanding tokens and probabilities", il est expliqué qu'avec une température de 0, le modèle complétera TOUJOURS le texte avec le token ayant la plus forte probabilité (voir l'exemple donné). +
 			Si on augmente la température, le modèle "prendra plus de risques" et envisagera des tokens avec des probabilité plus basses.
 
-		** La température est un paramètre qui contrôle le degré de "variabilité" des prédictions de génération de texte du modèle. Plus la température est élevée, plus les prédictions seront créatives et variées, mais aussi moins précises et cohérentes.
+		** Thomas : La température est un paramètre qui contrôle le degré de "variabilité" des prédictions de génération de texte du modèle. Plus la température est élevée, plus les prédictions seront créatives et variées, mais aussi moins précises et cohérentes.
+		Avec une température de 0, le modèle complétera TOUJOURS le texte avec le token ayant la plus forte probabilité, quel que soit le nombre de fois où la même question est posée.
 
-	* *top_p* :
+	* *top_p* (top probability) :
 
 		** An alternative to sampling with temperature, called *nucleus sampling*, where the model considers the results of the tokens with top_p probability mass. *So 0.1 means only the tokens comprising the top 10% probability mass are considered*. +
 		We generally recommend altering this or temperature but not both.
@@ -196,6 +197,14 @@ TO BE COMPLETED
 				En effet, lorsque "top_p" est défini sur 0.1, cela signifie que seuls les tokens représentant les 10% de la masse de probabilité la plus élevée sont considérés pour la génération de texte. Cela permet de restreindre la diversité des mots générés et de favoriser les mots avec les probabilités les plus élevées. +
 				Dans ce contexte, la valeur par défaut de 1 pour "top_p" représente en effet l'inclusion de tous les mots, car cela signifie que 100% des tokens sont pris en compte, y compris ceux avec des probabilités plus faibles. Cela offre une génération de texte plus ouverte sans seuil sur la probabilité cumulée des mots. +
 				Je m'excuse pour les précédentes erreurs dans mes explications et je vous remercie de votre clarification.
+			
+		** Thomas : Le "top_p" (top probability) contrôle le nombre de mots possibles que le modèle considère pour la génération de texte. +
+		Un top_p de 0,15 indique que seuls les tokens dont la somme des probabilités appartient aux 15% des plus fortes sommes de probabilités possibles de réponse seront considérés par le modèle.
+
+	* -> Ces 2 paramètres, *température et top_p*, permettent de contrôler le *"taux de créativité"* de la génération du modèle. +
+	image:temperature-top-p-combinatoire-usages.jpg[]
+
+	
 
 	* *presence_penalty* (Le taux de présence) : 
 
@@ -226,6 +235,8 @@ TO BE COMPLETED
 	** Source : https://aipower.org/presence-penalty/
 
 * Doc officielle OpenAI : The frequency and presence penalties found in the Completions API can be used to reduce the likelihood of sampling repetitive sequences of tokens.
+
+* Thomas : Ces 2 paramètres, *frequency_penalty* et *presence_penalty*, contrôlent le *"taux de diversité"* du texte généré, c'est-à-dire le compromis effectué par le modèle entre "nouveauté" et texte déjà connu.
 ====
 
 	* *best_of* : 
@@ -909,7 +920,7 @@ Le domaine évolue de nouveau (oui, encore…), avec un changement de paradigme 
 Stack technologique "du moment" pour une application de recherche / search basée sur l'IA générative :
 
 	* un *LLM* : OpenAI, Hugging Face, Dolly, etc.
-	* *LangChain* : le framework de « glue » de la solution
+	* *LangChain* : le framework de « glue » de la solution
 	* *Streamlit* : le front / la web app
 	* une *BDD vectorielle* : Pinecone, Chroma, Elastic search, Postgre, etc.
 		** Liste des vector databases : https://thedataquarry.com/posts/vector-db-1/[] +
@@ -1223,6 +1234,18 @@ L'apprentissage par renforcement avec retour d'information humain (Reinforcement
 		*** "Nightshade's goal is not to break models, but to increase the cost of training on unlicensed data, such that licensing images from their creators becomes a viable alternative"
 	** https://www.usine-digitale.fr/article/nightshade-l-outil-qui-fait-de-l-ombre-a-l-ia-generative.N2207147
 
+	** N'importe quelle donnée du net peut techniquement servir à l'entraînement d'un modèle d'IA, ce que certains éditeurs ne se sont pas faits prier pour faire, permis ou pas… Au grand dam des ayants droit +
+	Pour contrer ce comportement, les 1eres contre-mesures anti-entraînement des modèles d'IA apparaissent : Glaze et Nightshade +
+	Le principe ? Empoisonner les données ! (data poisoning) +
+	Et cela va probablement donner lieu à une course entre "poison et remède"
+
+	** Chiffrement homomorphe : Les données sensibles sont chiffrées de manière à pouvoir être traitées et analysées sans les déchiffrer au préalable. Cela rend difficile pour les attaquants d'extraire des informations significatives des données pour l'entraînement de modèles de langage.
+	** Botaniquement, la nightshade est vraiment vénéneuse : The species usually called nightshade in North America and the United Kingdom is S. dulcamara, also known as bittersweet and woody nightshade. Its foliage and egg-shaped red berries are poisonous, the active principle being solanine, which can cause convulsions and death if taken in large doses.
+
+	** Rappelez-vous WoW et le "pourrissage" de l'hôtel des ventes...
+	** Nightshade :"Nightshade's goal is not to break models, but to increase the cost of training on unlicensed data, such that licensing images from their creators becomes a viable alternative" +
+	Glaze is a defensive tool that individual artists can use to protect themselves against style mimicry attacks, while Nightshade is an offensive tool that artists can use as a group to disrupt models that scrape their images without consent
+
 * *Groq* et ses *LPU* : 
 	** https://www.lemondeinformatique.fr/actualites/lire-groq-defie-nvidia-avec-ses-accelerateurs-lpu-92822.html
 
@@ -1398,12 +1421,446 @@ image:20240426_Mamba-SSM_09.jpg[width=600]
 * Mamba peut atteindre pour une même taille de batch un débit x5 par rapport aux Transformers
 	** Et pour des tailles de batch élevées, les Transformers partent en oom
 
-== 2024/05 : Explosion de l'IA Gen et déploiement de la 5G
+=== 2024/04/29 - Microsoft - Témoignage Onepoint : optimiser l'intelligence collective et la gestion de la connaissance avec l'IA générative
+
+Avec *Nicolas Gaudemet*, Chief AI Officer de Onepoint et *Xavier Perret*, Directeur Azure de Microsoft France.
+
+* URL de la vidéo : https://info.microsoft.com/FR-ERAAI-VDEO-FY24-02Feb-26-Onepoint-Story-Optimizing-Collective-Intelligence-and-Knowledge-Management-with-Generative-AI-SRGCM11747_LP02-Thank-You---Standard-Hero.html
+
+* 2021/06/30 : *création du laboratoire d'IA* TALia par OnePoint
+
+	** Télécom Paris et onepoint créent ensemble TALia, un laboratoire de recherche qui se consacre aux interactions entre les machines et l'humain. +
+	https://www.groupeonepoint.com/fr/notre-actualite/telecom-paris-et-onepoint-lancent-talia-un-laboratoire-commun-en-ia/
+	** "TALia est un laboratoire commun qui associe les expertises métiers et scientifiques des collaborateurs de onepoint avec les capacités de recherche de Télécom Paris sur un sujet d'intérêt partagé : le Traitement Automatique du Langage Naturel. Cette discipline, également appelée TALN (ou NLP en anglais) se consacre aux interactions entre les machines et l'humain et s'attache à créer des solutions capables de comprendre le langage naturel. Les applications du TALN se retrouvent dans nos usages quotidiens : synthèse vocale, correction orthographique,prédiction des mots sur smartphone, jusqu'à l'analyse des opinions et des émotions."
+
+* Nicolas : l'adoption fulgurante de l'IA est à rapprocher de celle de l'Iphone : 
+	** L'IPhone a fait découvrir les applications mobiles -> l'IA fait découvrir les applications conversationnelles
+* Nicolas concernant les clients en général : "Demander à ce que leurs applications deviennent conversationnelles"
+
+* Nicolas : création pour les collaborateurs du chatbot Neo, sur le Cloud privé Azure avec la stack Azure OpenAI
+	** Mise en place d'une *bibliothèque de prompt*
+
+* Nicolas : gain de productivité avec un assistant de l'ordre de 15%
+* Nicolas : le "gain" réalisé via l'IA générative est d'autant plus fort avec des populations MOINS "expertes"
+	** avec une nouvelle fois l'exemple donné de l'apprentissage de Python par les débutants
+
+* Nicolas : 3 grandes questions remontent chez nos clients sur les copilot : 
+	** accompagnement au changement et la *formation*
+	** vérifier que ma *base de connaissances est suffisamment propre* et bien gérée pour alimenter un copilot
+		*** donc une problématique de gouvernance de la donnée
+		*** que faire si sur son Sharepoint on a des docs qui ont 15 ans, des docs avec des règles de nommage aléatoires, etc.
+		*** Il faut préparer sa base de connaissances pour qu'elle soit la plus exploitable possible pour l'IA
+	** sécurité : *gestion des accès* pour l'usage de l'IA
+
+=== 2024/05 : Explosion de l'IA Gen et déploiement de la 5G
 
 * *Les usages de l'IA gen vont exploser* avec la baisse de latence des modèles associés (GPT-4o qui passe à 0.3 sec, donc sous la "barre de la douleur / gène" de ~1 sec des humains), qui vont marquer l'avènement de l'interface vocale avec nos nouveaux assistants personnalisés.
 * Va suivre une *explosion des besoins en bande passante*, avec l'envoi massif de données audio et vidéo : vous filmez "en live" un évènement et envoyez les données associées sur le réseau (internet depuis votre smartphone) afin d'obtenir une réponse du modèle. +
 La conséquence va être une *obligation d'évolution des infrastructures*, avec l'avènement et le passage "tant attendu par certains" de la 4G à la 5G. +
 -> C'est LE use case tant attendu pour le développement de la 5G : l'IA Gen, présente sur tous les smartphones via des assistants X, Y ou Z va imposer son déploiement et son adoption.
+
+=== 2024/06/03 - AI Builders : veille technologique IA générative
+
+* URL de l'article : https://laposte.sharepoint.com/sites/placedeliaofficiel/Documents%20partages/Note%20de%20veille%20IA%20G%C3%A9n%C3%A9rative%20-%20Mai%20.pdf
+
+* L'*augmentation de l'efficacité opérationnelle des centres de relation client* grâce à l'IA Générative devient un *cas d'usage standard*
+	** En témoignent les pilotes lancés avec succès par *UPS* (-50% de temps de traitement) ou *Klarna* (- 80%, équivalent à 700 ETP, cf. la note de synthèse du mois de mars)
+	** L'industrialisation de ces usages de relation client implique pour les entreprises des *impacts RH majeurs*. +
+	Nous assistons à une profonde prise de conscience des directions des ressources humaines quant à la nécessité d'anticiper l'impact de l'IA. 
+
+* *Guerre des talents pour l'IA générative* :
+	** la pénurie de talents exacerbée par la demande croissante en matière d'IA Générative est une réalité indéniable. 
+	** Cependant, pour nos entreprises, les *data scientists*, grâce à leur formation généraliste et polyvalente, sont *tout à fait à même de devenir d'excellents spécialistes de l'IA Générative*. +
+	Il convient alors de leur permettre de suivre intégralement la courbe d'apprentissage, sans brûler d'étapes, à travers la *maîtrise de divers projets d'IA Générative en interne*. +
+	-> La mise en œuvre en interne d'équipes de data scientists spécialisées dans l'IA Générative devient ainsi une nécessitée.
+
+	** Moralité : il faut pouvoir "pratiquer" l'IA générative en interne
+
+* Attention à l'*adoption de l'IA* et à la façon de *"pousser" son usage* : 
+	** ce cas d'usage illustre l'importance de développer une méthodologie de déploiement maîtrisée, progressive et adaptée, pour *favoriser l'industrialisation des outils d'IA Générative* et *garantir un taux d'adoption élevé*. 
+	** Moderna démontre en effet qu'il est crucial de *commencer par des utilisateurs enthousiastes*, puis d'optimiser la solution avant de la déployer à plus grande échelle. 
+	** Un *déploiement trop rapide*, auprès d'utilisateurs non-ambassadeurs, peut entraîner un *effet déceptif*, compromettant irrémédiablement le taux d'adoption de la solution.
+
+* Importance cruciale de la *formation au prompting* dans les entreprises : 
+	** la formation au prompting est un enjeu décisif en entreprise, tant la maîtrise de cette compétence est corrélée avec la qualité des résultats fournis par un LLM. 
+	** Alors que la plupart des entreprises tentent d'accompagner leurs collaborateurs dans un mode de formation "pull" au travers de séminaires, e-learnings, etc. le Groupe Rocher *mise sur une formation "push"* visant à délivrer *le bon accompagnement au bon moment*, permettant ainsi une formation en continu aux utilisateurs.
+
+* *OpenAI* : nouveau *modèle multimodal GPT-4o*.
+	** intègre désormais le *son* en plus du *texte* et de l'*image*. 
+	** En ajoutant à son nouvel outil une *rapidité d'exécution améliorée*, OpenAI franchit une étape supplémentaire vers une *IA conversationnelle toujours plus anthropomorphique*.
+
+* Microsoft facilite la création de *copilotes personnalisés* au poste de travail
+
+	** L'outil *Copilot Studio* permet de personnaliser des Copilots en fonction du besoin métier. Cet outil offre différents niveaux de personnalisation dépendant des compétences de l'équipe IT.
+		*** une personnalisation de base peut être réalisée avec du *low code* et approfondie grâce à la *plateforme Azure AI Studio*. +
+		Copilot Studio propose un *workflow complet* permettant de suivre le *cycle de vie des Copilots*. 
+		*** Le déploiement des Copilots peut être personnalisé et piloté grâce à un ensemble de *statistiques* permettant de *suivre l'utilisation du copilote* pour les différents métiers. 
+		*** La personnalisation de Copilot est rendue possible par la *mise à disposition de LLM et SLM verticaux* dans une *marketplace spécifique à l'entreprise intégrée à Copilot Studio*. +
+		*** Cette capacité de personnalisation et d'intégration de multiples modèles et outils (consultation du web, connexion à des bases de données de suite métier, etc.) est rendue possible par l'adjonction d'*agents de type ReAct* (*Reasonning and Acting*) nativement dans les Copilots.
++
+.Agents de type ReAct : Reasoning and Acting
+[NOTE]
+====
+* Bien que les IA Génératives actuelles aient démontré une réelle valeur ajoutée, celles-ci demeurent difficiles à maîtriser en raison de la *nature parfois aléatoire de leurs réponses*. 
+* L'introduction des *agents de type Reasonning and Acting* (*ReAct*) dans les outils d'IA générative ainsi que dans Copilot pour sa personnalisation, laisse penser que les *LLM orchestrateurs aujourd'hui génériques*, seront *remplacés par des LLM spécialisés*, d'où leur nom donné par "H", *Large Action Models*.
+====
+
+.What are Large Action Models (LAMs) ?
+[NOTE]
+====
+* 2024/03/29 - What Are Large Action Models and How Do They Work ? : https://www.trinetix.com/en-fr/insights/what-are-large-action-models-and-how-do-they-work
+
+	** *Large action model* is an artificial intelligence model that *can understand and execute complex tasks* by translating human intentions into action. +
+	Within LAMs, such levels of *autonomy* and comprehension turn generative AI into an *active assistant that can perform various tasks*, from booking rooms to making complex decisions based on past and present data analysis.
+
+	** *LAM vs LLM Agents*
+		*** "Depending on the source, a large action model is either said to be the opposite of a large language model (LLM) or its advanced option. None of these statements are correct. Large language models (LLM) can be used to handle a sequence of tasks with the help of agents—software units powered by an LLM that handle specific prompting for improved decision-making and task execution."
+		*** *LLM agents* use large language models as computing power to solve complicated processes and problems. 
+			**** As a result, it enables the use of large language models for tasks other than text generation and even the creation of autonomous systems. 
+			**** -> The concept of *LAM* may be an *iteration of what LLM agents do*
+
+		*** DEFINTION : *LLM agents* are a *combination of tools* and *large language model chains*, imbued with the *autonomy* to decide what they should do or which tool they should use for accomplishing a goal. +
+		LLM agents are characterized by the following :
+
+			**** *Understanding context* +
+			With the help of the large language model AI, LLM agents can decipher the goals and context of the prompt without users having to enter additional prompts. As a result, they become more independent in responding to prompts and making decisions.
+
+			**** *Using reasoning* +
+			LLM agents leverage *multiple prompt engineering techniques* (tree-of-thought, chain-of-thought) *to make conclusions* and *establish logical connections for solving a task*. +
+			Their reasoning isn't limited to text processing—they can also work with images and other content types.
+
+			**** *Utilizing tools* +
+			LLM agents can be *equipped with search engines*, *APIs*, or *other tools to gain data* and *complete a chain of actions* that precedes task completion. This feature considerably expands and augments the decision-making potential of a large language model.
+
+		*** LLM agents can be divided into two large types : 
+			
+			**** *conversational agents* +
+			Conversational agents are what make *AI-powered chatbots* work, presenting an identity, a tone, and a great understanding of context.
+			
+			**** *task-oriented agents* +
+			Task-oriented agents are skilled at taking a strategic approach to tasks, *breaking them down into sub-tasks*, *analyzing similar tasks*, and using a wide range of methodologies to complete an objective.
+
+		*** -> Are large action models just another name for LLM agents ? It COULD (just) be
+
+
+* 2024/05/06 - Understanding Large Action Models (LAM) vs (LLM) ! : https://www.linkedin.com/pulse/understanding-large-action-models-lam-vs-llm-mazen-lahham-hw0cf/
+
+	** "Aren't LAM essentially AI agents ?"
+		*** *LAMs*, much like AI agents, are *designed to execute complex actions and make decisions*, extending the capabilities of traditional AI systems that primarily focus on data processing and response generation.
+====
+
+* Microsoft lance un *PC intégrant toute sa suite produit liée à l'IA Générative*
+	** Microsoft s'allie à *Intel* afin d'utiliser la dernière génération de *microprocesseurs "Intel Lake Meteor"* qui intègre un *processeur de type NPU* (Neural Processing Unit) sur lequel il *fait tourner localement son modèle Phi-3* adapté à cet environnement et dénommé pour l'occasion *Phi-Sillica*.
+	** Une révolution dans le monde l'IA Générative où l'accès aux modèles était auparavant réalisé dans le cloud uniquement de manière connectée, un *avant-goût du AI at the Edge* -> TRES IMPORTANT
+
+.Définition d'Agent de type ReAct (Reasonning and Acting)
+[NOTE]
+====
+* Il est maintenant possible de créer des applications répondant à des besoins métiers utilisant plusieurs LLM spécialisés et des outils de différents types (Recherche sur Internet, connexion à une base de données métiers type CRM, ...). 
+* En effet, il est apparu que certains LLM de plus de 100B, appelés *LLM orchestrateurs*, étaient dotés de *capacités d'ordonnancement* permettant d'analyser une requête et d'en *déduire les LLMs et/ou les outils à utiliser pour apporter une réponse*.
+* Ces agents de type *ReAct* (*Reasonning and Acting*) *décomposent la requête et réalisent une forme de routage*. 
+====
+
+=== 2024/06/06 - Devfest Lille 2024 : IA-404 : Explication not found
+
+* *XAI* : *Explainable AI*, composée de 2 notions : 
+
+	** l'*interprétabilité* : qu'est-ce que le modèle a fait ?
+	
+	** l'*explicabilité* : pourquoi le modèle a pris cette décision ?
+
+image:20240606_IA-404-XAI_02.jpg[]
+image:20240606_IA-404-XAI_01.jpg[]
+
+.L'XAI permet d'éviter l'effet "boîte noire", où l'on ne sait rien de ce qui se passe à l'intérieur du modèle
+image:20240606_IA-404-XAI_03.jpg[]
+
+* Enjeux éthiques du XAI : 
+
+	** Transparence des algorithmes nécessaire (même sans IA) -> obligation légale de l'AI Act
+	** Egalité de traitement de tous les acteurs utilisant l'IA
+	** Faire respecter le principe de vigilance et de loyauté si l'algorithme comporte des données personnelles (CNIL)
+		*** Par "vigilance" on entend faire attention à faire avertir les utilisateurs des risques d'hallucinations d'une IA
+		*** Par "loyauté" on entend que l'IA ne porte préjudice à l'utilisateur
+
+* Enjeux stratégiques du XAI : 
+
+	** Renforcer la confiance des utilisateurs (et donc meilleure adoption)
+	** Comprendre l'architecture -> permet de baisser les coûts (entraînement, inférence)
+
+* Enjeux techniques du XAI :
+
+	** utiisation pour le debug
+	** maîtriser les données utilisées (pour éviter le "sans raison", "sans diversité")
+	** baisser la complexité du modèle -> plus de maintenabilité et de maîtrise
+
+* *Comment mettre en place l'IA explicable ?*
+
+	** Plusieurs méthodes sont possibles, reposant sur un *périmètre* et des *dépendances* : +
+	image:20240606_IA-404-XAI_04.jpg[]
+
+	** *méthode locale LIME* (2016) : Local Interpretable Model-Agnostic Explanations +
+		image:20240606_IA-404-XAI_05.jpg[]
+		image:20240606_IA-404-XAI_06.jpg[]
+
+	** *méthode locale SHAP* (2017) : SHapley Additive exPlanations +
+		image:20240606_IA-404-XAI_07.jpg[]
+		image:20240606_IA-404-XAI_08.jpg[]
+
+NOTE: Le *"Saint Graal" du XIA* : des méthodes avec pour périmètre une *explication globale* et avec *agnostique au modèle* en termes de dépendance
+		
+	** *méthode globale PDP* (2000) : Partial Dependence Plot +
+		image:20240606_IA-404-XAI_09.jpg[]
+	
+		*** Souci : ces méthodes globales sont plus compliquées, et on risque de ne plus pouvoir comprendre ce que l'on veut montrer avec l'IA explicable
+
+* *Et côté Deep Learning ?* +
+image:20240606_IA-404-XAI_10.jpg[]
+
+	** l'image montre un schéma d'un Réseau Neuronal Convolutif (CNN) et d'une architecture Transformer, soit 2 types d'architectures de Deep Learning
+
+.Définition de convolution en mathématiques
+NOTE: Opération par laquelle deux fonctions sont mises dans un rapport suggérant une sorte d'enroulement de l'une sur l'autre.
+
+* Du coup est-ce possible d'expliquer l'IA ? 
+
+	** Depuis *l'apparition des 1eres régulations / réglementations* s'appliquant du domaine (comme le RGPD), le nombre de publications sur l'XIA a bien accéléré : +
+	image:20240606_IA-404-XAI_11.jpg[]
+		*** "Si on ne fait pas ces recherches, on ne sera pas en conformité..."
+
+* Le "but ultime" (qui est déjà possible) : voici comment on pourrait / devrait expliquer une réponse donnée par une IA (exemple d'une réponse à une demande de crédit) : 
+image:20240606_IA-404-XAI_12.jpg[]
+
+* L'interprétabilité est difficile à obtenir : +
+image:20240606_IA-404-XAI_13.jpg[]
+	
+	** "Avec ChatGPT-4 Turbo : on ne sait pas ce qui se passe dans le modèle"
+	** "Mais Mistral AI sait de son côté parfaitement ce qui se passe dans son modèle" cf la speaker
+
+	** Ce sont probablement bien (et malheureusement ?) les réglementations qui vont nous "forcer" à aller vers plus d'explicabilité dans l'IA : +
+	image:20240606_IA-404-XAI_14.jpg[]
+
+* Bonnes pratiques d'IA (pour aller vers de l'XAI) :
+
+	** *Cas d'algos d'IA complexes MAIS pour des décisions non critiques* : l'interprétabilité et l'explicabilité sont OPTIONELLES +
+	image:20240606_IA-404-XAI_15.jpg[]
+
+	** *Cas d'algos d'IA simples MAIS pour des décisions critiques*, Cf AI Act pour les SI à haut risque : +
+	image:20240606_IA-404-XAI_16.jpg[]
+		*** L'interprétabilité est obligatoire et elle existe déjà -> il faut alors mettre à dispo la documentation technique du modèle (article 11) et une notice d'utilisation (article 13) au minimum
+		*** L'explicabilité est obligatoire mais est facile à mettre en place (il existe des algo) -> il faut alors ajouter de l'explicabilité, informer le client sur les décisions et comportements, fournir une notice d'utilisation client
+
+	** *Cas d'algos complexes MAIS pour des décisions critiques*, Cf AI Act pour les SI à haut risque : +
+	image:20240606_IA-404-XAI_17.jpg[]
+		*** L'interprétabilité et l'explicabilité sont obligatoires mais elles n'existent pas et / ou sont très difficiles à mettre en place -> STOP, ON NE FAIT PAS D'IA si on ne peut pas être conforme à l'AI Act
+			**** Risques encourus : 30 M€ ou 6% du CA d'amende
+
+En conclusion : 
+
+	* Le XIA , son existence tu connaîtras : 
+		** *Connaître en 1ere instance l'existence de ces algorithmes*, c'est s'assurer de comprendre les enjeux de demain en matière de conception d'IA
+
+	* Le XIA viendra, patience il faudra : 
+		** Le XIA est un domaine de recherche assez récent et qui n'est pas vu comme "nécessaire" par les grands acteurs de l'IA. Des *réglementations* pourront aider à son développement.
+
+	* Pour une IA d'exception, dans le boîte noire tu resteras ?
+		** Pour le moment, l'interprétabilité s'oppose à l'envie d'aller "plus loin" avec les capacités de l'IA. +
+		La communauté scientifique s'efforce de publier les codes des modèles et les architectures pour garder un contrôle sur notre compréhension, même si ce n'est pas encore suffisant.
+
+=== 2024/06/06 - Devfest Lille 2024 : Dompter le chaos de l'information : Construire un Allié IA avec Langchain4J
+
+Talk donné par Loïc Magnette de la société Oniryx
+
+* Stack technique de son RAG : 
+	** *Langchain4j* : de façon "marrante" Loïc présente Langchain4J comme le "Hibernate" de l'IA Gen
+		*** Je vois ce qu'il veut dire, mais à mon avis il serait préférable de simplement dire qu'il s'agit d'un framework qui va réaliser la "plomberie" entre les différentes briques de son pipeline d'IA
+	** *Ollama* (https://ollama.com/[]) : outil permettant de faire tourner en local un grand nombre de modèles de langage (on va dire jusqu'à 7B de paramètres)
+	** *Quarkus* : présenter comme une "alternative à Spring", très rapide (le fameux "subatomic" de Quarkus) et qui améliore grandement l'expérience développeur
+		*** Quarkus est intégré à LangChain4j
+		*** Dernièrement Quarkus a publié un article expliquant qu'ils avaient LA solution la plus simple pour faire du RAG : "quarkus-langchain4j-easy-rag" +
+		https://docs.quarkiverse.io/quarkus-langchain4j/dev/easy-rag.html
+			**** C'est bluffant pour faire quelque chose de simple très rapidement, mais il y a plusieurs limitations : 
+				***** limité à des fichiers
+				***** contrôle limité : pas de tag avec des metadata possible
+				***** limitation de l'outillage
+	** *Apache Tika* : une librairie qui permet d'ingérer facilement un peu tout type de document
+	** *PG Vector* : base de données vectorielle basée sur PostgreSQL
+	** DB en local pour sauvegarder 2 3 choses : pour ce Loïc utilise l'ORM Panache
+
+* Fonctionnement de sa démo "2", sa "véritable appli à lui" 😉 (donc sans utilise easy-rag)
+
+	** ingestion : documentSplitter et morceaux de 500 avec overlap de 100
+	** Pour la classification, usage d'un EmbeddingModelTextClassifier
+	** filtrage possible par catégorie au niveau du retriever
+
+* Loic invite tout le monde à aller regarder le projet de Stéphane Janssen qu'il avait présenté lors du dernier Devoxx France "RAG genie" : +
+https://github.com/stephanj/rag-genie
+
+Ressources : 
+
+	* slides de la présentation : https://speakerdeck.com/magnette/dompter-le-chaos-de-linformation-construire-un-allie-ia-avec-langchain4j
+	* repo GitHub : https://github.com/lmagnette/DevfestLille-2024
+
+=== 2024/06/25 - Club Azure Insiders : Café FinOps - Cost Optimization for Data series : AI
+
+Présenté par Eric Charbonnier, Azure CTO for Data & AI
+
+* Description de l'offre Azure AI : +
+image:20240625_Club-Azure-Insiders_FinOPS_02.jpg[]
+
+* Le coût de l'usage des modèles baisse en même temps que leurs performances augmentent : +
+image:20240625_Club-Azure-Insiders_FinOPS_03.jpg[]
+
+* LLMOps : "Microsoft a des équipes spécialement formées pour vous aider, n'hésitez pas à les contacter" 😉
+image:20240625_Club-Azure-Insiders_FinOPS_04.jpg[]
+
+* *Ollama* utilisé ici aussi par Eric pour faire tourner un modèle Phi-3 en local
+    ** Ollama devient vraiment mainstream
+
+* The Right balance to build your custom AI solution : +
+image:20240625_Club-Azure-Insiders_FinOPS_01.jpg[]
+
+    ** *Models as a service* : fine-tune models without provisioning compute, with ready-to use APIs and pay-as-you-go billing
+        *** C'est à dire qu'*on va payer au token*
+
+    ** *Models as a Platform* : 
+        *** innovate with models from vetted providers while managing your own compute resources
+        *** Et là c'est un *coût d'infrastructure* qui sera à calculer
+
+* On peut limiter le coût en modifiant le coût à la minute (le rate pour le nombre de tokens)
+
+* *PTUs* : *Provisioned Throughput Units*
+
+    ** les PTUs sont proposés par Microsoft pour *éviter les problèmes de latence*. +
+    Leur principe est que Microsoft va provisionner pour nous de la capacité dans ses data centers
+    ** cela peut amener à un x10 en termes de performances 
+    ** Pas d'engagement sur la durée, on peut sortir du PTU à n'importe quel moment
++
+image:20240625_Club-Azure-Insiders_FinOPS_05.jpg[]
+image:20240625_Club-Azure-Insiders_FinOPS_06.jpg[]
+
+    ** Inconvénients des PTUs : 
+        *** Ils manquent encore un peu de souplesse : on attache UN modèle à une PTU, il n'y a PAS la possibilité d'en changer (A VERIFIER)
+        *** l'entrée tarifaire est élevée : il faut avoir plusieurs use cases d'IA et les regrouper pour pouvoir bénéficier d'une PTU
+
+    ** Un Azure Capacity Calculator est disponible pour estimer le nombre de PTUs nécessaires en fonction de nos cas d'utilisations : +
+    https://oai.azure.com/portal/calculator[] +
+    image:20240625_Club-Azure-Insiders_FinOPS_07.jpg[]
+    image:20240625_Club-Azure-Insiders_FinOPS_08.jpg[]
+
+    ** Pricing and availability of PTUs +
+    image:20240625_Club-Azure-Insiders_FinOPS_09.jpg[]
+
+Infos diverses : 
+
+    * 2026 : Microsoft va ouvrir un nouveau data center en France du côté de Mulhouse
+		** Cela dans le cadre du programme Microsoft "Choose France" et de son investissement de 4 Mds€
+    * C'est aujourd'hui ou à peu de choses près la fin de l'année fiscale pour Microsoft
+
+=== 2024/06/24 : Building a personalized code assistant with open-source LLMs using RAG Fine-tuning
+
+* URL de l'article :  https://www.together.ai/blog/rag-fine-tuning
+
+.La meilleure explication que j'ai lue d'un RAG : simple et claire
+--
+*Retrieval-Augmented Generation* (RAG) is a technique designed to address such limitations in language model capabilities by integrating retrieval methods into the text generation process. This approach involves two key phases: indexing and querying. In the indexing phase, which is typically conducted offline, external knowledge sources—such as internal documents—are divided into chunks. These chunks are then transformed into vectors using an embedding model then stored in a vector database. During the querying phase, relevant information is retrieved from this database and combined with the initial query in a specific format. This enriched input is then used by a generation model to produce the final output.
+--
+
+.Effectiveness of RAG fine-tuning on 5 Open-source codebases
+image:20240627_togetherAI_RAG-fine-tuning_01.png[]
+
+=== 2024/06/24 : LongRAG: Enhancing Retrieval-Augmented Generation with Long-context LLMs
+
+* URL de l'article : https://stateofaigpt.substack.com/p/longrag-xland-100b-nabla2dft-deepseek
+
+* The Problem with Traditional RAG : 
+	** RAG frameworks have traditionally relied on *short retrieval units*, typically around 100-word paragraphs from sources like Wikipedia. +
+	Imagine combing through millions of such tiny fragments to find the precise one that answers your query. 
+	** This puts *immense pressure on the retriever* while the *reader’s task remains relatively light*, simply extracting answers from the snippets passed on. 
+		*** Reader = inférence
+	** This "*heavy retriever, light reader*" imbalance could lead to suboptimal performance. 
+	** Moreover, short units can cause semantic disjunctions, leading to incomplete information retrieval.
+
+* Introducing LongRAG
+	** The team from the University of Waterloo presents *LongRAG*, a paradigm shift in the RAG framework. +
+	By extending the *length of the retrieval units to 4K tokens* – a whopping 30 times longer than the traditional 100-word units – *the corpus size is dramatically reduced from 22 million to 600,000 units*.
+
+* *Natural Questions (NQ)* is one of the most challenging datasets designed for end-to-end question answering tasks.
+	** From real Google search queries to spans identified in Wikipedia articles, the complexity and real-world application of NQ make it an *ideal benchmark for LongRAG*.
+
+* *frameworks* like LongRAG [...]
+
+* Future Roadmap and Challenges : 
+	** there is a need for even *stronger long embedding models* to better navigate and encapsulate extensive document contexts.
+
+* LongRAG represents a *paradigm shift* in the RAG space
+
+=== 2024/06/17 - Developpez.com : Les retombées des projets d'IA sont "lamentables", se plaignent les dirigeants
+
+* URL de l'article : https://intelligence-artificielle.developpez.com/actu/359229/Les-retombees-des-projets-d-IA-sont-lamentables-se-plaignent-les-dirigeants-alors-que-les-retards-et-les-problemes-de-mise-en-oeuvre-remettent-en-cause-les-initiatives-d-IA-generative-en-2024/
+
+.L'évolution des préoccupations dans le domaine de l'IA Gen entre 2023 et 2024
+image:20240617_retombees-IA-2024.jpg[]
+
+	* On s'inquiète moins de la perte de son job ou de son remplacement par l'IA. +
+	Par contre, on se préoccupe beaucoup plus de : 
+		** la sécurité des données (surtout leur confidentialité)
+		** la transparence des décisions
+		** la précision des réponses
+		** le coût d'implémentation (coûts de mise en oeuvre)
+
+=== 2024/07/30 - IA-Pulse : Qu'est-ce qu'un agent IA ?
+
+* URL de l'article : https://iapulse.substack.com/p/quest-ce-quun-agent-ia
+* Voir également le AI Agents Landscape de E2B.dev : https://github.com/e2b-dev/awesome-ai-agents/blob/main/assets/landscape-latest.png +
+image:https://github.com/e2b-dev/awesome-ai-agents/blob/main/assets/landscape-latest.png?raw=true[]
+
+Définition d'un agent IA : 
+
+	*  Un *agent IA* est une entité logicielle capable de *percevoir son environnement* et d'*agir de manière autonome* pour atteindre des objectifs spécifiques. +
+	Cette définition couvre une large gamme de systèmes, des programmes simples aux algorithmes complexes d'apprentissage et d'adaptation.
+	* Aujourd'hui, un agent IA est généralement considéré comme un système doté d'un degré significatif d'autonomie, de complexité et d'adaptabilité dans ses interactions avec l'environnement et ses utilisateurs.
+
+-> Les caractéristiques clés d'un agent IA : *autonomie*, *perception*, *interaction*, *poursuite d'objectif*
+
+	* *AUTONOMIE* : +
+	Elle se réfère à la capacité de l'agent à *opérer indépendamment*, à *prendre des décisions* et à *agir sans nécessiter une supervision humaine constante*. +
+	Cette autonomie va bien au-delà de la simple exécution de tâches préprogrammées ; elle implique la capacité à évaluer des situations complexes, à faire des choix informés et à s'adapter à des circonstances changeantes.
+
+		** *Prise de décision* : un agent autonome peut analyser une situation, évaluer différentes options et choisir la meilleure ligne d'action en fonction de ses objectifs et de son état actuel.
+		** *Planification* : les agents avancés sont capables de planifier des séquences d'actions pour atteindre des objectifs à long terme, en ajustant leurs plans en fonction des changements de l'environnement.
+		** *Apprentissage continu* : l'autonomie implique également la capacité à apprendre de ses expériences et à améliorer ses performances au fil du temps, sans intervention humaine directe.
+
+	* *Capacité à PERCEVOIR et INTERAGIR avec l'environnement* : +
+	La *perception* et l'*interaction* avec l'environnement sont des caractéristiques fondamentales. Ces capacités permettent aux agents de fonctionner efficacement dans des environnements complexes et dynamiques, qu'ils soient physiques ou numériques.
+
+		** *Perception*, elle implique : 
+
+			*** *collecte de données* : utilisation de divers "*capteurs*" (qui peuvent être des interfaces logicielles dans le cas d'agents numériques) pour recueillir des informations sur l'environnement.
+			*** *traitement de l'information* : analyse et interprétation des données collectées pour construire une *représentation interne de l'état de l'environnement*.
+			*** *reconnaissance de patterns* : identification de schémas et de tendances dans les données perçues, permettant à l'agent de comprendre le contexte dans lequel il opère.
+
+		** *Interaction*, elle implique : 
+
+			*** l'*action sur l'environnement* : capacité à modifier l'état de l'environnement de manière significative, que ce soit dans un espace virtuel ou physique.
+			*** *communication* : *échange d'informations* avec d'autres agents ou avec des utilisateurs humains, en particulier via des interfaces *en langage naturel*.
+			*** *adaptation* : ajustement du comportement en fonction des retours de l'environnement et des résultats des actions précédentes.
+
+	* *POURSUITE D'OBJECTIFS SPÉCIFIQUES* : +
+	La poursuite d'objectifs spécifiques est ce qui donne un *sens et une direction aux actions d'un agent IA*. +
+	Cela implique : 
+
+		** La *définition d'objectifs* : capacité à comprendre et à interpréter des objectifs complexes, souvent exprimés en *langage naturel* par des utilisateurs humains
+		** La *planification stratégique* : élaboration de *plans à long terme* pour atteindre ces objectifs, en tenant compte des contraintes et des ressources disponibles.
+		** L'*adaptation des objectifs* : capacité à ajuster ou à redéfinir les objectifs en fonction de nouvelles informations ou de changements dans l'environnement.
+		** La *résolution de problèmes* : aptitude à surmonter les obstacles et à trouver des solutions créatives pour atteindre les objectifs fixés.
+
+		** Un exemple concret de cette capacité serait illustré par les agents IA développés pour la *planification de voyages*. 
+			*** Ces agents pourraient *intégrer* une multitude de facteurs tels que les *préférences de l'utilisateur*, le budget, les contraintes de temps, les conditions météorologiques, et même les tendances culturelles locales pour élaborer un itinéraire optimal. 
+			*** Ce processus implique non seulement la *compréhension des objectifs explicites* (par exemple, "visiter Paris en été cette année"), mais aussi l'*inférence d'objectifs implicites* basés sur le profil et l'historique de l'utilisateur, et le contexte global (JO 2024).
+
+	* On commence à parler de "kill switch" sur les modèles pour les garder sous contrôle "au cas où" +
+	https://intelligence-artificielle.developpez.com/actu/360874/Le-projet-de-loi-californien-SB-1047-vise-a-prevenir-les-catastrophes-potentielles-liees-a-l-IA-mais-les-critiques-craignent-que-l-accent-mis-sur-les-menaces-existentielles-de-futures-IA-ne-nuise-a-la-R-D/
 
 == TALKS, PRÉSENTATIONS, MEETUPS 
 
@@ -1446,8 +1903,6 @@ image:20230330_Club-Azure-Insiders_strategie-Saint-Gobain-passage-echelle-appli-
 	** StreamLit est très simple à maîtriser pour monter des fronts simples
 	** StreamLit également préconisé car *front en Python* (et Python fait définitivement l'unanimité grâce à sa forte communauté et l'immensité des ressources, docs disponibles)
 	** StreamLit par contre ne semble pas être la solution retenue par Saint-Gobain pour les applications internes, apparemment pour raison de sécurité.
-
-TO BE COMPLETED
 
 === 2023/11/23 - Commment LVMH déploie l'IA à l'échelle
 
@@ -1704,6 +2159,88 @@ image:20240514_Google-IO_02.jpg[]
 	** Et avec des coûts qui s'écroulent (à récupérer)
 
 * LearnLM : un LLM fine-tuned pour l'apprentissage
+
+=== 2024/06/04 - P'tit déj IA générative La Poste
+
+* Ce p'tit déjà sera avant tout un REX de Viva Tech
+
+* Les news de l'IA Gen : 
+	
+	** Les annonces de Google lors de la dernière *Google I/O* : +
+	image:20240604_petit-dej-IA_01.jpg[]
+		*** Gemini 1.5 : 2M de tokens
+		*** intégration de Gemini à Google Search
+		*** projet Astra : présentation de la vidéo officielle 
++
+video::nXVvvRhiGjI[youtube, width=640, height=480]
+
+			**** Analyse de vidéo en temps réel par Astra
+		*** Création d'un store Google Gemini où l'on va pouvoir créer ses propres "gem"
+		*** Annonce de leur générateur d'images Imagen 3
+
+	** Claude 3 devient disponible en Europe
+
+	** Levée de fond de la société française "H", anciennement appelée "Holistic"
+		*** un futur concurrent de Mistral
+
+		*** *H vient de lever 220 M€* auprès de Google Schmidt, Xavier Niel, etc. : https://www.btob-leaders.com/h-leve-200-millions-dollars-ia
+			**** "Le tour de table a été mené par le capital-risqueur américain Accel, avec la participation d'Amazon et de la société new-yorkaise de logiciels d'automatisation robotique UiPath.
+			La banque publique française Bpifrance et les investisseurs parisiens Eurazeo, Elaia Partners, Aglaé Ventures et Motier Ventures ont également pris part à cette levée de fonds, tout comme Eric Schmidt, proche de l'ancien PDG de Google, et le milliardaire français Xavier Niel. Le capital-risqueur américain FirstMark et l'investisseur suédois Creandum complètent la liste déjà bien fournie des investisseurs qui croient en ce projet."
+
+		*** avec des chercheurs travaillant sur le développement d'une AIG, une IA "générale"
+		
+	** Et Mistral en parallèle est en train de boucler une nouvelle levée de fond de 600 M€
+
+	** NVidia va plus que bien... +
+	image:20240604_petit-dej-IA_02.jpg[]
+	image:20240604_petit-dej-IA_03.jpg[]
+		*** en 1 an, +262% de résultats...
+
+* REX sur Viva Tech : 
+
+	** 13500 startups
+	** 2800 exposants
+	** 165 000 visiteurs, contre moins de 150 000 pour le CES Las Vegas
+		*** donc le plus gros évènement tech au monde
+	** 37% de contenu sur l'IA
+	
+	** Pas de Google sur le salon
+	** AWS très présent, qui a mis en avant toutes les sociétés et solutions présentes sur leur plateforme Bedrock : Hugging Face, Anthropic, etc.
+
+	** "Beink Dream" (https://www.beink.fr/[]) boîte française permettant de transformer ses croquis à la main en un dessin bien mieux fini et correspondant à la forme souhaitée
+	** Lipitt : mixe ChatGPT, ElevenLabs et techno / solutions de synchronisation des lèvres afin de traduire n'importe quelle langue grâce à l'IA
+	** Biomemory : veut stocker des données sur de l'ADN
+
+=== 2024/07/02 - P'tit déj IA générative La Poste
+
+* Les 3 applications d'IA Gen les plus utilisées aujourd'hui : 
+	1. ChatGPT
+	2. Gemini
+	3. Character.ai
+
+* La gen Z se moque de savoir si un influenceur est "réel" ou pas
+
+.CIAO : optimisation de la réponse aux AO à l'aide de l'IA Gen
+image:20240702_petit-dej-IA_01.jpg[]
+
+	* *1er cas d'usage*, *CIAO 1* : en production depuis 2022/10
+		** Consiste à *identifier les avis de marché publiés* (le faire beaucoup plus vite)
+			*** 3000 AOs financiers remontant tous les jours : on passe d'1 journée à les identifier à 1/2 journée
+		** Travail avec Probayes et développement d'un algorithme permettant de scorer les AOs
+
+	* *2e cas d'usage*, *CIAO 2* : en POC depuis 2023/09 +
+	image:20240702_petit-dej-IA_02.jpg[]
+
+		** Consiste à *détecter des projets d'achat en amont des appels d'offres*
+			*** Permet au client de pouvoir adapter son cahier des charges par rapport à nos solutions
+
+	* *3e cas d'usage*, *CIAO 3* : en POC +
+	image:20240702_petit-dej-IA_03.jpg[]
+
+		** Consiste à *automatiser l'élaboration de la réponse technique*
+		** Objectif : améliorer la qualité et diviser par 2 le temps de création de la réponse à l'AO
+		** Permet d'avoir un 1er jet de réponse, que le vendeur va devoir compléter (le vendeur a encore une action à faire)
+		** le niveau actuellemnet atteint par l'IA est celui d'un "vendeur débutant"
 
 == RESSOURCES SUR L'IA GENERATIVE
 
