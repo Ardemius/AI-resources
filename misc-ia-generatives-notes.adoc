@@ -2663,28 +2663,6 @@ video::nXVvvRhiGjI[youtube, width=640, height=480]
 
 * La gen Z se moque de savoir si un influenceur est "réel" ou pas
 
-.CIAO : optimisation de la réponse aux AO à l'aide de l'IA Gen
-image:20240702_petit-dej-IA_01.jpg[]
-
-	* *1er cas d'usage*, *CIAO 1* : en production depuis 2022/10
-		** Consiste à *identifier les avis de marché publiés* (le faire beaucoup plus vite)
-			*** 3000 AOs financiers remontant tous les jours : on passe d'1 journée à les identifier à 1/2 journée
-		** Travail avec Probayes et développement d'un algorithme permettant de scorer les AOs
-
-	* *2e cas d'usage*, *CIAO 2* : en POC depuis 2023/09 +
-	image:20240702_petit-dej-IA_02.jpg[]
-
-		** Consiste à *détecter des projets d'achat en amont des appels d'offres*
-			*** Permet au client de pouvoir adapter son cahier des charges par rapport à nos solutions
-
-	* *3e cas d'usage*, *CIAO 3* : en POC +
-	image:20240702_petit-dej-IA_03.jpg[]
-
-		** Consiste à *automatiser l'élaboration de la réponse technique*
-		** Objectif : améliorer la qualité et diviser par 2 le temps de création de la réponse à l'AO
-		** Permet d'avoir un 1er jet de réponse, que le vendeur va devoir compléter (le vendeur a encore une action à faire)
-		** le niveau actuellemnet atteint par l'IA est celui d'un "vendeur débutant"
-
 === 2024/09/10 - BGPN - P'tit déj de l'IA générative La Poste
 
 Actualités : 
