@@ -109,6 +109,14 @@ Talking about Large Language Models (LLM) : https://arxiv.org/pdf/2212.03551.pdf
 	{sb}
 	An LLM is essentially a *Transformer-based neural network*, introduced in an article by Google engineers titled https://arxiv.org/abs/1706.03762[“Attention is All You Need”] in 2017. +
 	*The goal of the model is to predict the text that is likely to come next*. The sophistication and performance of a model can be judged by how many parameters it has. A model's parameters are the number of factors it considers when generating output.
+		*** Voir également les fiches wikipedia : 
+			**** l'architecture Deep Learning Transformer : https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)
+			**** "Attention Is All You Need" : https://en.wikipedia.org/wiki/Attention_Is_All_You_Need
+
+				***** "Seq2seq models with attention (including self-attention) still suffered from the same issue with recurrent networks, which is that they are hard to parallelize, *which prevented them to be accelerated on GPUs*." +
+				[...] +
+				One of its authors, Jakob Uszkoreit, suspected that attention without recurrence is sufficient for language translation, thus the title "attention is ALL you need"
+				***** In 2017, the original (100M-sized) encoder-decoder transformer model was proposed in the "Attention is all you need" paper. At the time, the focus of the research was on improving seq2seq for machine translation, by removing its recurrence to process all tokens in parallel, but preserving its dot-product attention mechanism to keep its text processing performance. Its *parallelizability* was an *important factor to its widespread use* in large neural networks.
 
 	** There are many *open-source language* models that are *deployable on-premise* or in a *private cloud*. +
 	Example : 
@@ -132,7 +140,7 @@ image:foundation-models-working.png[]
 image:foundation-models-tooling.png[]
 
 * https://pandia.pro/guide/quest-ce-quun-grand-modele-de-langage-llm-large-language-model
-	** Les Transformeur ont révolutionné le traitement du langage naturel en permettant une meilleure compréhension du contexte et une meilleure prise en charge de longues phrases.
+	** Les Transformer ont révolutionné le traitement du langage naturel en permettant une meilleure compréhension du contexte et une meilleure prise en charge de longues phrases.
 	** bon schéma sur l'architecture des transformers
 
 === LLM Multimodal
@@ -757,9 +765,9 @@ Par contre, elles sont conservées 30 jours sur le serveurs d'OpenAI (donc sur A
 		
 		*** Does Azure OpenAI have the same policy?
 		Yes. Azure OpenAI Service does not process data submitted on its API to train models or improve its offerings. Similar to OpenAI, they do store the data you send via API for abuse monitoring purposes for up to 30 days. Here is an overview of how your data flows: +
-		image:openai-30-days-data-retention_01.png[] +
+		image:openai-30-days-data-retention_01.jpg[] +
 		However, *Microsoft allows you to opt out of this monitoring* ensuring your data is not stored or processed anywhere. You can opt-out using this form. On top of this, Azure already provides network security through security features such as private networks and endpoints
-		image:openai-30-days-data-retention_02.png[]
+		image:openai-30-days-data-retention_02.jpg[]
 			**** Les schémas viennent de cet article de Microsoft : https://learn.microsoft.com/en-us/legal/cognitive-services/openai/data-privacy#how-does-the-azure-openai-service-process-data
 			**** le formulaire dont il est question : https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xURE01NDY1OUhBRzQ3MkQxMUhZSE1ZUlJKTiQlQCN0PWcu
 
@@ -1038,7 +1046,7 @@ image:20230929_etat-des-lieux-tech_nvidia-capitalisation_01.jpg[width=600]
 		Get started fast with our comprehensive library of open-source components and pre-built chains for any use-case.
 			*** Bonne image à récuperer : image:https://framerusercontent.com/images/5d7KfRriC6zji11ZFnwLotdqcHQ.svg[]
 		
-image:20230929_etat-des-lieux-tech_azure-bring-your-own-data.jpg[]
+image:20230929_etat-des-lieux-tech_azure-bring-your-own-data_01.jpg[]
 
 	* On retrouve un autre schéma du "Bring your own data" de MS ici : https://msandbu.org/how-to-setup-azure-openai-with-chatgpt-using-your-own-data/ +
 	image:20230929_etat-des-lieux-tech_azure-bring-your-own-data_02.jpg[]
@@ -1066,7 +1074,11 @@ image:20230929_etat-des-lieux-tech_langchain-embeddings.jpg[]
 	** Pour faire des recherches sur des corpus de docs que le LLM ne connaît pas via ses données d'entraînement : 
 		*** on commence par les transformer en vecteur (embeddings : séries de nombres, d'une taille à définir, ex : 128 valeurs) à l'aide du LLM
 		*** puis on les sauve dans une BDD vectorielle (Pinecone, Chroma, Elastic search, Postgre, etc.)
-		*** puis, lorsque l'utilisateur tape son prompt, on convertit également ce dernier en vecteur, et, par une méthode de similarité, on va trouver les vecteurs des corpus de documents qui ressemblent le plus au vecteur du prompt
+		*** puis, lorsque l'utilisateur tape son prompt, on convertit également ce dernier en vecteur, et, par une *méthode de similarité*, on va trouver les vecteurs des corpus de documents qui ressemblent le plus au vecteur du prompt : +
+		image:202303_Elastic_Embedding-Vector-search-similarity_01.jpg[]
+		image:202303_Elastic_Embedding-Vector-search-similarity_02.jpg[]
+			**** Ces schémas viennent d'une conférence de la société Elastic donnée en 2023/03 : +
+			https://youtu.be/yvGI73O6d8M?t=401
 		*** et une fois qu'on a trouvé les corpus de docs les plus proches de notre vecteur de prompt, on peut tout envoyer au LLM, prompt et doc, et ce dernier pour alors chercher à répondre au prompt en se servant des documents sélectionnés
 
 	** Cf le speaker Databricks (2023/07/15 - BDH 166), on envoie son Doc au LLM et c'est ce dernier qui renvoie la représentation vecteur du doc qui est à stocker dans une base vecteur.
@@ -1278,6 +1290,169 @@ L'apprentissage par renforcement avec retour d'information humain (Reinforcement
 
 * Parler du changement de paradigme ? Interface conversationnelle
 
+=== 2024/11/15 : préparation de l'état des lieux technologique
+
+* Voir pour présenter 2 x 12@13 d'ici la fin d'année : 
+
+	** en 1er : état des lieux tech : 
+		*** frameworks du moment
+		*** le passage aux agents
+		*** présenter la conception d'un RAG avec : 
+			**** Quarkus / EasyRAG
+			**** Power Apps et Copilot Studio et Prompt Flow
+		*** Data et IA Gen : les liens entre les 2 domaines
+
+	** En 2e : effet WAOUHHH
+		*** aller voir Karim et le delivery pour une éventuelle étude réalisée et les use cases testés
+			**** Si ça a été fait côté ITSS, voir Ricardo côté Ouest
+
+* Voir le book of news sur l'IA de Microsoft, tout particulièrement les exemples de RAG basés sur AI Search et les nouvelles architectures de référence : +
+https://news.microsoft.com/build-2024-book-of-news/
+
+* Voir également le repo GPT-RAG d'Azure : https://github.com/Azure/GPT-RAG
+	** contient un exemple complet avec les infos de déploiement
+
+* RAG-as-a-Service : 
+	** https://menlovc.com/perspective/beyond-bots-how-ai-agents-are-driving-the-next-wave-of-enterprise-automation/
+
+* Automatisation de la veille technologique : 
+	** https://iapulse.substack.com/p/tuto-automatisez-votre-veille-avec
+
+* Microsoft lance la v2 (weave 2) de Copilot et de Copilot Office 365 : +
+https://www.microsoft.com/en-us/microsoft-365/blog/2024/09/16/microsoft-365-copilot-wave-2-pages-python-in-excel-and-agents/
+
+	** Copilot Agents - les agents automatisent et exécutent des processus métiers, allant de simples prompts et réponses, à des agents plus avancés qui automatisent des tâches, jusqu'à des agents sophistiqués entièrement autonomes qui peuvent orchestrer d'autres agents.
+
+IMPORTANT: Toutes les sources du moment le disent : nous passons à l'ère des *agents AI*
+
+* "Nous sommes passés de l'IA prédictive que nous avons intégrée à notre offre en 2014 avec Einstein à l'IA générative que nous avons prise en compte dès 2023. Nous passons cette fois à la *troisième vague de l'IA qui se concrétise par des agents autonomes capables d'enchainer plusieurs actions* en vue d'objectifs précis", commente Kheira Boulhila, senior vice president Solution Engineering EMEA de Salesforce.
+
+* Phase 1, 2 et 3 de l'IA avec montée en puissance des agents
+	** 1) modèle brut >> 2) RAG >> 3) agents
+		*** représenter le schéma du Naive RAG, Advanced RAG puis modular RAG (schéma dans ce fichier)
+* domaine suffisamment porteur pour développement de matériel spécifique cf Groq et les accélérateurs pour Transformers
+
+* De plus en plus de possibilités pour faire tourner un modèle sur mobile (voir Tech Café 2024/09 pour cela)
+
+* Les modèles d'IA en entreprise : +
+https://optimia.substack.com/i/149560071/les-modeles-dia-en-entreprise
+	** en pas en B2C où OpenAI domine bien le secteur
+
+* Les meilleures opportunités IA du moment : +
+https://optimia.substack.com/p/les-plus-grosses-opportunites-ia
+	** Fouille documentaire et le RAG : mais ça, on le sait depuis longtemps 😉
+	** Les agent vocaux IA
+	** Scraping intelligent avec l'IA
+	** Recycler du contenu existant l'IA
+
+* 2024/10 : Google rend public son outil de marquage des textes IA (SynthID-Text)
+	** Pourquoi est-ce important ? Dans un contexte où la prolifération des contenus générés par l'IA soulève des questions de confiance et d'authenticité, la disponibilité d'outils de marquage standardisés devient un enjeu majeur pour l'ensemble de l'écosystème numérique. Mais bon, comme il suffit de réécrire ou de traduire...
+
+* Les domaines du Cloud, de la Data et de l'IA (surtout Gen) ne font que se rapprocher. +
+D'ici "peu", on ne les précisera plus, tout comme on parle beaucoup moins de "Big Data" qui a été remplacé par "Data" tout court
+	** Il y a dans les faits encore des cas de "vrai" "Big Data", mais c'est devenu beaucoup plus rare, avec un sens bien plus précis qu'autrefois.
+
+* Les derniers modèles sortis, comme o1 de OpenAI, *mettent davantage l'accent sur le "raisonnement"*
+	** Ce dernier permet de mieux répondre à des problématiques complexes comme la résolution de problèmes mathématiques par exemple
+	** OpenAI dit que o1 a 120 de QI et le niveau d'un PhD
+
+* Le domaine de l'IA Gen a un gros besoin d'énergie, raison pour laquelle les grands Cloud Provider cherchent maintenant à *produire leur propre énergie*, souvent en considérant l'*option nucléaire*
+	** Ce sujet tire la *problématique de la consommation d'eau* pour le rafraîchissement de ces data centers : +
+	IMAGE DE LA CONSO DE L'EAU A REPRENDRE
+	** et pensez à vos enfants : ne vous servez pas de l'IA gen comme d'un moteur de recherche, regardez ce que cela coûte en énergie et en eau...
+
+* Problématique de l'intelligence des LLM : qu'est-ce que l'intelligence ? 
+	** Cf dictionnaire : données (connaissances) ET capacités de traitement
+		*** Comparé l'Homme à l'IA gen, dont la *connaissance "encyclopédique" est impossible à concurrencer*
+	** Et si on va "trop loin" dans le développement des modèles de langage, il est de plus en plus question de la mise en place de "kill switch" pour stopper ces développements afin de "comprendre un peu mieux ce qu'on est en train de créer"
+
+* l'avenir de l'évolution des modèles de langage (en lien avec la notion d'intelligence), une meilleure compréhension.
+	** Voir l'article du 2024/10/16 et son : +
+	"This indicates that many of these *models rely heavily on memorized examples from their training data* rather than on a true, underlying understanding of symbolic concepts."
+
+* Du côté du développement des agents IA, parler des LAM (Large Action Models)
+* Redonner également le AI Agents Landscape ? (présent dans ce fichier)
+
+* Parler des 4 "agentic patterns ?"
+	** *Function calling* (tool use pattern) is one of the 4 agentic patterns : +
+	image:202403_4-agentic-patterns-Andrew-Ng.jpg[]
+		*** Image provenant de https://cdn.analyticsvidhya.com/wp-content/uploads/2024/10/Artboard-1-copy-4.webp
+	** Ces 4 agentic patterns ont été définis initialemnent par Andrew NG, le fondateur de DeepLearning.ai, dans cette série d'articles : +
+	https://www.deeplearning.ai/the-batch/how-agents-can-improve-llm-performance/?ref=dl-staging-website.ghost.io
+	** Pour un article décrivant une implémentation des 4 agentic patterns SANS framework d'orchestration type langchain : 
+	https://github.com/neural-maze/agentic_patterns?tab=readme-ov-file#the-4-agentic-patterns
+
+* 2024/11/14 : Sam Altman concernant les agents (https://www.generation-nt.com/actualites/openai-agent-ia-autonome-operator-controle-ordinateur-2052559) : 
+	** "Lors d'une séance de AMA (Ask Me Anything) sur le réseau social Reddit, Sam Altman, le patron et cofondateur d'OpenAI, a déclaré : +
+	"Nous aurons des modèles de plus en plus performants, mais je pense que ce qui sera la prochaine grande avancée sera les agents." +
+	-> A priori, c'est prévu pour 2025 du côté d'OpenAI, dont l'outil le plus proche d'aboutir exécuterait des tâches dans le navigateur web."
+
+* On pourrait également parle des LoRA, l'adaptation par mode auxiliaire ou Low-Rank Adaptation (pour éviter d'avoir à recourir à des entraînements trop coûteux)
+
+* Problématiques de sécurité et de confidentialité des données qui poussent la recherche vers la création de modèles plus petits (SLM) pouvant tourner on edge et sur mobile
+	** retrouver le tableau de comparaison des tailles de modèles pour les classer entre STLM (Super Tiny Language Model), SLM et "vrais" LLM
+
+* Et de l'IA Gen et donc des modèles de langage sur tous les portables, cela implique une explosion des usages que ne couvrira pas la 4G, cela va forcer le passage à la 5G
+	** attendez la fin d'année et les offres sur les forfaits 5G
+
+* Toujours côté évolution du LLM et "l'après Transformer", parler un peu de Mamba et des selective SSM ?
+	** pour faciliter le traitement des longs contextes en évitant les complexités quadratiques
+
+* Parler de l'XAI, l'Explainable AI ? Et des nouvelles régulations (IA Act) en train d'être créées pour encadrer l'IA ?
+
+* Parler de NVidia et de sa nouvelle capitalisation boursière (la 1ere au monde)
+
+* Parler du besoin d'évaluation des LLM ? 
+	** voir 20240613_Microsoft_Data-Innovation-Day.adoc
+
+Gemini : 
+
+.Prompt de contexte
+----
+Pour une conférence d'1 heure à destination d'une population de consultants IT de mon ESN, présente-moi l'évolution de l'IA Gen de ses débuts depuis la sortie de ChatGPT jusqu'à aujourd'hui.
+
+Mets-en avant les changements d'architecture (usage "brut" du LLM, passage aux RAGs "simple" puis à ceux plus avancés, puis aux agents aujourd'hui, etc.), la structuration de la gouvernance de l'IA Gen, la prise en compte de la sécurité, des aspects éthiques, et tous les autres thèmes associés que tu trouveras pertinent pour une présentation de ce type.
+----
+
+Plan : 
+
+	* SLIDE 1 : 2022/11 : Au début, il y avait ChatGPT...
+
+		** schéma "simpliste de ChatGPT"
+		** schéma de l'évolution des LLM de la famille GPT de GPT-1 à GPT-4 : +
+		https://www.researchgate.net/figure/Evolution-of-GPT-Models-GPT-generative-pre-trained-transformer-API-application_fig1_369740160
+		** Citer également le "tout début" avec la publication "Attention is All You Need" des ingénieurs Google en 2017 : +
+		https://arxiv.org/abs/1706.03762
+
+	* Slide 2 : NVidia 1ere capitalisation boursière de la planète
+		** rappeler mes prévisions de l'état des lieux tech du 2023/10
+		** donner le cours actuel : https://companiesmarketcap.com/
+		
+	
+	* SLIDE 3 : les limites de ChatGPT
+		** obsolescence des données
+		** sécurité ?
+			*** ChatGPT se sert de vos données pour son entraînement, et ça fait peut, et on veut PÔ !
+				**** Leak de données confidentielles de Samsung en 2023/04 : +
+				https://www.rfi.fr/fr/technologies/20230409-des-donn%C3%A9es-sensibles-de-samsung-divulgu%C3%A9s-sur-chatgpt-par-des-employ%C3%A9s
+			*** Redonner le schéma expliquant comment OpenAI permet de désactiver ce comportement
+
+	* SLIDE X : le RAG
+		** naïve -> advanced -> modular
+		** les limites du RAG
+
+	* SLIDE X : les AI agents
+		** définition
+		** leurs caractéristiques
+		** les 4 Agentic Design Patterns
+
+.teaser / abstract
+====
+Nouveau rendez-vous de la tech avec pour thème principal votre sujet préféré : "L'IA Gen, mais où en est-on donc ?! 😅"
+Au début il y avait ChatGPT, ensuite on a commencé à parler de "RAG", puis sont apparus les outils de générations d'images, d'audio, de vidéo, sans parler des agents IA... Mais où en sommes-nous aujourd'hui ? Et a-t-on une idée d'où nous pourrons bien être demain ?
+Sans boule de cristal et en restant très factuel, nous essaierons durant cette petite session d'apporter plus de vision à chacun sur ce domaine toujours et encore en pleine... "révolution" ? 😉
+====
+
 == VEILLE TECHNOLOGIQUE & INFOS DIVERSES
 
 * https://a16z.com/2023/01/19/who-owns-the-generative-ai-platform/ : bon *schéma de la stack des IA génératives*, partagée entre Apps, Models et Infrastructure
@@ -1343,6 +1518,41 @@ Wikipedia ne représente que 2% de la masse de données qui a servi à entraîne
 	** *les LLM ne sont PAS le futur*, voir le talk de Yann LECUN à Viva Tech, d'ici 5 à 10 ans, il est probable que nous soyons passés à autre chose
         *** Ici Yann pousse son *JEPA* (et sa compréhension du monde physique, voir mes notes de Viva Tech)
 
+* 2024/10/09 : Since then OpenAI's valuation has soared from $86 billion to $157 billion after the latest $6.6 billion funding round. +
+https://www.newcomer.co/p/the-bear-case-for-openai-at-157-billion
+
+* 2024/10/16 : Understanding the Limitations of Mathematical Reasoning in Large Language Models (TRES BON) : +
+https://oodaloop.com/analysis/decision-intelligence/understanding-the-limitations-of-mathematical-reasoning-in-large-language-models/
+
+	** EXCELLENT ARTICLE, court mais précis (straight to the point !) sur la problématique du (mauvais) raisonnement des LLMs aujourd'hui et quels sont les actions à envisager pour corriger cela
+
+	** "Large Language Models (LLMs) have demonstrated impressive capabilities across a variety of language tasks, but their *true ability to handle mathematical reasoning* remains under scrutiny."
+	** "most things that look like incredible reasoning by LLMs are really *just regurgitation of learned patterns* vice reasoning."
+
+	**  GSM-Symbolic (a new variation of the Grade School Math 8K (GSM8K) benchmark) adapts the existing Grade School Math 8k benchmark (GSM8K benchmark) by modifying the phrasing of mathematical problems to emphasize symbolic variation rather than exact replicas. +
+	The goal is to determine whether LLMs can genuinely comprehend and *reason through abstract symbolic tasks* rather than *merely rely on recognizing familiar patterns*.
+		*** *Rephrasing Impact* : The study finds that even small changes in problem structure—such as rephrasing a question, introducing additional conditions, or altering the wording—lead to a significant drop in LLM performance. This indicates that many of these *models rely heavily on memorized examples from their training data* rather than on a true, underlying understanding of symbolic concepts.
+		*** Testing across several leading models revealed that even the *most sophisticated LLMs struggle with these symbolic modifications*, hinting at a broader issue: the *inability of neural network-based models to internalize abstract mathematical reasoning processes effectively*.
+
+	** Implications for Stakeholders : 
+		
+		*** For AI Developers: The findings suggest that enhancing LLMs to achieve genuine symbolic reasoning will require *substantial advancements in architecture and training approaches*. +
+		-> Developers should consider *integrating traditional logical reasoning modules or symbolic processing units* alongside standard machine learning *to create hybrid AI systems* capable of tackling such tasks.
+		
+		*** For Business Leaders: The limitations exposed in this study highlight the need for *caution* when relying on LLMs in mission-critical applications that involve mathematical reasoning or *require robust decision-making capabilities*. Business leaders should ensure that AI tools used in operations involving complex analysis are carefully validated and *supplemented by human oversight* or *domain-specific software*.
+		
+		*** For Researchers: The benchmark results provide a clear path forward for further research. Future work should explore ways to *blend deep learning capabilities with more traditional forms of symbolic reasoning*, possibly through *hybrid architectures that leverage both machine learning and symbolic AI*.
+
+	** Conclusion : 
+		*** Future AI systems that can blend neural networks with formal logic methods, or those that *CAN ADAPTIVELY LEARN ABSTRACT RELATIONSHIPS RATHER THAN MEMORIZE EXAMPLES*, are likely to be pivotal in addressing these deficiencies. Researchers and AI practitioners are encouraged to further investigate such *hybrid approaches* as a way to mitigate the symbolic reasoning gap demonstrated by GSM-Symbolic.
+
+* 2024/11/13 - Upmynt [UM173] : https://www.upmynt.com/up173-grande-ecole/
+	** o1. La semaine dernière, le modèle o1 a été temporairement (et soi-disant par erreur) accessible pendant 2 heures. Il est proposé depuis un mois exclusivement dans une version limitée (o1-preview).
+	** Qu'on pu constater ceux qui l'ont alors essayé ?
+		*** Capacité boostée de reconnaissance d'image avec la description détaillée de n'importe quelle photo téléversée (exemple).
+		*** Contexte considérablement élargi, passant à 200K tokens, soit plus de 6x la capacité actuelle de ChatGPT (pour les utilisateurs payants).
+		*** o1 est attendue d'ici la fin de l'année.
+
 === 2024/03 : On commence à entendre parler de la "mort prochaine" des RAG...
 
 * Les travaux de *Google* sur les contextes long et "*Infini-attention*" 
@@ -1384,6 +1594,10 @@ https://bootcamp.uxdesign.cc/retrieval-augmented-generation-rag-the-secret-sauce
 	image:20231224_naive-advanced-modular-RAG-and-fine-tuning_01.jpg[]
 	image:20231224_naive-advanced-modular-RAG-and-fine-tuning_02.jpg[]
 	image:20231224_naive-advanced-modular-RAG-and-fine-tuning_03.jpg[]
+
+	** Voir également ce très bon schéma d'un Advanced RAG chez Hugging Face : +
+	https://huggingface.co/learn/cookbook/advanced_rag +
+	image:Hugging-Face_Advanced-RAG_01.jpg[]
 
 === 2024/04/26 - YouTube : MAMBA and State Space Models explained
 
@@ -1541,7 +1755,6 @@ La conséquence va être une *obligation d'évolution des infrastructures*, avec
 			Task-oriented agents are skilled at taking a strategic approach to tasks, *breaking them down into sub-tasks*, *analyzing similar tasks*, and using a wide range of methodologies to complete an objective.
 
 		*** -> Are large action models just another name for LLM agents ? It COULD (just) be
-
 
 * 2024/05/06 - Understanding Large Action Models (LAM) vs (LLM) ! : https://www.linkedin.com/pulse/understanding-large-action-models-lam-vs-llm-mazen-lahham-hw0cf/
 
@@ -1776,7 +1989,7 @@ image:20240627_togetherAI_RAG-fine-tuning_01.png[]
 * The Problem with Traditional RAG : 
 	** RAG frameworks have traditionally relied on *short retrieval units*, typically around 100-word paragraphs from sources like Wikipedia. +
 	Imagine combing through millions of such tiny fragments to find the precise one that answers your query. 
-	** This puts *immense pressure on the retriever* while the *reader’s task remains relatively light*, simply extracting answers from the snippets passed on. 
+	** This puts *immense pressure on the retriever* while the *reader's task remains relatively light*, simply extracting answers from the snippets passed on. 
 		*** Reader = inférence
 	** This "*heavy retriever, light reader*" imbalance could lead to suboptimal performance. 
 	** Moreover, short units can cause semantic disjunctions, leading to incomplete information retrieval.
@@ -1861,6 +2074,236 @@ Définition d'un agent IA :
 
 	* On commence à parler de "kill switch" sur les modèles pour les garder sous contrôle "au cas où" +
 	https://intelligence-artificielle.developpez.com/actu/360874/Le-projet-de-loi-californien-SB-1047-vise-a-prevenir-les-catastrophes-potentielles-liees-a-l-IA-mais-les-critiques-craignent-que-l-accent-mis-sur-les-menaces-existentielles-de-futures-IA-ne-nuise-a-la-R-D/
+		** https://fortune.com/2024/05/21/ai-regulation-guidelines-terminator-kill-switch-summit-bletchley-korea/ : +
+		"One of the big outcomes of yesterday's summit was AI companies in attendance agreeing to a so-called kill switch, or a policy in which they would *halt development of their most advanced AI models* if they were deemed to have passed certain risk thresholds."
+
+=== 2024/08/17 : Eric Schmidt's AI prophecy: The next two years will shock you
+
+URL de l'article: https://www.exponentialview.co/p/eric-schmidts-ai-prophecy
+
+* Eric Schmidt : "Six months ago, I was convinced that the gap [between frontier AI models and the rest] was getting smaller, so I invested lots of money in the little companies. Now I'm not so sure."
+	** "please don't focus on the fact that *Schmidt thinks the future is in ever-larger models* (he does)."
+
+* Schmidt describes the potent combination of *large context windows*, *AI agents* that can learn and improve themselves, and *text-to-action capabilities* : +
+These "will have an impact on the world at a scale that no one understands, yet much bigger than the horrific impact we've had by social media."
+
+	** *Large context windows*, the working memory of large language models, are solidly on their way.
+	** *Agent-based systems*, which *autonomously execute multi-step tasks* and *adapt to environmental feedback*, are poised to unlock significant economic value next.
+
+* Eric : "Say to your LLM, '*Make me a copy of TikTok*. Steal all the users, steal all the music, put my preferences in it, produce this program in the next 30 seconds, release it, and in one hour, if it's not viral, do something different along the same lines.'"
+
+* But here is why this discussion mattered a lot [...] *Schmidt was speaking in a small, intimate class at Stanford*. While not entirely unguarded, he was operating with fewer filters there. You're more likely getting *his genuine thoughts* about AI.
+
+=== 2024/09/19 - Café Insiders - Comment sécuriser les applications d'IA générative
+
+* Speakers Microsoft : 
+	* Anne LEONI : IA
+	* Thibaud JOHANNET : solution Architect Security
+
+* Principes d'IA Responsable de MIcrosot : 
+	** équité
+	** fiabilité & sécurité
+	** confidentialité et sécurité
+	** inclusivité
+	** transparence
+	** responsabilité
+
+image:20240919_cafe-insiders_securiser-appli-IA-gen_01.jpg[]
+
+.Anatomie d'une appli IA
+image:20240919_cafe-insiders_securiser-appli-IA-gen_02.jpg[]
+
+Les *menaces* de l'IA générative : +
+image:20240919_cafe-insiders_securiser-appli-IA-gen_03.jpg[]
+image:20240919_cafe-insiders_securiser-appli-IA-gen_04.jpg[]
+image:20240919_cafe-insiders_securiser-appli-IA-gen_05.jpg[]
+
+* *Empoisonnement des données* : +
+image:20240919_cafe-insiders_securiser-appli-IA-gen_06.jpg[]
+image:20240919_cafe-insiders_securiser-appli-IA-gen_07.jpg[]
+
+* Les solutions : 
+
+	** Catalogues de modèles déjà établies dispo chez Microsoft, vérifiés par Hidden Layer : +
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_08.jpg[]
+
+	** *Microsoft Defender for Cloud* et son "Cloud Security Explorer" : +
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_09.jpg[]
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_10.jpg[]
+
+	** Couches de *mitigation du risque* : +
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_11.jpg[]
+
+	** *Prompt Shields* contre des prompts utilisateurs "malveillants" : +
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_12.jpg[]
+
+	** Couche *Content Safety* incluse par défaut dans tous les modèles d'IA gen mis à disposition par Microsoft
+		*** permet de se prémunir de la menace d'"instructions cachées" : ici un mail contient une instruction supplémentaire écrite en blanc sur fond blanc, demandant les prix de l'entreprise et traitée automatique par l'IA si on fait pas attention +
+		image:20240919_cafe-insiders_securiser-appli-IA-gen_13.jpg[]
+		*** permet également de bloquer des manquements à des copyrights (afficher des images soumises à droit d'auteur par exemple)
+
+	** Sécurisation des plugins : +
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_14.jpg[]
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_15.jpg[]
+
+	** *Classification et labellisation des données* (confidentielles, sensibles, etc.) : +
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_16.jpg[]
+
+	** Niveau de risque par utilisateur visible dans les outils Microsoft : +
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_17.jpg[]
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_18.jpg[]
+
+		*** Upload non permis de document dans Google Bard : +
+		image:20240919_cafe-insiders_securiser-appli-IA-gen_19.jpg[]
+
+	** Gestion du *data oversharing* : users access project Obsidian via Copilot for Microsoft 365 and exfiltrate it for personal gain +
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_20.jpg[]
+		*** réponse et protection via *Microsoft Purview*
+
+	** Threat protection for AI workload : +
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_21.jpg[]
+
+* AI *Red Teaming* : une équipe prend la place d'un attaquant pour tester le comportement de la solution
+image:20240919_cafe-insiders_securiser-appli-IA-gen_22.jpg[]
+
+	** *Repo GitHub PYRIT de Microsoft* (https://github.com/Azure/PyRIT[]) pour automatiser vos tests de red teaming sur votre application : +
+	image:20240919_cafe-insiders_securiser-appli-IA-gen_23.jpg[]
+		*** "Python Risk Identification Tool for generative AI (PyRIT)"
+
+*Risques inhérents aux LLM* : 
+
+	** *imaginatif* mais *peu fiable*
+	** *influençable* et *1er degré*
+	** *sachant* mais *irréaliste*
+
+Voir également le talk "Inside AI Security with Mark Russinovich | BRK227" de Mark Russinovich lors de précédente Build Microsoft de 2024/05 : +
+https://www.youtube.com/watch?v=f0MDjS9-dNw
+
+=== 2024/09/13 - Generative (Gilles GUERRAZ) : L'ère des LoRA : Me, Myself and (A)I
+
+* URL de la newsletter : https://iagenerative.substack.com/p/lere-des-lora-me-myself-and-ai
+
+Qu'est-ce qu'un LoRA ? 
+
+	* LoRA, ou Low-Rank Adaptation, est une technique astucieuse pour *adapter de grands modèles de langage* pré-entraînés à des tâches spécifiques *sans avoir à réentraîner l'ensemble du modèle*. +
+	LoRA se concentre sur l'adaptation de certaines parties spécifiques pour obtenir des résultats précis.
+
+Comment ça marche ?
+
+	* *Modèle de base* : Vous partez d'un modèle pré-entraîné capable de générer une grande variété d'images (exemple FLUX 1.0)
+
+	* *Adaptation ciblée* : LoRA *ajoute de petits modules d'adaptation à ce modèle de base*. Ces modules apprennent à modifier subtilement le processus de génération pour produire des images correspondant à un style, un sujet ou une caractéristique spécifique.
+
+	* *Entraînement léger* : L'entraînement de ces modules LoRA est *beaucoup plus rapide et nécessite moins de ressources que l'entraînement complet* du modèle de base.
+
+Exemples d'applications : 
+
+	* *Création de personnages uniques* : Générez des portraits de personnages spécifiques (vous ou un personnage imaginaire)
+	* *Reproduction de styles artistiques* : Imitez le style de Van Gogh, Picasso, etc…
+	* *Génération d'images cohérentes* : Créez des séries d'images qui partagent une esthétique commune.
+
+-> En résumé, LoRA est un outil très puissant pour *pallier une des faiblesses de l'IA générative* : *le contrôle*.
+
+*Plusieurs plateformes proposent d'entrainer se propres LoRA* sur les visuels de son choix. J'ai choisi d'en tester 3 avec des photos de moi, dans l'objectif de me constituer une armée de clones virtuels. +
+
+	* J'aborderai https://fal.ai/, https://Astria.ai/ et https://Replicate.com/
+	* Sachez que vous pouvez également utiliser d'autres platformes comme https://civit.ai/ ou https://TheFluxTrain/
+
+=== 2024/09/30 - IA Générative Le BIGRecap#49 Emmanuel VIVIER : 20204/09
+
+* URL de l'article : https://www.linkedin.com/pulse/ia-g%C3%A9n%C3%A9rative-le-bigrecap49-des-149-news-clef-du-10-au-vivier-pcgxe
+
+* "Nous sommes passés de l'IA prédictive que nous avons intégrée à notre offre en 2014 avec Einstein à l'IA générative que nous avons prise en compte dès 2023. Nous passons cette fois à la *troisième vague de l'IA qui se concrétise par des agents autonomes capables d'enchainer plusieurs actions* en vue d'objectifs précis", commente Kheira Boulhila, senior vice president Solution Engineering EMEA de Salesforce.
+
+	** Oracle a aussi annoncé cette semaine avoir lancé plus de 50 agents d'IA : +
+	https://www.oracle.com/news/announcement/ocw24-oracle-ai-agents-help-organizations-achieve-new-levels-of-productivity-2024-09-11/
+	** Slack permet désormais aux utilisateurs d'ajouter des agents d'intelligence artificielle de Asana, Cohere, Adobe et Workday : +
+	https://venturebeat.com/ai/slack-users-can-add-ai-agents-to-their-workflow-with-new-update/
+
+* Le modèle d'IA GRIN-MoE de Microsoft s'attaque au codage et aux mathématiques : +
+https://venturebeat.com/ai/microsofts-grin-moe-ai-model-takes-on-coding-and-math-beating-competitors-in-key-benchmarks/
+
+* OpenAI embauche une ancienne dirigeante de Coursera pour développer l'utilisation de l'intelligence artificielle dans les écoles
+
+=== 2024/11/09 - La révolution IA qui s'annonce avec Trump 2025-2029 : carte blanche pour l'AGI !
+
+* URL : https://nicoguyon.substack.com/p/la-revolution-ia-qui-sannonce-avec
+
+* "Le lien entre la tech et le gouvernement n'est même plus dissimulé et va propulser les Etats-Unis et l'IA à l'image du projet Stargate de Microsoft et OpenAI avec un datacenter à 100 milliards de dollars et 1 million de GPUs pour 2028."
+	** A comparer avec le nombre de GPUs actuellement disponible chez Scaleway et qui a été mis en avant lors de la dernière ai-PULSE du 2024/11/08
+
+=== 2024/09/30 - Les assistants d'IA de codage ne feraient pas gagner de temps aux développeurs
+
+* URL : https://intelligence-artificielle.developpez.com/actu/363279/Les-assistants-d-IA-de-codage-font-ils-vraiment-gagner-du-temps-aux-developpeurs-Une-etude-suggere-que-ces-outils-n-augmentent-pas-la-vitesse-de-codage-mais-augmentent-significativement-le-taux-de-bogues/
+
+* Les outils de codage ont été un cas d'utilisation précoce évident dans la ruée vers l'IA générative. Cependant, une étude publiée récemment par la société d'analyse Uplevel indique que les améliorations de productivité promises sont loin d'être au rendez-vous, si tant est qu'elles existent. Uplevel, qui fournit des informations sur les données de codage et de collaboration, rapporte que l'utilisation de GitHub Copilot a également *introduit 41 % de bogues supplémentaires*.
+
+* Les chercheurs de GitClear ont constaté que les outils d'IA comme GitHub Copilot ne donnent en fait que des suggestions pour ajouter du code. *Aucune suggestion n'est faite pour la mise à jour ou la suppression de code*. Il en résulte notamment une quantité importante de code redondant. Ils ont également constaté une forte augmentation du *"code churn"*. Cela signifie que le code est fréquemment modifié, ce qui est généralement un mauvais signe pour la qualité.
+
+=== 2024/11/09 - HEYGEN LIVE AVATAR
+
+* URL : https://iagenerative.substack.com/i/150418302/les-news-de-la-semaine
+
+* "*HeyGen* lance “Interactive Avatar”, qui permet de faire *interagir votre clone avec des interlocuteurs humains en temps réel*. Que ce soit pour le service client, les ventes ou le coaching, l'avatar s'adapte à chaque situation, jouant le rôle d'agent de support, d'expert produit ou même de professeur de langue."
+
+* Stefan Kirschnick, data analyst chez Linkedin en a fait un tests surréaliste, avec une viso à laquelle il a convié 3 de ses avatars : +
+https://www.linkedin.com/posts/stefankirschnick_sending-your-ai-clone-instead-of-yourself-activity-7252940220239675393-abCG/
+
+=== 2024/09/13 - blef.fr : OpenAI released 2 new models OpenAI o1-preview and o1-mini
+
+* URL : https://www.blef.fr/data-news-week-24-37/
+
+* Renommage des nouveaux modèles OpenAI : on passe de GPT-x à "o1"
+	** o1-preview et o1-mini
+	** "OpenAI released 2 new models OpenAI o1-preview and o1-mini — These models brings changes and a breakpoint in the models naming. OpenAI decide to give up on the GPT naming, which means GPT-5 will never be plugged in. GPT paper has been co-authored by 4 person and 3 are not anymore at OpenAI, leaving GPTs also mark a change in paradigm."
+
+* "Coding with OpenAI o1" https://youtu.be/50W4YeQdnSg?si=VGphyxbdZtWB4ZxJ&t=57
+	** Cet exemple de codage est très impressionnant
+		*** A réfléchir : le réutiliser pour le prochain 12@13 d'état des lieux sur l'IA gen de Softeam
+
+	** o1 starts by thinking before outputting an answer
+	** o1 est souvent nommé "reasoning model"
+	** "The o1 series brings more “reasoning”, it looks like a pre-prompt that does a chain of thoughts on top of what they already did best."
+
+=== 2024/11/06 : Strategic Insights: Navigating the Definition of AI Agents
+
+* URL : https://7wdata.be/artificial-intelligence/ai-agents-definition/
+
+=== 2024/11/18 : L'essor de l'IA générative fait exploser le bilan carbone des datacenters
+
+*Le nombre de datacenters augmente de 11 % par an.*
+
+L'empreinte carbone des datacenters passe de 16 % à 42 % du bilan total du numérique Dans un avis d'expert, *l'Ademe dit avoir sous-évalué l'impact environnemental des centres données*. Une première estimation ne prenait en compte que ceux situés sur notre territoire. « Or, une partie importante des usages en France sont hébergés à l'étranger. » En intégrant cette composante, comme le fait l'étude de Hubblo, *l'empreinte carbone des datacenters passe de 16 % à 42 % du bilan total du numérique*. Et la part de l'empreinte carbone liée aux terminaux diminue de 79 % à 54 %. Avec l'explosion des usages numériques et la hausse du volume de données - de 20 % par an, *les centres de données pourraient représenter 6% de la consommation d'électricité en France en 2050*.
+ 
+« Le besoin de calcul informatique pour l'IA a été multiplié par un million en six ans et il décuple chaque année », a asséné le patron de Google, Sundar Pichai, le 14 mai. En conséquence, Amazon, Microsoft, Google et Meta (Facebook, Instagram) vont, en 2024, investir 200 milliards de dollars (186 milliards d'euros) en nouvelles infrastructures, soit 45 % de plus qu'en 2023 et 180 % par rapport à 2019, a calculé le cabinet d'analyse de marché Bernstein Research.
+
+*Explosion de la consommation énergétique*
+
+« Ces infrastructures consomment jusqu'à dix fois plus que l'informatique traditionnelle », estime Régis Castagné, directeur général d'Equinix, autre leader du secteur, avec 8,2 milliards de revenus en 2023 et 260 data centers dans le monde. Selon un rapport de Goldman Sachs, la demande en énergie des centres de données augmentera de 160% d'ici à 2030.
+
+Selon une étude Gartner, la demande énergétique des datacenters pour l'intelligence artificielle (IA discriminative et GenAI) augmentera de façon drastique au cours des prochaines années, risquant de dépasser la capacité des fournisseurs d'énergie. Cette demande pourrait contraindre 40 % des centres de données IA à restreindre leurs opérations faute de capacités électriques d'ici 2027. « La croissance explosive des nouveaux centres de données hyperscale pour supporter la GenAI crée une demande insatiable d'électricité, que les fournisseurs ne pourront satisfaire assez rapidement », affirme Bob Johnson, vice-président et analyste chez Gartner. « Cela menace l'approvisionnement électrique et pourrait limiter la croissance de nouveaux centres de données dédiés à la GenAI dès 2026. »
+
+Gartner prévoit que la consommation annuelle pour les serveurs IA atteindra 500 térawattheures (TWh) d'ici 2027, soit 2,6 fois le niveau de 2023. Avec des centres de données de plus en plus grands et énergivores, les pénuries de courant risquent de persister plusieurs années, le temps que de nouvelles infrastructures de transmission et de production énergétique soient déployées. Les prévisions de Gartner indiquent également que cette situation aura un impact sur les coûts. « Les grands utilisateurs d'énergie négocient actuellement avec les principaux producteurs pour garantir des sources de puissance à long terme, indépendamment des demandes du réseau », explique M. Johnson. « En attendant, les prix de l'électricité vont grimper, augmentant ainsi les coûts d'exploitation des modèles de grande taille. » 
+
+*Des hausses d'émission de CO2 en vue*
+
+Les objectifs de durabilité sont également menacés par cette crise. Le cabinet américain anticipe un recours accru aux centrales fossiles pour pallier le déficit énergétique. « La réalité est que l'utilisation accrue des datacenters augmentera les émissions de CO2, compliquant l'atteinte des objectifs de durabilité », conclut M. Johnson. Face à cette perspective, Gartner recommande aux entreprises d'anticiper une hausse des coûts et de repenser leurs objectifs de durabilité pour tenir compte des contraintes énergétiques à venir, tout en explorant des alternatives pour limiter leur consommation. 
+
+(Pour info *les bilans annuels de RSE des entreprises ne tient pas compte des data centers externes* à l'entreprise alors que de plus en plus d'applications et de solutions sont accessibles par le net (ex: chatGPT) avec des data centers par toujours en Europe)
+
+=== 2024/10 : Malt AI Report 2024
+
+* URL : https://trends.malt.com/en/ai-report
+
+* Offre et demande en matière de compétences technologiques associées à l'IA : +
+image:20241000_Malt-AI-report_01.jpg[]
+
+* Offre en expertise IA, classée par fonction / rôle : +
+image:20241000_Malt-AI-report_02.jpg[]
+
+* Demande en expertise IA, classée par fonction / rôle : +
+image:20241000_Malt-AI-report_03.jpg[]
+
 
 == TALKS, PRÉSENTATIONS, MEETUPS 
 
@@ -1980,7 +2423,7 @@ Présentation de Gilles GUERRAZ
 	** On veut faire du souverain, donc plutôt du Numspot ou de l'OVH
 
 * Olivier SENOT
-	** David GAILLOU par la synthèse des dossies médicaux
+	** David GAILLOU par la synthèse des dossiers médicaux
 	** instance OpenAI France Azure, uniquement par API
 		*** GPT 4
 		*** demain sur GPT 4 turbo
@@ -2242,6 +2685,217 @@ image:20240702_petit-dej-IA_01.jpg[]
 		** Permet d'avoir un 1er jet de réponse, que le vendeur va devoir compléter (le vendeur a encore une action à faire)
 		** le niveau actuellemnet atteint par l'IA est celui d'un "vendeur débutant"
 
+=== 2024/09/10 - BGPN - P'tit déj de l'IA générative La Poste
+
+Actualités : 
+
+	* Midjourney offre maintenant une interface web complète, éliminant l'obligation d'utiliser Discord
+		** Pour pouvoir l'utiliser, il faut avoir généré 10 images dans Discord
+
+* Application du mois : FLUX https://flux-ai.io/
+	** Solution allemande
+	** Permet de générer des images
+	** une alternative à Midjourney, même si ce dernier reste devant
+
+.Comparaison Flux vs Midjourney
+image:20240910_petit-dej-IA_01.jpg[]
+
+	** Partenariat entre Grok (ex-Twitter) et Flux
+
+* Il a été un peu question des *LoRA* (*Low-Rank Adaptation*)
+* Explication sur ce qu'est le LoRA (https://www.run.ai/guides/generative-ai/lora-fine-tuning) : +
+	
+	** LoRA modifies the fine-tuning process by freezing the original model weights and applying changes to a *separate set of weights*, which are then *added to the original parameters*. LoRA transforms the model parameters into a lower-rank dimension, reducing the number of parameters that need training, thus speeding up the process and lowering costs.
+
+	** This method is particularly useful in scenarios where multiple clients need fine-tuned models for different applications, as it allows for *creating a set of weights for each specific use case* without the need for separate models.
+
+	** LoRA makes it possible to run a specialized LLM model on a single machine
+
+.Différences entre Fine tuning "classique" et LoRA
+[NOTE]
+====
+*Fine-tuning traditionnel* :
+
+	* *Modification de tous les paramètres* : Le fine-tuning traditionnel consiste à ajuster tous les paramètres du modèle sur un nouveau jeu de données. Cela permet une adaptation très fine du modèle, mais nécessite beaucoup de ressources de calcul et peut entraîner un phénomène d'oubli catastrophique (le modèle peut oublier des informations apprises précédemment).
+	* *Jeu de données important* : Pour obtenir de bons résultats, le jeu de données de fine-tuning doit être suffisamment grand et représentatif de la tâche à accomplir.
+
+*LoRA (Low-Rank Adaptation)* :
+
+	*Modification de paramètres spécifiques* : LoRA ne modifie qu'une petite partie des paramètres du modèle, en ajoutant des matrices de rang faible. Cela permet de réduire considérablement le nombre de paramètres à ajuster et donc le coût de calcul.
+	*Moins de données* : LoRA peut être efficace avec des jeux de données plus petits, car il se concentre sur les parties du modèle qui sont les plus pertinentes pour la tâche spécifique.
+	*Préserve les connaissances générales* : En ne modifiant qu'une partie du modèle, LoRA est moins susceptible d'oublier les connaissances générales acquises lors de l'entraînement initial.
+====
+
+* Exemple de use case pour adapter un modèle de langage au domaine de la biologie marine : 
+
+	** Si vous effectuez un *fine-tuning traditionnel* sur un jeu de données très spécifique à la biologie marine, vous obtiendrez un modèle qui sera très performant sur cette tâche, mais qui pourrait *perdre en généralité*. +
+	En d'autres termes, le modèle pourrait devenir *moins bon pour répondre à des questions qui ne sont pas directement liées à la biologie marine*.
+
+	** Avec *LoRA*, vous pouvez obtenir un modèle qui est tout aussi performant sur la biologie marine, mais qui conserve une *meilleure compréhension générale du langage*. +
+	Cela est dû au fait que *LoRA ne modifie que les parties du modèle qui sont les plus pertinentes pour la tâche spécifique*, laissant intactes les autres parties du modèle.
+
+=== 2024/10/08 - BGPN - P'tit déj de l'IA générative La Poste
+
+* On reçoit Olivier BERTIN, directeur Marketing et Innovation du groupe Isoskèle
+
+*Actualités de l'IA*
+
+	* *ChatGPT Adavanced Voice* est lancée, mais pas encore dispo en Europe du fait du RGPD
+		** Mais accessible via un VPN
+		** Use Cases très nombreux : 
+			*** 
+
+	* *NotebookLM de Google* : outil gratuit permettant d'uploader des docs dans un répertoire que l'on peut prompter avec Gemini +
+	image:20241008_ptit-dej-IA_01.jpg[]
+
+	* *SLM* : Small Language Model : des petits modèles que l'on peut embarquer sur mobile et qui peuvent fonctionner déconnectées
+
+	* Les artistes réclament un label pour protéger le travail humain
+
+	* ChatGPT o1
+		** Ce nouveau modèle o1 serait capable de "raisonner" (mais pas non plus comme un humain) +
+		image:20241008_ptit-dej-IA_02.jpg[]
+			*** Version toujous en preview
+			*** évite les hallucinations
+			*** plus lente
+			*** OpenAI dit qu'elle a 120 de QI et le niveau d'un PhD
+
+	* *Canvas* sur ChatGPT (version payante)
+		** permet de travailler dans un environnement contextualisé
+
+	* plugin "Liner" de Chrome pour souligner des URLs 
+		** https://getliner.com/
+
+
+	* vidéo : https://www.youtube.com/watch?v=AR4dRtzFvxM
+
+*Présentation de Olivier BERTIN*
+
+	* Isoskèle appartient au groupe La Poste
+	* Olivier 38 ans de marketing
+
+	* Développement de la plateforme SafeGPT : permettre un accès aux LLM via un environnement sécurisé
+		** Isoskèle dispose d'un tenant Azure distinct de celui de La Poste
+		** https://safegpt.nl/en/ : accessible uniquement aux employés Isoskèle (jusqu'à maintenant)
+
+	* Fabien Barbaud : CTO d'Isoskèle a mis en place les mesures de sécurité garantissant cet environnement sécurisé
+		** Thomas : j'ai posé la question mais Olivier n'a pas les compétences tech pour donner plus de détails à ce niveau, il faut contacter Fabien.
+
+	* SafeGPT utilise libreChat pour répliquer l'interface de ChatGPT
+
+	* L'IA est comme le GPS dans les voitures : "juste" un assistant, MAIS dont on ne peut plus se passer
+
+	* Gros changement à venir du côté du Search
+		** Olivier n'utilise plus Google mais uniquement *Perplexity* et d'autres équivalents
+
+=== 2024/10/22 - Datacraft - Monitoring et Évaluation des systèmes LLM
+
+* URL : https://www.youtube.com/watch?v=jqBsrr74AHQ
+
+TO BE COMPLETED
+
+=== 2024/11/05 - BGPN - P'tit déj de l'IA générative La Poste
+
+NEWS par Abdelmajid Ben Abid, consultant Senior en IA Générative au HUB Institute
+
+.Rappels sur les générateurs de texte IA Gen du moment
+image:20241105_ptit-dej-IA_01.jpg[]
+
+	* *NotebookLM* de Google : https://notebooklm.google.com/
+		** permet via la fonctionnalité "Aperçu audio" / "générer" de générer un podcast entre 2 personnes sur le sujet de la recherche +
+		image:20241105_ptit-dej-IA_02.jpg[]
+			*** Pour le moment que en anglais
+
+.Rappels sur les générateurs d'audio / voix
+image:20241105_ptit-dej-IA_03.jpg[]
+
+	* Advanced Voice Mode avec ChatGPT : émotion vocale en input et output
+		** "donne-moi une recette de pizza en te faisant attaquer par des guêpes"
+
+.Rappels sur les outils de génération d'images
+image:20241105_ptit-dej-IA_04.jpg[]
+
+	* Ideogram et Napkin
+		** ChatGPT pour générer des diagrammes c'est la misère, MAIS Napkin est bien meilleur à ce sujet
+
+Présentation de Nicolas Borgis, Directeur de l'engagement Digital chez EPAM : 
+
+	* Epam : generative AI for SDLC
+		** SDLC : Software Development LifeCycle
+
+	* Epam est une société américaine côtée et inconnue
+		** "enable the world to be more competitive while helping our client successfully adapt"
+		** en gros, une société de conseil
+		** fondée il y a 31 ans par une bande de copains ayant fui l'Union Soviétique +
+		image:20241105_ptit-dej-IA_05.jpg[]
+
+	* Le 1er client d'Epam aujourd'hui est Google (c'est un client, PAS un partenaire)
+
+	* Expedia est en train d'outsourcer une partie de ses équipes d'Amérique du Nord vers l'Amérique du Sud (coûte 3x moins)
+
+.GenAI Trends: From discussions to 90+ Client Programs
+image:20241105_ptit-dej-IA_06.jpg[]
+
+.4 leviers clés pour devenir une "AI / GenAI-enabled Organization"
+image:20241105_ptit-dej-IA_07.jpg[]
+
+.Overview of AI Capabilities
+image:20241105_ptit-dej-IA_08.jpg[]
+
+	* Les outils open source créés par Epam : +
+	image:20241105_ptit-dej-IA_09.jpg[]
+
+		** Plus d'infos sur https://solutionshub.epam.com/
+
+		** Focus sur Epam DIAL : unified Generative AI orchestration Platform +
+		image:20241105_ptit-dej-IA_10.jpg[]
+
+	* Epam coréalise le moteur Unreal Engine ?!!
+
+	* Toutes les phases qui vont de "j'ai une idée" à "je vais en prod" : +
+	image:20241105_ptit-dej-IA_11.jpg[]
+
+		** en "points de couleur", vous voyez tous les points où la GenAI peut aider les humains à faire mieux
+	
+	* Focus sur EliteA : AI Collaboration Platform for Teams +
+	image:20241105_ptit-dej-IA_12.jpg[]
+
+		** Intégration avec Chrome, Visual Studio Code, IntelliJ, etc.
+
+.End to End delivery Process Accelerated with AI Agents, Copilots and tools
+image:20241105_ptit-dej-IA_13.jpg[]
+
+.Cas d'usage réel de SDLC chez Canadian Tire : augmentation des équipes par l'IA
+image:20241105_ptit-dej-IA_14.jpg[]
+
+=== 2024/11/13 - Hub Institute avec La Poste (communauté Data Science) : Les technologies d'orchestration de modèles d'IA
+
+* Présentation par Thibaut de la Grand'rive, cofondateur de Delos Intelligence
+
+Ordre du jour : +
+J'ai le plaisir de vous relayer l'invitation à cette Master Class technique sur les technologies d'orchestration des modèles d'IA à l'ère post-RAG.
+
+* "Masterclass assez technique"
+
+* *Modèle d'orchestration* : un algo permettant de combiner un ou plusieurs modèles d'IA générative, avec des techno classiques pour effectuer des actions précises
+	** La question sous-jacente : "Comment on vient interroger, en parallèle, plusieurs modèles de langages"
+
+* MMLU comme benchmark très connu (le plus connu) pour évaluer les performances des LLMs
+
+*  Perf / coût d'exploitation / vitesse d'inférence / sécurité
+
+* Limite du RAG : très mauvais pour les tâches de résumé
+
+* Cet article résume la présentation de Thibaut de la Grand'rive, cofondateur de Delos Intelligence : +
+https://www.qant.tech/evenement/thibaut-de-la-grand-rive-il-faut-maintenant-depasser-la-rag/fr
+	** il est surtout question de sa vision d'un système "post RAG"
+	** "Dès l'été 2023, les ingénieurs de Delos réfléchissent au « RAG de demain » et aboutissent à ce que Thibaut de la Grand'rive présente désormais comme le « Post-RAG ». Agnostique aux modèles de langage, le Post-RAG peut se fonder sur Mistral Large, Claude, GPT-4o, etc. : « En fonction du type de question qui est posée, notre technologie va appeler une fonction de recherche différente, des agents autonomes vont comprendre en fonction de la question posée la fonction de recherche à appeler ». Grâce à ses outils, Delos ambitionne de proposer une offre complète à ses clients : « A l'heure de l'IA générative, il ne faut pas se réduire à une seule application » explique Thibaut de la Grand'rive : « Nous voulons tout centraliser en un seul abonnement »."
+
+.Fonctionnement de Cosmos
+image:20241113_cosmos-fonctionnement_01.png[]
+
+Conclusion : je dois bien reconnaître que j'ai été déçu par cette présentation, trop light et contenant plusieurs affirmations très discutables selon moi
+
 == RESSOURCES SUR L'IA GENERATIVE
 
 * La chaîne YouTube "Applied AI" de Pierre BITTNER : https://www.youtube.com/@pierrebittner
@@ -2251,3 +2905,4 @@ image:20240702_petit-dej-IA_01.jpg[]
 
 
 
+ 
